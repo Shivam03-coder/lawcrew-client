@@ -4,6 +4,9 @@ import TaskCards from "@/components/_my_tasks/task_cards";
 import TodayTasks from "@/components/_my_tasks/task-forms/today_task";
 import TodayRemindersTasks from "@/components/_my_tasks/task-forms/today_reminders";
 import TodayMeetingsTask from "@/components/_my_tasks/task-forms/today_meetings";
+import TaskPieChart from "@/components/_my_tasks/task_pie_chart";
+import TotaltaskChart from "@/components/_my_tasks/total_task_chart";
+import TaskStatusChart from "@/components/_my_tasks/task_status_chart";
 
 const Dashboard = () => {
   return (
@@ -37,26 +40,11 @@ const Dashboard = () => {
         taskSheet={<TodayRemindersTasks />}
         onButtonClick={() => console.log("Set Reminder Clicked")}
       />
-
-      {/* Litigation & Corporate Matters */}
-      <div className="col-span-3 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Litigation Cases */}
-        <TaskCards
-          title="My Litigation Cases per Workflow Status"
-          count={0}
-          icon={<ClipboardList size={60} className="text-gray-400" />}
-          message="Let’s fill this list with Litigation Cases!"
-          onButtonClick={() => console.log("Create Litigation Case Clicked")}
-        />
-
-        {/* Corporate Matters */}
-        <TaskCards
-          title="My Corporate Matters per Workflow Status"
-          count={0}
-          icon={<Briefcase size={60} className="text-gray-400" />}
-          message="Let’s fill this list with Corporate Matters!"
-          onButtonClick={() => console.log("Create Corporate Matter Clicked")}
-        />
+      <div className="col-span-full grid grid-cols-2 gap-5">
+        <TaskPieChart title="Tasks Assigned to Me by Status" />
+        <TaskPieChart title="Tasks Requested by Me by Status" />
+        <TotaltaskChart />
+        <TaskStatusChart />
       </div>
     </div>
   );

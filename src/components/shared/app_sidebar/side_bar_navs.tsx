@@ -10,6 +10,7 @@ import {
   Calendar,
   Link as LinkIcon,
   ChevronDown,
+  User,
 } from "lucide-react";
 import {
   Sidebar,
@@ -54,6 +55,11 @@ const mainNavData = [
         title: "Members",
         url: "/dashboard/members",
         icon: <Users size={18} />,
+      },
+      {
+        title: "Profile",
+        url: "/dashboard/profile",
+        icon: <User size={18} />,
       },
     ],
   },
