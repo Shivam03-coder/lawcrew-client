@@ -5,7 +5,7 @@ import FormModal from "../task_forms/form-dialogs";
 import HeaderNavs from "./header_navs";
 const AppSidebarHeader = () => {
   return (
-    <header className="flex h-16 w-full items-center gap-2 border-b bg-gradient-to-r from-blue-100 to-purple-200 px-4">
+    <header className="flex h-16 w-full items-center gap-2 border-b bg-blue-200 px-4">
       <SidebarTrigger className="-ml-1" />
       <div className="flex w-full items-center justify-between">
         <HeaderNavs />
