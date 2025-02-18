@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { LoaderPinwheel, PlayCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Hero = () => {
@@ -38,13 +39,15 @@ const Hero = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col gap-4 sm:flex-row sm:gap-5">
-          <Button
-            className="w-full bg-primary text-secondary sm:w-auto"
-            size="lg"
-            aria-label="Try for Free"
-          >
-            Try Free <LoaderPinwheel className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href={"/dashboard"}>
+            <Button
+              className="w-full bg-primary text-secondary sm:w-auto"
+              size="lg"
+              aria-label="Try for Free"
+            >
+              Try Free <LoaderPinwheel className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
           <Button
             onClick={() => Router.push("/user-dashboard")}
             variant="outline"
