@@ -10,7 +10,7 @@ import { showToast } from "../shared/show_toast";
 import { useRouter } from "next/navigation";
 import { SignInValidationSchema } from "@/schema";
 
-export function SignInForm() {
+export function SignInForm({ className = "" }) {
   const [LoginUser, { isLoading }] = useLoginUserMutation();
   const router = useRouter();
   const formik = useFormik({
@@ -42,7 +42,10 @@ export function SignInForm() {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className={cn("flex flex-col gap-6")}>
+    <form
+      onSubmit={formik.handleSubmit}
+      className={cn("flex flex-col w-full md:w-[80%] mx-auto gap-6", className)}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="font-lexend text-2xl font-bold text-blue-900">
           WELCOME BACK !
@@ -84,7 +87,7 @@ export function SignInForm() {
           {isLoading ? "Loading..." : "Sign In"}
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-          <span className="relative z-10 bg-white px-2 text-primary">
+          <span className="relative z-10 bg-inherit px-2 text-primary">
             Or continue with
           </span>
         </div>

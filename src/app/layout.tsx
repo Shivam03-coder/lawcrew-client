@@ -4,7 +4,7 @@ import { appfonts } from "@/fonts";
 import AppProvider from "@/components/providers/app-providers";
 
 export const metadata: Metadata = {
-  title: "BLUE-BIRD",
+  title: "1ST MEDIA LINK",
   description: "A PROJECT MANAGEMENT SOFTWARE",
 };
 

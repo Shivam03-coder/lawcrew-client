@@ -1,5 +1,6 @@
 import { Switch } from "@/components/ui/switch";
 import PlanCards from "./_plancards";
+import { Titlebar } from "@/components/naviagtion_bar";
 
 const Upgradeplans = () => {
   return (

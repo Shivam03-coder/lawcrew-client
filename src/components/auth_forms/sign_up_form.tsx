@@ -1,7 +1,6 @@
 "use client";
 
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +14,7 @@ import useMount from "@/hooks/use-mount";
 import { useLocalStorage } from "usehooks-ts";
 import { UserData } from "@/types/global";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {SignUpValidationSchema} from "@/schema";
+import { SignUpValidationSchema } from "@/schema";
 
 export function SignUpForm() {
   const [CreateUserAccount, { isLoading }] = useSignupUserMutation();
@@ -63,8 +62,20 @@ export function SignUpForm() {
   if (!mount) return null;
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={formik.handleSubmit}>
-      <div className="grid gap-6">
+    <form
+      className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 rounded-lg bg-white p-5 shadow-inner"
+      onSubmit={formik.handleSubmit}
+    >
+      <div className="flex flex-col items-center gap-2 text-center">
+        <h1 className="font-lexend text-2xl font-bold text-blue-900">
+          WELCOME TO 1ST MEDIA LINK!
+        </h1>
+        <p className="text-balance font-inter text-sm">
+          Enter your details below to create your account
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {[
           { field: "firstName", label: "First Name" },
           { field: "lastName", label: "Last Name" },
@@ -86,16 +97,18 @@ export function SignUpForm() {
               type={type}
               placeholder={label}
               {...formik.getFieldProps(field)}
+              className="w-full"
             />
           </div>
         ))}
       </div>
 
-      <div>
+      <>
         <Label>Role</Label>
         <RadioGroup
           value={formik.values.role}
           onValueChange={(value) => formik.setFieldValue("role", value)}
+          className="flex gap-4"
         >
           {["lawyer", "finance"].map((role) => (
             <div key={role} className="flex items-center space-x-2">
@@ -106,7 +119,7 @@ export function SignUpForm() {
             </div>
           ))}
         </RadioGroup>
-      </div>
+      </>
 
       <div className="flex items-center space-x-2">
         <Checkbox
