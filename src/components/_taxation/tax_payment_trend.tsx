@@ -21,16 +21,16 @@ import {
 
 const TaxPaymnetTrend = () => {
   const monthlyTaxData = [
-    { month: "Jan", gst: 12500, incomeTax: 25000, professionalTax: 2000 },
-    { month: "Feb", gst: 13200, incomeTax: 26000, professionalTax: 2000 },
-    { month: "Mar", gst: 14800, incomeTax: 27500, professionalTax: 2000 },
-    { month: "Apr", gst: 11900, incomeTax: 24000, professionalTax: 2000 },
-    { month: "May", gst: 15300, incomeTax: 28000, professionalTax: 2000 },
-    { month: "Jun", gst: 16700, incomeTax: 29500, professionalTax: 2000 },
+    { Month: "Jan", Gst: 12500, IncomeTax: 25000, ProfessionalTax: 2000 },
+    { Month: "Feb", Gst: 13200, IncomeTax: 26000, ProfessionalTax: 2000 },
+    { Month: "Mar", Gst: 14800, IncomeTax: 27500, ProfessionalTax: 2000 },
+    { Month: "Apr", Gst: 11900, IncomeTax: 24000, ProfessionalTax: 2000 },
+    { Month: "May", Gst: 15300, IncomeTax: 28000, ProfessionalTax: 2000 },
+    { Month: "Jun", Gst: 16700, IncomeTax: 29500, ProfessionalTax: 2000 },
   ];
 
   const taxDistributionData = [
-    { name: "GST", value: 84400, color: "#0ea5e9" },
+    { name: "Gst", value: 84400, color: "#0ea5e9" },
     { name: "Income Tax", value: 160000, color: "#8b5cf6" },
     { name: "Professional Tax", value: 12000, color: "#f43f5e" },
   ];
@@ -57,7 +57,7 @@ const TaxPaymnetTrend = () => {
                 />
                 <Area
                   type="monotone"
-                  dataKey="gst"
+                  dataKey="Gst"
                   stackId="1"
                   stroke="#0ea5e9"
                   fill="#0ea5e9"
@@ -65,7 +65,7 @@ const TaxPaymnetTrend = () => {
                 />
                 <Area
                   type="monotone"
-                  dataKey="incomeTax"
+                  dataKey="IncomeTax"
                   stackId="1"
                   stroke="#8b5cf6"
                   fill="#8b5cf6"
@@ -73,7 +73,7 @@ const TaxPaymnetTrend = () => {
                 />
                 <Area
                   type="monotone"
-                  dataKey="professionalTax"
+                  dataKey="ProfessionalTax"
                   stackId="1"
                   stroke="#f43f5e"
                   fill="#f43f5e"

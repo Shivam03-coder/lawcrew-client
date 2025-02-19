@@ -80,6 +80,7 @@ const TaxPaymentSchedule = () => {
                 </p>
                 <Button
                   size="sm"
+                  className="text-main"
                   variant={payment.status === "Pending" ? "default" : "outline"}
                 >
                   {payment.status === "Pending" ? "Pay Now" : "Schedule"}
