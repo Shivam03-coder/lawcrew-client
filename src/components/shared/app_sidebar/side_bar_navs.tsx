@@ -11,6 +11,7 @@ import {
   Link as LinkIcon,
   ChevronDown,
   User,
+  SquareDashedKanban,
 } from "lucide-react";
 import {
   Sidebar,
@@ -52,6 +53,12 @@ const mainNavData = [
         url: "/dashboard/taxation",
         icon: <IconTax size={18} />,
       },
+      {
+        title: "Documents",
+        url: "/dashboard/documnets",
+        icon: <SquareDashedKanban size={18} />,
+      },
+
       {
         title: "Settings",
         url: "/dashboard/settings",
