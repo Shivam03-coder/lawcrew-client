@@ -48,6 +48,11 @@ const mainNavData = [
         icon: <ListChecks size={18} />,
       },
       {
+        title: "Taxation",
+        url: "/dashboard/taxation",
+        icon: <IconTax size={18} />,
+      },
+      {
         title: "Settings",
         url: "/dashboard/settings",
         icon: <Settings size={18} />,
@@ -61,11 +66,6 @@ const mainNavData = [
         title: "Profile",
         url: "/dashboard/profile",
         icon: <User size={18} />,
-      },
-      {
-        title: "Taxation",
-        url: "/dashboard/taxation",
-        icon: <IconTax size={18} />,
       },
     ],
   },
