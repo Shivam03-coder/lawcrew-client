@@ -35,6 +35,7 @@ import {
 import Link from "next/link";
 import { AppUser } from "./app_user";
 import { Logo } from "./sidebar_logo";
+import { IconTax } from "@tabler/icons-react";
 
 const mainNavData = [
   {
@@ -60,6 +61,11 @@ const mainNavData = [
         title: "Profile",
         url: "/dashboard/profile",
         icon: <User size={18} />,
+      },
+      {
+        title: "Taxation",
+        url: "/dashboard/taxation",
+        icon: <IconTax size={18} />,
       },
     ],
   },
