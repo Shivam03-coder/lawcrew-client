@@ -55,7 +55,7 @@ const mainNavData = [
       },
       {
         title: "Documents",
-        url: "/dashboard/documnets",
+        url: "/dashboard/documents",
         icon: <SquareDashedKanban size={18} />,
       },
 
