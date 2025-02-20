@@ -10,7 +10,10 @@ import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import Image from "@tiptap/extension-image";
 import ImageResizer from "tiptap-extension-resize-image";
-
+import ToolBar from "./toolbar";
+import Underline from "@tiptap/extension-underline";
+import FontFamily from "@tiptap/extension-font-family";
+import TextStyle from "@tiptap/extension-text-style";
 const Editor = () => {
   const editor = useEditor({
     editorProps: {
@@ -34,6 +37,9 @@ const Editor = () => {
       TableCell,
       Image,
       ImageResizer,
+      Underline,
+      FontFamily,
+      TextStyle,
     ],
     content: ` <table>
           <tbody>
@@ -52,11 +58,14 @@ const Editor = () => {
   });
 
   return (
-    <div className="size-full overflow-x-auto bg-blue-50 px-4 print:bg-white print:p-0">
-      <div className="mx-auto flex w-[816px] min-w-max justify-center py-4 print:w-full print:min-w-0 print:py-0">
-        <EditorContent editor={editor} />
+    <>
+      <ToolBar editor={editor} />
+      <div className="size-full overflow-x-auto bg-blue-50 px-4 print:bg-white print:p-0">
+        <div className="mx-auto flex w-[816px] min-w-max justify-center py-4 print:w-full print:min-w-0 print:py-0">
+          <EditorContent editor={editor} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
