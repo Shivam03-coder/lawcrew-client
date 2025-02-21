@@ -10,10 +10,13 @@ import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
 import Image from "@tiptap/extension-image";
 import ImageResizer from "tiptap-extension-resize-image";
-import ToolBar from "./toolbar";
+import ToolBar from "./toolbar/toolbar";
 import Underline from "@tiptap/extension-underline";
 import FontFamily from "@tiptap/extension-font-family";
 import TextStyle from "@tiptap/extension-text-style";
+import Highlight from "@tiptap/extension-highlight";
+import { Color } from "@tiptap/extension-color";
+import Link from "@tiptap/extension-link";
 const Editor = () => {
   const editor = useEditor({
     editorProps: {
@@ -40,6 +43,14 @@ const Editor = () => {
       Underline,
       FontFamily,
       TextStyle,
+      Highlight.configure({ multicolor: true }),
+      Color,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: "https",
+        protocols: ["http", "https"],
+      }),
     ],
     content: ` <table>
           <tbody>

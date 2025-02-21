@@ -25,10 +25,15 @@ import {
   Underline,
   Undo,
 } from "lucide-react";
-import { cn } from "../utils";
 import type { Editor } from "@tiptap/react";
 import { Separator } from "@/components/ui/separator";
+import TextColorButton from "./text_color_btn";
 import FontfamilyButton from "./font_family_btn";
+import HeadingLevelButton from "./heading_level";
+import Highlighter from "./highlighter";
+import LinkBtn from "./link_btn";
+import { cn } from "@/lib/utils";
+import ImageButton from "./image_btn";
 
 interface ToolBarButtonProps {
   label?: string;
@@ -183,7 +188,18 @@ const ToolBar = ({ editor }: ToolbarProps) => {
           ))}
         </div>
       ))}
+      <TextColorButton editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
       <FontfamilyButton editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <HeadingLevelButton editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <Highlighter editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <ImageButton editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <LinkBtn editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
     </div>
   );
 };

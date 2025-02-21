@@ -260,4 +260,15 @@
       outline: 3px solid #ffcdff;
     }
   }
+
+  /* Link styles */
+  a {
+    color: #1515ff;
+    cursor: pointer;
+    /* text-decoration: underline; */
+
+    &:hover {
+      color: #0000ca;
+    }
+  }
 }

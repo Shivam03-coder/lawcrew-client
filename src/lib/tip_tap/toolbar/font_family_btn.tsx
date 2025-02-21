@@ -6,10 +6,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 import type { Editor } from "@tiptap/react";
 import { ChevronDownIcon } from "lucide-react";
-import { cn } from "../utils";
 interface FontfamilyButtonprops {
   editor: Editor | null;
 }
@@ -48,7 +48,7 @@ const FontfamilyButton = ({ editor }: FontfamilyButtonprops) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex h-7 min-w-[120px] shrink-0 items-center justify-between rounded-sm">
+        <button className="flex h-7 min-w-[70px] shrink-0 items-center justify-between rounded-sm">
           <span className="truncate">
             {editor?.getAttributes("textStyle").fontFamily || "Arial"}
           </span>
