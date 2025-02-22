@@ -35,7 +35,12 @@ const LinkBtn = ({ editor }: LinkBtnProps) => {
       }}
     >
       <DropdownMenuTrigger asChild>
-        <Link2Icon className="cursor-pointer" size={17} />
+        <button
+          className="center cursor-pointer rounded-sm p-1 text-sm hover:bg-neutral-100"
+          aria-label="Highlight Text"
+        >
+          <Link2Icon className="cursor-pointer" size={20} />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="flex items-center gap-x-2 bg-white p-4">
         <Input

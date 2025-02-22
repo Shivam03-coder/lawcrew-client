@@ -34,6 +34,8 @@ import Highlighter from "./highlighter";
 import LinkBtn from "./link_btn";
 import { cn } from "@/lib/utils";
 import ImageButton from "./image_btn";
+import AlignButton from "./align_btn";
+import ListButton from "./list_btn";
 
 interface ToolBarButtonProps {
   label?: string;
@@ -111,7 +113,6 @@ const ToolBar = ({ editor }: ToolbarProps) => {
         },
       },
     ],
-    // Heading Actions
     [
       {
         label: "H1",
@@ -174,8 +175,8 @@ const ToolBar = ({ editor }: ToolbarProps) => {
   ];
 
   return (
-    <div className="flex min-h-[2.8rem] items-center gap-x-5 bg-white px-5 py-0.5">
-      {EditorActions.map((group, index) => (
+    <div className="flex mx-auto lg:w-[90%] mt-5 rounded-full overflow-x-scroll min-h-[2.8rem] items-center lg:justify-center gap-x-2 bg-slate-200 px-5 py-0.5 print:hidden">
+      {EditorActions.map((group, index) => ( 
         <div key={index} className="flex gap-x-2">
           {group.map(({ label, icon, action, disabled }) => (
             <ToolBarButton
@@ -199,6 +200,10 @@ const ToolBar = ({ editor }: ToolbarProps) => {
       <ImageButton editor={editor} />
       <Separator className="h-6 w-px bg-slate-300" />
       <LinkBtn editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <AlignButton editor={editor} />
+      <Separator className="h-6 w-px bg-slate-300" />
+      <ListButton editor={editor} />
       <Separator className="h-6 w-px bg-slate-300" />
     </div>
   );

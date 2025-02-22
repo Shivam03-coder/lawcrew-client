@@ -18,7 +18,12 @@ const Highlighter = ({ editor }: HighlighterProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-          <HighlighterIcon className="cursor-pointer" size={17} />
+        <button
+          className="center cursor-pointer rounded-sm p-1 text-sm hover:bg-neutral-100"
+          aria-label="Highlight Text"
+        >
+          <HighlighterIcon className="cursor-pointer" size={20} />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white p-4">
         <CirclePicker color={value} onChange={onChange} />

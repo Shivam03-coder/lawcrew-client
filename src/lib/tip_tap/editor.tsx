@@ -17,8 +17,11 @@ import TextStyle from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
 import { Color } from "@tiptap/extension-color";
 import Link from "@tiptap/extension-link";
+import TextAlign from "@tiptap/extension-text-align";
+import Ruler from "./ruler";
 const Editor = () => {
   const editor = useEditor({
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         style: "padding-left:56px; padding-right:56px ;",
@@ -51,6 +54,9 @@ const Editor = () => {
         defaultProtocol: "https",
         protocols: ["http", "https"],
       }),
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
     ],
     content: ` <table>
           <tbody>
@@ -71,7 +77,7 @@ const Editor = () => {
   return (
     <>
       <ToolBar editor={editor} />
-      <div className="size-full overflow-x-auto bg-blue-50 px-4 print:bg-white print:p-0">
+      <div className="size-full print:mt-0 overflow-x-auto bg-blue-50 px-4 print:bg-white print:p-0">
         <div className="mx-auto flex w-[816px] min-w-max justify-center py-4 print:w-full print:min-w-0 print:py-0">
           <EditorContent editor={editor} />
         </div>

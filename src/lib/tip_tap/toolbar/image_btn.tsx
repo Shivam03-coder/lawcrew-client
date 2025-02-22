@@ -60,8 +60,11 @@ const ImageButton = ({ editor }: ImageButtonProps) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button aria-label="Insert Image">
-            <Image className="cursor-pointer" size={17} />
+          <button
+            className="center cursor-pointer rounded-sm p-1 text-sm hover:bg-neutral-100"
+            aria-label="Highlight Text"
+          >
+            <Image className="cursor-pointer" size={20} />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-white p-2">
