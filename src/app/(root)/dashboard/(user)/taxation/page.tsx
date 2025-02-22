@@ -28,7 +28,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Header from "@/components/_taxation/taxation_header";
+import TaxationHeader from "@/components/_taxation/taxation_header";
 import TaxationCards from "@/components/_taxation/taxation_cards";
 import TaxPaymnetTrend from "@/components/_taxation/tax_payment_trend";
 import TaxCompilanceChart from "@/components/_taxation/tax_compilance_chart";
@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <TaxationHeader />
 
       <div className="mx-auto p-6">
         <TaxationCards />
