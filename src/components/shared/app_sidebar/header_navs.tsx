@@ -13,6 +13,7 @@ import {
   Wallet,
   ChevronDown,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const appheaderlinks = [
@@ -54,12 +55,12 @@ const HeaderNavs = () => {
       <div className="flex items-center justify-between">
         {/* Left Section - Logo and Navigation */}
         <div className="flex items-center gap-4">
-          <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-xl font-bold uppercase tracking-wide text-blue-600 text-transparent">
+          <span className="rounded-lg bg-primary p-2 px-2 text-xl font-bold uppercase tracking-wide text-white">
             1st Media Link
           </span>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          {/* <nav className="hidden items-center gap-6 lg:flex">
             {appheaderlinks.map((link) => (
               <DropdownMenu key={link.title}>
                 <DropdownMenuTrigger className="flex items-center gap-2 text-primary transition-all hover:scale-105 focus:outline-none">
@@ -104,7 +105,7 @@ const HeaderNavs = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </nav>
+          </nav> */}
         </div>
       </div>
     </header>

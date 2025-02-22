@@ -107,11 +107,6 @@ const moreLinks = {
   title: "More",
   items: [
     {
-      title: "My Expenses",
-      url: "/dashboard/my-expenses",
-      icon: <Wallet size={18} />,
-    },
-    {
       title: "I-Docs",
       url: "/dashboard/i-docs",
       icon: <FileText size={18} />,
@@ -120,11 +115,6 @@ const moreLinks = {
       title: "My Reminders",
       url: "/dashboard/my-reminders",
       icon: <Calendar size={18} />,
-    },
-    {
-      title: "Useful Links",
-      url: "/dashboard/useful-links",
-      icon: <LinkIcon size={18} />,
     },
   ],
 };
@@ -154,7 +144,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
-        <div className="block md:hidden">
+        <div className="block">
           {collapsibleNavData.map((group) => (
             <SidebarGroup key={group.title}>
               <Collapsible>
