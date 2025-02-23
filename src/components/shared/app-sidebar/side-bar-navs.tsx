@@ -35,8 +35,8 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible";
 import Link from "next/link";
-import { AppUser } from "./app_user";
-import { Logo } from "./sidebar_logo";
+import { AppUser } from "./app-user";
+import { Logo } from "./sidebar-logo";
 import { IconTax } from "@tabler/icons-react";
 
 const mainNavData = [

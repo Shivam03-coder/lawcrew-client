@@ -29,5 +29,5 @@ export function MediaLink({ title, subtitle, href }: MediaLinkProps) {
 
 // Example usage:
 export function Logo() {
-  return <MediaLink title="LAW-WISE" subtitle="Legal Solutions" href="/" />;
+  return <MediaLink title="LAW-CREW" subtitle="Legal Solutions" href="/" />;
 }

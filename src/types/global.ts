@@ -253,3 +253,19 @@ export interface Reminder {
   relatedPerson: string;
   relatedTask: string;
 }
+
+export interface TaxPayment {
+  id: number;
+  payer: string;
+  reference: string;
+  taxType: string;
+  amount: string;
+  dueDate: string;
+  status: "Pending" | "Completed" | "Overdue";
+}
+
+export enum TaxPaymentStatusTypes {
+  Pending = "Pending",
+  Completed = "Completed",
+  Overdue = "Overdue",
+}

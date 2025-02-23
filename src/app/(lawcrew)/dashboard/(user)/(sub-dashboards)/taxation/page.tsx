@@ -34,6 +34,7 @@ import TaxPaymentSchedule from "./tax-payment-schedule";
 import TaxationNotice from "./taxation-notice";
 import TaxationHeader from "./taxation-header";
 import TaxationCards from "./taxation-cards";
+import TaxPaymentTable from "./tax-payment-table";
 
 function App() {
   const upcomingPayments = [
@@ -65,11 +66,11 @@ function App() {
         <TaxationCards />
         <TaxationNotice />
         <TaxPaymnetTrend />
-
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <TaxCompilanceChart />
           <TaxPaymentSchedule />
         </div>
+        <TaxPaymentTable />
       </div>
     </div>
   );
