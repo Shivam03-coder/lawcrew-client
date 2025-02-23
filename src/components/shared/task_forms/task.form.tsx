@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { FileUpload } from "@/components/file-upload";
+import { FileUpload } from "@/components/file_upload";
 
 const TaskForm = () => {
   return (

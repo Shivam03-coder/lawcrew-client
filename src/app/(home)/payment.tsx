@@ -56,7 +56,7 @@ const Payment = () => {
         {plans.map((plan, index) => (
           <Card
             key={index}
-            className="mx-auto flex w-full max-w-[22rem] flex-col transition-transform duration-300 hover:scale-105"
+            className="mx-auto bg-gradient-to-r from-blue-100 bg-white  flex w-full max-w-[22rem] flex-col transition-transform duration-300 hover:scale-105"
           >
             <section className="p-6 text-center">
               <div className="flex flex-col items-center gap-4">

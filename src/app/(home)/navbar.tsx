@@ -4,17 +4,20 @@ import * as React from "react";
 import Link from "next/link";
 import { Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import AppHeaderNavMenu from "@/nav-menu";
+import AppHeaderNavMenu from "@/components/nav_menu";
 
-const Header = () => {
+const Navbar = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b backdrop-blur">
+    <header className="sticky top-0 z-50 mx-auto mt-5 w-[90%] rounded-full bg-blue-100 p-3 font-lexend backdrop-blur">
       <div className="flex h-14 w-full items-center justify-between px-8">
-        <div className="hidden flex-1 md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
+        <div className="flex-2 hidden md:flex">
+          <Link
+            href="/"
+            className="mr-6 flex w-auto items-center space-x-2 bg-primary rounded-md p-2 text-secondary"
+          >
             <Bot className="h-6 w-6" />
-            <span className="hidden font-bold text-primary sm:inline-block">
-              LAW-WISE
+            <span className="hidden text-xl font-bold sm:inline-block">
+              LAW-CREW
             </span>
           </Link>
           <AppHeaderNavMenu />
@@ -52,27 +55,14 @@ const Header = () => {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
             <Link
-              href="/sign-in"
+              href="/login"
               className="text-sm text-primary hover:text-primary"
             >
               <Button
-                variant="outline"
-                className="border-2 border-primary px-6 text-sm text-primary"
-                size="sm"
+                className="border-2 border-primary bg-primary px-6 text-sm text-secondary"
+                size="lg"
               >
                 LOGIN
-              </Button>
-            </Link>
-            <Link
-              href="/sign-up"
-              className="text-sm text-primary hover:text-primary"
-            >
-              <Button
-                variant="default"
-                className="bg-primary px-6 text-sm text-white"
-                size="sm"
-              >
-                SIGN-UP
               </Button>
             </Link>
           </nav>
@@ -82,4 +72,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

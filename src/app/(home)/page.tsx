@@ -1,17 +1,17 @@
 import React from "react";
-import Header from "@/components/_home/app-header";
-import Hero from "../../components/_home/hero";
-import Footer from "../../components/_home/footer";
-import Payment from "../../components/_home/payment";
-import Solution from "@/components/_home/solution";
-import CustomerReview from "@/components/_home/customer-review";
-import Goal from "@/components/_home/goals";
+import Hero from "./hero";
+import Footer from "./footer";
+import Goal from "@/app/(home)/goals";
+import Solution from "./solution";
+import CustomerReview from "./customer-review";
+import Payment from "./payment";
+import Navbar from "@/app/(home)/navbar";
 
 function Home() {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <Header />
+      <Navbar />
 
       {/* Main Section */}
       <section className="container mx-auto px-6 py-16 md:py-24">

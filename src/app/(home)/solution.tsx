@@ -9,10 +9,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ChevronRight, Scale, Briefcase, Shield, BarChart, CreditCard, FileText } from "lucide-react";
+import {
+  ChevronRight,
+  Scale,
+  Briefcase,
+  Shield,
+  BarChart,
+  CreditCard,
+  FileText,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import SectionHeader from "../../components/_home/section-header";
+import SectionHeader from "../../app/(home)/section-header";
 
 interface SolutionCardProps {
   icon: ReactNode;
@@ -32,14 +40,11 @@ const SolutionCard: FC<SolutionCardProps> = ({
   titlebg,
 }) => {
   return (
-    <Card className="hover:bg-secondary/50 group flex h-full flex-col transition-all duration-300 hover:scale-[1.02]">
+    <Card
+      className={`hover:bg-secondary/50 ${titlebg} group flex h-full flex-col transition-all duration-300 hover:scale-[1.02]`}
+    >
       <CardHeader className="flex-none">
-        <CardTitle
-          className="flex h-16 w-16 items-center justify-center rounded-lg p-3 sm:h-[3.75rem] sm:w-[3.75rem]"
-          style={{
-            backgroundColor: titlebg,
-          }}
-        >
+        <CardTitle className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-500 p-3 text-secondary sm:h-[3.75rem] sm:w-[3.75rem]">
           {icon}
         </CardTitle>
         <CardDescription className="pt-4">
@@ -56,7 +61,7 @@ const SolutionCard: FC<SolutionCardProps> = ({
       <CardFooter className="flex-none pt-4">
         <Link
           href={linkHref}
-          className="inline-flex items-center text-sm font-medium text-primary hover:underline sm:text-base"
+          className="inline-flex items-center rounded-xl bg-primary p-3 text-sm font-medium text-secondary hover:underline sm:text-base"
         >
           {linkText} <ChevronRight className="ml-1 h-4 w-4 sm:h-5 sm:w-5" />
         </Link>
@@ -74,7 +79,7 @@ const Solution = () => {
         "Simplify your legal processes, manage cases, and stay compliant with our cutting-edge tools.",
       linkText: "Get Started",
       linkHref: "/get-started",
-      titlebg: "#FFF2C2",
+      titlebg: "bg-blue-100",
     },
     {
       icon: <Briefcase className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -83,7 +88,7 @@ const Solution = () => {
         "Track, organize, and collaborate on cases with ease using our intuitive platform.",
       linkText: "Learn More",
       linkHref: "/learn-more",
-      titlebg: "#A1D6CB",
+      titlebg: "bg-green-100",
     },
     {
       icon: <Shield className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -92,7 +97,7 @@ const Solution = () => {
         "Protect sensitive data, maintain compliance, and ensure the security of your legal documents.",
       linkText: "Discover More",
       linkHref: "/discover-more",
-      titlebg: "#D9EAFD",
+      titlebg: "bg-indigo-100",
     },
     {
       icon: <FileText className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -101,7 +106,7 @@ const Solution = () => {
         "Easily file your taxes with AI-driven automation and avoid costly errors.",
       linkText: "File Now",
       linkHref: "/tax-filing",
-      titlebg: "#FFD4D4",
+      titlebg: "bg-red-100",
     },
     {
       icon: <BarChart className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -110,7 +115,7 @@ const Solution = () => {
         "Let AI handle your finance reports and GST filings, ensuring accuracy and compliance.",
       linkText: "Start Now",
       linkHref: "/finance-gst",
-      titlebg: "#C3E8C3",
+      titlebg: "bg-teal-100",
     },
     {
       icon: <CreditCard className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -119,7 +124,7 @@ const Solution = () => {
         "Make transactions securely with AI-powered fraud detection and encryption.",
       linkText: "Explore",
       linkHref: "/secure-payments",
-      titlebg: "#E7D5FF",
+      titlebg: "bg-purple-100",
     },
   ];
 

@@ -9,7 +9,7 @@ import {
   BarChart,
   CheckCircle,
 } from "lucide-react";
-import SectionHeader from "../../components/_home/section-header";
+import SectionHeader from "./section-header";
 
 const RetroactiveCard = ({
   title,
@@ -22,7 +22,7 @@ const RetroactiveCard = ({
   Icon: React.ElementType;
   iconBgColor: string;
 }) => (
-  <div className="group flex transform items-center space-x-4 rounded-lg bg-white p-4 shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-secondary/50 sm:p-5 md:p-6">
+  <div className="hover:bg-secondary/50 group flex transform items-center space-x-4 rounded-lg bg-gradient-to-r from-blue-100 to-white p-4 shadow-md transition-all duration-300 hover:scale-[1.02] sm:p-5 md:p-6">
     <div
       className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full p-2.5 transition-colors group-hover:bg-opacity-80 sm:h-14 sm:w-14 sm:p-3 ${iconBgColor}`}
     >
@@ -32,9 +32,7 @@ const RetroactiveCard = ({
       <h4 className="text-base font-semibold text-gray-900 sm:text-lg md:text-xl">
         {title}
       </h4>
-      <p className="text-sm text-gray-600 sm:text-base">
-        {description}
-      </p>
+      <p className="text-sm text-gray-600 sm:text-base">{description}</p>
     </div>
   </div>
 );
@@ -46,47 +44,47 @@ const Goal = () => {
       description:
         "Streamline your document storage and retrieval processes effortlessly.",
       Icon: FileText,
-      iconBgColor: "bg-green-100",
+      iconBgColor: "bg-green-300",
     },
     {
       title: "Client Relationship Management",
       description:
         "Keep track of client details and interactions in one place.",
       Icon: User,
-      iconBgColor: "bg-purple-100",
+      iconBgColor: "bg-purple-300",
     },
     {
       title: "Legal Compliance Tracking",
       description: "Monitor deadlines and ensure compliance with ease.",
       Icon: Calendar,
-      iconBgColor: "bg-yellow-100",
+      iconBgColor: "bg-yellow-300",
     },
     {
       title: "Time Tracking Retroactively",
       description: "Gain insights into how your team spends time across tasks.",
       Icon: BarChart,
-      iconBgColor: "bg-blue-100",
+      iconBgColor: "bg-blue-300",
     },
     {
       title: "Analytics and Reporting",
       description:
         "Generate insightful reports to make informed business decisions.",
       Icon: PieChart,
-      iconBgColor: "bg-teal-100",
+      iconBgColor: "bg-teal-300",
     },
     {
       title: "Task Automation",
       description:
         "Automate routine tasks to save time and reduce manual errors.",
       Icon: CheckCircle,
-      iconBgColor: "bg-orange-100",
+      iconBgColor: "bg-orange-300",
     },
   ];
 
   return (
     <section className="container mx-auto space-y-8 px-4 py-8 sm:py-12 md:py-16 lg:py-20">
       <SectionHeader
-        title="Perfect Solution For Your Business"
+        title="Goals of Our Business"
         description="Our legal management tool is designed to simplify and streamline your operations, helping you save time and resources. From organizing legal documents to managing client relationships, our features are tailored for your success."
         className="mx-auto max-w-[90%] text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
       />

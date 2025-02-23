@@ -12,6 +12,7 @@ import {
   ChevronDown,
   User,
   SquareDashedKanban,
+  Landmark,
 } from "lucide-react";
 import {
   Sidebar,
@@ -52,6 +53,11 @@ const mainNavData = [
         title: "Taxation",
         url: "/dashboard/taxation",
         icon: <IconTax size={18} />,
+      },
+      {
+        title: "Finnance",
+        url: "/dashboard/finnance",
+        icon: <Landmark size={18} />,
       },
       {
         title: "Documents",
@@ -149,7 +155,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarGroup key={group.title}>
               <Collapsible>
                 <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg p-2">
-                  <span className="flex items-center gap-2">
+                  <span className="flex text-sm items-center gap-2">
                     {group.icon} {group.title}
                   </span>
                   <ChevronDown size={16} />

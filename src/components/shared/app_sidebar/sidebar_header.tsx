@@ -1,5 +1,5 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import AddTaskBtn from "@/components/add-task-btn";
+import AddTaskBtn from "@/components/add_task_btn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import FormModal from "../task_forms/form-dialogs";
 import HeaderNavs from "./header_navs";

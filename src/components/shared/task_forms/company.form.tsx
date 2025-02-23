@@ -1,4 +1,4 @@
-import { FileUpload } from "@/components/file-upload";
+import { FileUpload } from "@/components/file_upload";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {

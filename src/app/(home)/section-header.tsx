@@ -31,9 +31,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
     >
       {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
-      <h3 className={cn("text-xl text-primary font-semibold", titleClassName)}>{title}</h3>
+      <h3 className={cn("text-3xl bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text font-normal font-lexend", titleClassName)}>{title}</h3>
       {description && (
-        <p className={cn("text-gray-600 opacity-80", descriptionClassName)}>
+        <p className={cn("text-gray-600 opacity-80 hidden lg:block", descriptionClassName)}>
           {description}
         </p>
       )}

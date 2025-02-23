@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -8,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { User, Quote } from "lucide-react";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import SectionHeader from "../../components/_home/section-header";
+import SectionHeader from "./section-header";
 import { Marquee } from "@/components/magicui/marquee";
 
 const reviews = [
@@ -74,7 +73,7 @@ const ReviewCard = ({
   body: string;
 }) => {
   return (
-    <Card className="relative flex w-64 transform flex-col border-primary border rounded-lg p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary">
+    <Card className="relative bg-gradient-to-r from-sky-100 bg-white flex w-64 transform flex-col rounded-lg border border-primary p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary">
       <CardHeader className="flex flex-row items-center gap-2">
         <Avatar className="flex-shrink-0">
           <AvatarImage src={img} alt={name} className="rounded-full" />
