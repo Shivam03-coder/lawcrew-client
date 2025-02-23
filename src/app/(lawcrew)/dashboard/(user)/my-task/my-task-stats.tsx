@@ -14,7 +14,7 @@ import useMount from "@/hooks/use-mount";
 
 const data = [{ name: "Open", value: 1, color: "#60a5fa" }];
 
-const TaskPieChart = ({ title }: { title: string }) => {
+const MyTaskStats = ({ title }: { title: string }) => {
   const [taskType, setTaskType] = useState("All");
   const [year, setYear] = useState("2025");
   const [month, setMonth] = useState("All");
@@ -99,4 +99,4 @@ const TaskPieChart = ({ title }: { title: string }) => {
   );
 };
 
-export default TaskPieChart;
+export default MyTaskStats;

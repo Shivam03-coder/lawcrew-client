@@ -1,6 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import TodayTasks from "./task-forms/today_task";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface DashboardCardProps {
   title: string;
@@ -20,7 +18,7 @@ const TaskCards: React.FC<DashboardCardProps> = ({
   onButtonClick,
 }) => {
   return (
-    <Card className="col-span-1">
+    <Card className="col-span-1 card">
       <div className="flex justify-between p-3">
         <h6 className="rounded-md bg-secondary p-1">{title}</h6>
         <span className="rounded-3xl bg-primary px-2 py-1 text-sm text-white">

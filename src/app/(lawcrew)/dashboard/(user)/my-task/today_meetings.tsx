@@ -32,7 +32,7 @@ import {
 
 const TodayMeetingsTask = () => {
   return (
-    <Sheet>
+    <Sheet >
       {/* Button to trigger modal */}
       <SheetTrigger asChild>
         <Button className="mt-4 w-auto bg-blue-300">

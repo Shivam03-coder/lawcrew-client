@@ -1,12 +1,11 @@
 "use client";
 import { CalendarDays, ClipboardList, Bell, Briefcase } from "lucide-react";
-import TaskCards from "@/components/_my_tasks/task_cards";
-import TodayTasks from "@/components/_my_tasks/task-forms/today_task";
-import TodayRemindersTasks from "@/components/_my_tasks/task-forms/today_reminders";
-import TodayMeetingsTask from "@/components/_my_tasks/task-forms/today_meetings";
-import TaskPieChart from "@/components/_my_tasks/task_pie_chart";
-import TotaltaskChart from "@/components/_my_tasks/total_task_chart";
-import TaskStatusChart from "@/components/_my_tasks/task_status_chart";
+import TodayTasks from "@/app/(lawcrew)/dashboard/(user)/my-task/today_task";
+import TodayRemindersTasks from "@/app/(lawcrew)/dashboard/(user)/my-task/today_reminders";
+import TodayMeetingsTask from "@/app/(lawcrew)/dashboard/(user)/my-task/today_meetings";
+import MyTaskStats from "./my-task-stats";
+import { TaskStatusChart, TotaltaskChart } from "./task-completion-stats";
+import TaskCards from "./today-task-cards";
 
 const Dashboard = () => {
   return (
@@ -41,8 +40,8 @@ const Dashboard = () => {
         onButtonClick={() => console.log("Set Reminder Clicked")}
       />
       <div className="col-span-full grid grid-cols-2 gap-5">
-        <TaskPieChart title="Tasks Assigned to Me by Status" />
-        <TaskPieChart title="Tasks Requested by Me by Status" />
+        <MyTaskStats title="Tasks Assigned to Me by Status" />
+        <MyTaskStats title="Tasks Requested by Me by Status" />
         <TotaltaskChart />
         <TaskStatusChart />
       </div>

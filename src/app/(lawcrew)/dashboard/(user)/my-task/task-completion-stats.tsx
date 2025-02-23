@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
 import {
@@ -16,9 +15,133 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import React from "react";
 
-// Example data for tasks
 const chartData = [
+  {
+    date: "2024-07-15",
+    running: 450,
+    pending: 200,
+    completed: 300,
+    ongoing: 150,
+  },
+  {
+    date: "2024-07-16",
+    running: 380,
+    pending: 250,
+    completed: 220,
+    ongoing: 150,
+  },
+  {
+    date: "2024-07-17",
+    running: 520,
+    pending: 300,
+    completed: 180,
+    ongoing: 200,
+  },
+  {
+    date: "2024-07-18",
+    running: 140,
+    pending: 180,
+    completed: 220,
+    ongoing: 100,
+  },
+  {
+    date: "2024-07-19",
+    running: 600,
+    pending: 350,
+    completed: 400,
+    ongoing: 200,
+  },
+  {
+    date: "2024-07-20",
+    running: 480,
+    pending: 270,
+    completed: 350,
+    ongoing: 220,
+  },
+];
+
+const chartConfig = {
+  running: {
+    label: "Running",
+    color: "#4CAF50", // Green color
+  },
+  pending: {
+    label: "Pending",
+    color: "#FF9800", // Orange color
+  },
+  completed: {
+    label: "Completed",
+    color: "#2196F3", // Blue color
+  },
+  ongoing: {
+    label: "Ongoing",
+    color: "#FF5722", // Red-Orange color
+  },
+} satisfies ChartConfig;
+
+function TaskStatusChart() {
+  return (
+    <Card>
+      <CardHeader className="rounded-t-lg bg-blue-100">
+        <CardTitle>Task Statuses</CardTitle>
+        <CardDescription>
+          A stacked bar chart showing task statuses: running, pending,
+          completed, and ongoing.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <BarChart accessibilityLayer data={chartData}>
+            <XAxis
+              dataKey="date"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) => {
+                return new Date(value).toLocaleDateString("en-US", {
+                  weekday: "short",
+                });
+              }}
+            />
+            <Bar
+              dataKey="running"
+              stackId="a"
+              fill="var(--color-running)"
+              radius={[0, 0, 4, 4]}
+            />
+            <Bar
+              dataKey="pending"
+              stackId="a"
+              fill="var(--color-pending)"
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey="completed"
+              stackId="a"
+              fill="var(--color-completed)"
+              radius={[4, 4, 0, 0]}
+            />
+            <Bar
+              dataKey="ongoing"
+              stackId="a"
+              fill="var(--color-ongoing)"
+              radius={[0, 0, 4, 4]}
+            />
+            <ChartTooltip
+              content={<ChartTooltipContent className="bg-white" />}
+              cursor={false}
+              defaultIndex={1}
+            />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  );
+}
+
+const chart2Data = [
   { date: "2024-04-01", completed: 22, pending: 5 },
   { date: "2024-04-02", completed: 15, pending: 8 },
   { date: "2024-04-03", completed: 18, pending: 6 },
@@ -26,7 +149,7 @@ const chartData = [
   { date: "2024-04-05", completed: 37, pending: 3 },
 ];
 
-const chartConfig = {
+const chart2Config = {
   views: {
     label: "Tasks",
   },
@@ -84,12 +207,12 @@ function TotaltaskChart() {
       </CardHeader>
       <CardContent className="px-2 sm:p-6">
         <ChartContainer
-          config={chartConfig}
+          config={chart2Config}
           className="aspect-auto h-[250px] w-full"
         >
           <BarChart
             accessibilityLayer
-            data={chartData}
+            data={chart2Data}
             margin={{
               left: 12,
               right: 12,
@@ -133,4 +256,4 @@ function TotaltaskChart() {
   );
 }
 
-export default TotaltaskChart;
+export { TaskStatusChart, TotaltaskChart };
