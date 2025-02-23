@@ -19,7 +19,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const templates = [
   {
@@ -114,10 +114,10 @@ const templates = [
 
 const TemplateGallery = () => {
   return (
-    <div className="min-h-screen bg-slate-100 py-12">
+    <div className="min-h-screen bg-white py-12">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-gray-900">
+          <h1 className="mb-4 font-lexend text-4xl font-normal text-gray-900">
             Document Templates
           </h1>
           <p className="text-lg text-gray-600">
@@ -130,7 +130,7 @@ const TemplateGallery = () => {
           {templates.map((template, index) => (
             <Card
               key={index}
-              className="shadow-md transition-shadow duration-300 hover:shadow-lg"
+              className="shadow-md card transition-shadow duration-300 hover:shadow-lg"
             >
               <CardHeader>
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">

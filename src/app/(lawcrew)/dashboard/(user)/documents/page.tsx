@@ -1,5 +1,5 @@
-import TemplateGallery from "@/components/_documents/template_gallery";
 import React from "react";
+import TemplateGallery from "./template-gallery";
 
 const DocPage = () => {
   return <TemplateGallery />;
