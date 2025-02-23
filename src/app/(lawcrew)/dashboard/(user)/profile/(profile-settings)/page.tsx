@@ -2,11 +2,11 @@
 import { useState } from "react";
 
 import { Subnavigations, Titlebar } from "@/components/naviagtion_bar";
-import PersonalDetails from "@/components/_profile_settings/presonaldetails";
-import Password from "@/components/_profile_settings/password";
-import JobRoleSkills from "@/components/_profile_settings/jobroles";
-import Timezones from "@/components/_profile_settings/timezones";
-import SocialLinks from "@/components/_profile_settings/sociallinks";
+import PersonalDetails from "@/app/(lawcrew)/dashboard/(user)/profile/(profile-settings)/_presonaldetails";
+import Password from "@/app/(lawcrew)/dashboard/(user)/profile/(profile-settings)/_password";
+import JobRoleSkills from "@/app/(lawcrew)/dashboard/(user)/profile/(profile-settings)/_jobroles";
+import Timezones from "@/app/(lawcrew)/dashboard/(user)/profile/(profile-settings)/_timezones";
+import SocialLinks from "@/app/(lawcrew)/dashboard/(user)/profile/(profile-settings)/_sociallinks";
 
 const Userprofilepage = () => {
   const [isActiveSegment, setisActiveSegment] =

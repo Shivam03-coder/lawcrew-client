@@ -1,11 +1,11 @@
 import React from "react";
 import Hero from "./hero";
 import Footer from "./footer";
-import Goal from "@/app/(home)/goals";
 import Solution from "./solution";
 import CustomerReview from "./customer-review";
 import Payment from "./payment";
-import Navbar from "@/app/(home)/navbar";
+import Navbar from "./navbar";
+import Goal from "./goals";
 
 function Home() {
   return (

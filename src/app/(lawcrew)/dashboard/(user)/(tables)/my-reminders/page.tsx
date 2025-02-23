@@ -1,8 +1,8 @@
 "use client";
 import { Reminder, ReminderStatus } from "@/types/global";
 import { ColumnDef } from "@tanstack/react-table";
-import DataTable from "../shared/table";
 import { cn } from "@/lib/utils";
+import DataTable from "@/components/shared/table";
 
 export const data: Reminder[] = [
   {
