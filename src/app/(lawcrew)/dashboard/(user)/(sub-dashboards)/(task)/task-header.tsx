@@ -1,7 +1,7 @@
 import { IconGraph } from "@tabler/icons-react";
 import React from "react";
 
-const DashboardHeader = () => {
+const Taskheader = () => {
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
@@ -20,4 +20,4 @@ const DashboardHeader = () => {
   );
 };
 
-export default DashboardHeader;
+export default Taskheader;

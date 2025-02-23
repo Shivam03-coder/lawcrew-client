@@ -21,7 +21,7 @@ const TaxationCards = () => {
   };
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
+      <Card className="bg-green-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Tax Due</CardTitle>
           <DollarSign className="h-4 w-4 text-red-600" />
@@ -38,7 +38,7 @@ const TaxationCards = () => {
           </div>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="bg-purple-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
             Paid This Quarter
@@ -57,7 +57,7 @@ const TaxationCards = () => {
           </div>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="bg-yellow-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">
             Compliance Score
@@ -76,7 +76,7 @@ const TaxationCards = () => {
           </div>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="bg-sky-100">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Tax Savings</CardTitle>
           <Upload className="h-4 w-4 text-violet-600" />

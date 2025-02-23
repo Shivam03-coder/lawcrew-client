@@ -1,13 +1,13 @@
 import React from "react";
-import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { Calendar, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const TaxPaymentSchedule = () => {
   const upcomingPayments = [

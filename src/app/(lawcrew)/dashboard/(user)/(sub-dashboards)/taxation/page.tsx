@@ -27,13 +27,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TaxationHeader from "@/components/_taxation/taxation_header";
-import TaxationCards from "@/components/_taxation/taxation_cards";
-import TaxPaymnetTrend from "@/components/_taxation/tax_payment_trend";
-import TaxCompilanceChart from "@/components/_taxation/tax_compilance_chart";
-import TaxPaymentSchedule from "@/components/_taxation/tax_payment_schedule";
-import TaxationNotice from "@/components/_taxation/taxation_notice";
+
+import TaxPaymnetTrend from "./tax-payment-trend";
+import TaxCompilanceChart from "./tax-compilance-chart";
+import TaxPaymentSchedule from "./tax-payment-schedule";
+import TaxationNotice from "./taxation-notice";
+import TaxationHeader from "./taxation-header";
+import TaxationCards from "./taxation-cards";
 
 function App() {
   const upcomingPayments = [
@@ -63,15 +63,13 @@ function App() {
 
       <div className="mx-auto p-6">
         <TaxationCards />
-
+        <TaxationNotice />
         <TaxPaymnetTrend />
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <TaxCompilanceChart />
           <TaxPaymentSchedule />
         </div>
-
-        <TaxationNotice />
       </div>
     </div>
   );

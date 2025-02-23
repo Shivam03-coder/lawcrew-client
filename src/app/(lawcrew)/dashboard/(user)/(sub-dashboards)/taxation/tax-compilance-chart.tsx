@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import {
   CartesianGrid,
   Line,
@@ -26,7 +26,7 @@ const TaxCompilanceChart = () => {
     { month: "Jun", score: 95 },
   ];
   return (
-    <Card>
+    <Card className="bg-white">
       <CardHeader>
         <CardTitle>Compliance History</CardTitle>
         <CardDescription>Monthly compliance score tracking</CardDescription>
