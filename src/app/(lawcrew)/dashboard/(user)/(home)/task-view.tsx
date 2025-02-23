@@ -1,11 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 import { dummyData } from "@/data";
-import TaskTableViewTab from "./tab_view/table/task_table_view_tab";
-import KanBanView from "./tab_view/kanban/kanban_view_tab";
-import CalendarViewTab from "./tab_view/calendar/calender_view_tab";
+import KanBanView from "./_tabs/kanban/kanban-view";
+import TaskTableViewTab from "./_tabs/table/table-view";
+import CalendarViewTab from "./_tabs/calendar/calender-view-tab";
 
-const TabList = () => {
+const TaskView = () => {
   return (
     <section className="col-span-full space-y-4 rounded-lg bg-white p-4 shadow-md">
       {/* Header */}
@@ -43,7 +43,7 @@ const TabList = () => {
           <KanBanView data={dummyData} />
         </TabsContent>
         <TabsContent value="Tabel">
-          <TaskTableViewTab />
+          <TaskTableViewTab data={dummyData} />
         </TabsContent>
         <TabsContent value="Calander">
           <CalendarViewTab data={dummyData} />
@@ -53,4 +53,4 @@ const TabList = () => {
   );
 };
 
-export default TabList;
+export default TaskView;

@@ -1,7 +1,13 @@
 "use client";
-
-import { TrendingUp } from "lucide-react";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  Line,
+  LineChart,
+  YAxis,
+} from "recharts";
 
 import {
   Card,
@@ -14,12 +20,60 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-// Dummy data for tasks assigned and tasks completed each month
 const chartData = [
+  { day: "Mon", tasks: 5 },
+  { day: "Tue", tasks: 8 },
+  { day: "Wed", tasks: 7 },
+  { day: "Thu", tasks: 6 },
+  { day: "Fri", tasks: 9 },
+  { day: "Sat", tasks: 4 },
+  { day: "Sun", tasks: 3 },
+];
+
+const chartConfig = {
+  tasks: {
+    label: "Tasks Completed",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;
+
+const WeeklyTaskStats = () => {
+  return (
+    <Card className="card">
+      <CardHeader>
+        <CardTitle>Weekly Task Completion</CardTitle>
+        <CardDescription>Tasks completed each day of the week</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <BarChart data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="day"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <YAxis hide />
+            <ChartTooltip
+              content={<ChartTooltipContent className="bg-white" hideLabel />}
+            />
+            <ChartLegend content={<ChartLegendContent />} />
+            <Bar dataKey="tasks" fill="#0D92F4" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  );
+};
+
+const chart2Data = [
   { month: "January", tasksAssigned: 150, tasksCompleted: 120 },
   { month: "February", tasksAssigned: 180, tasksCompleted: 150 },
   { month: "March", tasksAssigned: 200, tasksCompleted: 180 },
@@ -34,7 +88,7 @@ const chartData = [
   { month: "December", tasksAssigned: 300, tasksCompleted: 290 },
 ];
 
-const chartConfig = {
+const chart2Config = {
   tasksAssigned: {
     label: "Tasks Assigned",
     color: "hsl(var(--chart-1))", // You can customize this color
@@ -47,7 +101,7 @@ const chartConfig = {
 
 const TaskManagementChart = () => {
   return (
-    <Card>
+    <Card className="card">
       <CardHeader>
         <CardTitle>Task Management Overview</CardTitle>
         <CardDescription>
@@ -55,10 +109,10 @@ const TaskManagementChart = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chart2Config}>
           <LineChart
             accessibilityLayer
-            data={chartData}
+            data={chart2Data}
             margin={{
               left: 12,
               right: 12,
@@ -97,4 +151,7 @@ const TaskManagementChart = () => {
   );
 };
 
-export default TaskManagementChart;
+export {
+  TaskManagementChart,
+  WeeklyTaskStats,
+}

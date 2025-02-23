@@ -74,6 +74,9 @@
   .input {
     @apply rounded border-2 bg-white;
   }
+  .card {
+    @apply bg-gradient-to-r from-sky-100 to-white
+  }
 }
 
 /* Scrollbar Track */

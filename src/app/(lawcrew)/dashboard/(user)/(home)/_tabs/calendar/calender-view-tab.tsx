@@ -33,7 +33,7 @@ import "@/styles/calendar.css";
 
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, ChevronRight, ChevronLeft } from "lucide-react";
-import CalandarEventCard from "./calendar_event_card";
+import CalandarEventCard from "./calendar-event-card";
 
 // Define props for the toolbar component
 interface ToolbarProps {
@@ -58,7 +58,7 @@ const Toolbar: FC<ToolbarProps> = ({ date, onNavigate }) => {
       </Button>
 
       {/* Current month display */}
-      <div className="flex bg-secondary h-9 px-3 rounded-md w-full items-center justify-center lg:w-auto">
+      <div className="flex h-9 w-full items-center justify-center rounded-md bg-secondary px-3 lg:w-auto">
         <CalendarIcon size={16} className="mr-2" />
         <p className="text-sm">{format(date, "MMMM yyyy")}</p>
       </div>
@@ -82,7 +82,7 @@ const Toolbar: FC<ToolbarProps> = ({ date, onNavigate }) => {
 const CalendarViewTab = ({ data }: { data: Task[] }) => {
   // Initialize the selected date, defaulting to the first task's due date or today
   const [value, setValue] = useState(
-    data.length > 0 ? new Date(data[0]?.dueDate!) : new Date()
+    data.length > 0 ? new Date(data[0]?.dueDate!) : new Date(),
   );
 
   const formatStr = "EEEE, MMMM d, yyyy"; // Define date format
@@ -116,13 +116,13 @@ const CalendarViewTab = ({ data }: { data: Task[] }) => {
   return (
     <Calendar
       localizer={localizer}
-      date={value} // Current selected date
-      events={events} // Events data for the calendar
-      views={["month"]} // Display only the month view
+      date={value}
+      events={events}
+      views={["month"]}
       defaultView="month"
       toolbar
       showAllEvents
-      className="mt-5 h-full"
+      className="mt-5 h-full overflow-x-scroll"
       max={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Limit max view to 1 year ahead
       formats={{
         weekdayFormat: (date, culture, localizer) =>

@@ -10,7 +10,7 @@ import {
 import { TaskStatus } from "@/types/global";
 import { Card } from "@/components/ui/card";
 import { CalendarIcon } from "lucide-react";
-import KanbanColumnHeader from "./kanaban_column_header";
+import KanbanColumnHeader from "./kanban-header";
 
 const boards: TaskStatus[] = [
   TaskStatus.Completed,

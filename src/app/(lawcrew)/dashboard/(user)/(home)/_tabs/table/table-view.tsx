@@ -1,7 +1,7 @@
 "use client";
 
 import DataTable from "@/components/shared/table";
-import { dummyData, Task } from "@/data";
+import { Task } from "@/data";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -88,10 +88,8 @@ const columns: ColumnDef<Task>[] = [
   },
 ];
 
-const TaskTableViewTab = () => {
-  return (
-      <DataTable className="mt-4" columns={columns} data={dummyData} />
-  );
+const TaskTableViewTab = ({ data }: { data: Task[] }) => {
+  return <DataTable className="mt-4" columns={columns} data={data} />;
 };
 
 export default TaskTableViewTab;

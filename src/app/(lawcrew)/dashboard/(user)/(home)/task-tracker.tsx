@@ -1,6 +1,6 @@
 "use client";
 
-import { Play, Pause, X } from "lucide-react";
+import { Play, Pause, X, ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import {
   Card,
@@ -44,7 +44,7 @@ const TimerTracker = () => {
   };
 
   return (
-    <Card>
+    <Card className="card">
       {/* Header */}
       <CardHeader className="text-center">
         <CardTitle className="text-lg font-semibold text-gray-800">
@@ -93,4 +93,32 @@ const TimerTracker = () => {
   );
 };
 
-export default TimerTracker;
+const RemainingTask = () => (
+  <Card className="card">
+    <CardHeader className="flex items-center justify-between">
+      <CardTitle>Remaining To Do</CardTitle>
+      <button className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 transition hover:bg-amber-600">
+        <ArrowUpRight className="h-4 w-4 text-white" />
+      </button>
+    </CardHeader>
+    <CardContent>
+      <div className="flex flex-col items-center justify-center py-6">
+        <p className="text-4xl font-bold text-gray-800">34</p>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="flex flex-col items-center rounded-lg border border-gray-200 p-3">
+          <p className="text-sm text-gray-600">Due Today</p>
+          <p className="text-lg font-bold text-gray-800">7</p>
+        </div>
+        <div className="flex flex-col items-center rounded-lg border border-gray-200 p-3">
+          <p className="text-sm text-gray-600">This Week</p>
+          <p className="text-lg font-bold text-gray-800">18</p>
+        </div>
+      </div>
+    </CardFooter>
+  </Card>
+);
+
+export { TimerTracker, RemainingTask };
