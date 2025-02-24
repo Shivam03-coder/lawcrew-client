@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Github, GitMerge, KeyRound, Mail } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import Oauth from "../oauth";
 
 export function LoginForm({
   className,
@@ -12,7 +14,7 @@ export function LoginForm({
   return (
     <form
       className={cn(
-        "flex h-full flex-col justify-center gap-6 rounded-bl-[20%] rounded-br-xl rounded-tl-xl rounded-tr-[20%] bg-white p-10 font-lexend",
+        "flex h-full flex-col justify-center gap-6 rounded-br-xl rounded-tl-xl bg-white p-10 font-lexend max-md:rounded-xl md:rounded-bl-[20%] md:rounded-tr-[20%]",
         className,
       )}
       {...props}
@@ -73,9 +75,7 @@ export function LoginForm({
             Or continue with
           </span>
         </div>
-        <button className="center w-full rounded-xl border-white bg-blue-100 p-2 text-gray-900">
-          <Github className="mr-2 h-5 w-5" /> Login with GitHub
-        </button>
+        <Oauth />
       </div>
       <div className="text-center text-sm text-gray-900">
         Don&apos;t have an account?{" "}

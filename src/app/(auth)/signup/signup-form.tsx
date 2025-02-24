@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Github, KeyRound, Mail, User } from "lucide-react";
 import Link from "next/link";
+import Oauth from "../oauth";
 
 export function SignupForm({
   className,
@@ -90,9 +91,7 @@ export function SignupForm({
         </div>
 
         {/* GitHub Signup */}
-        <button className="w-full center rounded-xl border-white bg-blue-100 p-2 text-gray-900">
-          <Github className="mr-2 h-5 w-5" /> Sign up with GitHub
-        </button>
+        <Oauth />
       </div>
 
       {/* Already have an account */}

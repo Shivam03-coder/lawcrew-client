@@ -6,15 +6,20 @@ import Image from "next/image";
 
 const LawCrewCampaignCard = () => {
   return (
-    <div className="relative font-lexend hidden h-full lg:block">
+    <div className="relative hidden h-full font-lexend lg:block">
       <div className="relative flex h-full flex-col justify-center px-10">
         {/* Logo */}
         <div className="mb-8">
           <Link href="/" className="flex items-center gap-2 font-medium">
             <div className="flex items-center gap-x-2">
-              <Image src="/logo.png" alt="LawCrew Logo" width={40} height={40} />
-              <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                LAWCREW
+              <Image
+                src="/logo.png"
+                alt="LawCrew Logo"
+                width={40}
+                height={40}
+              />
+              <h1 className="text-2xl inline-flex items-center gap-x-2 font-bold text-gray-800 dark:text-gray-100">
+                LAWCREW <Scale />
               </h1>
             </div>
           </Link>

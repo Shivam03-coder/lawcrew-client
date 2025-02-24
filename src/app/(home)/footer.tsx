@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Bot } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Bot, Scale } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Bot className="h-6 w-6" />
+              <Scale size={28} />
               <h3 className="text-xl font-bold">LAW-WISE</h3>
             </div>
             <p className="text-muted-foreground text-sm">
