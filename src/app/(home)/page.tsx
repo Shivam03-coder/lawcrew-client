@@ -15,14 +15,14 @@ function Home() {
 
       {/* Main Section */}
       <section className="container mx-auto px-6 py-16 md:py-24">
-        <Hero />
+        {/* <Hero />
         <Solution />
         <Goal />
-        <CustomerReview />
-        <Payment />
+        <CustomerReview /> */}
+        {/* <Payment /> */}
       </section>
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
