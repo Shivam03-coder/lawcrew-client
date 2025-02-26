@@ -1,22 +1,41 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Overview from "./over-view";
+import Transaction from "./transaction";
+import Accounts from "./accounts";
+import Categories from "./categories";
+import Settings from "./settings";
+
+type Tab = {
+  title: string;
+  component: React.ComponentType;
+};
+
+const tabs: Tab[] = [
+  { title: "Overview", component: Overview },
+  { title: "Transaction", component: Transaction },
+  { title: "Accounts", component: Accounts },
+  { title: "Categories", component: Categories },
+  { title: "Settings", component: Settings },
+];
 
 const Tablist = () => {
-  const tabs: string[] = [
-    "Overview",
-    "Transaction",
-    "Accounts",
-    "Catogories",
-    "Settings",
-  ];
   return (
-    <Tabs defaultValue={tabs[0]}>
+    <Tabs defaultValue={tabs[0]!.title.toLowerCase()} className="w-full">
+      {/* Tab Buttons */}
       <TabsList className="flex flex-wrap justify-start gap-x-3">
-        {tabs.map((tab, index) => (
-          <TabsTrigger key={index} value={tab.toLocaleLowerCase()}>
-            {tab}
+        {tabs.map(({ title }) => (
+          <TabsTrigger key={title} value={title.toLowerCase()}>
+            {title}
           </TabsTrigger>
         ))}
       </TabsList>
+
+      {/* Tab Content */}
+      {tabs.map(({ title, component: Component }) => (
+        <TabsContent key={title} value={title.toLowerCase()} className="p-4">
+          <Component />
+        </TabsContent>
+      ))}
     </Tabs>
   );
 };
