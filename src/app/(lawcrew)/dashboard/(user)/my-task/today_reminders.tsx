@@ -31,6 +31,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useMediaQuery } from "usehooks-ts";
 
 const TodayRemindersTasks = () => {
   const [taskType, setTaskType] = useState("Accounting");
@@ -38,7 +39,7 @@ const TodayRemindersTasks = () => {
   const [assignee, setAssignee] = useState("");
   const [dueDate, setDueDate] = useState<Date | undefined>();
   const [reminder, setReminder] = useState("");
-
+  const isMobile = useMediaQuery("(min-width: 868px)");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ taskType, title, assignee, dueDate, reminder });
@@ -52,7 +53,10 @@ const TodayRemindersTasks = () => {
           Create Reminders for Today
         </Button>
       </SheetTrigger>
-      <SheetContent className="rounded-l-2xl overflow-y-scroll min-h-screen bg-white">
+      <SheetContent
+        side={`${isMobile ? "right" : "bottom"}`}
+        className={`overflow-scroll bg-white ${isMobile ? "h-full rounded-l-2xl" : "h-[80%] rounded-t-xl"}`}
+      >
         <SheetHeader>
           <SheetTitle>Create a Reminder Task</SheetTitle>
           <SheetDescription>Enter task details and save it.</SheetDescription>
@@ -139,21 +143,19 @@ const TodayRemindersTasks = () => {
           </div>
 
           {/* Footer Buttons */}
-          <SheetFooter className="flex justify-end space-x-2">
-            <SheetClose asChild>
-              <Button className="text-pretty bg-red-200 text-primary">
-                Cancel
-              </Button>
-            </SheetClose>
-            <SheetClose asChild>
-              <Button
-                className="text-pretty bg-blue-200 text-primary"
-                type="submit"
-              >
-                Save Task
-              </Button>
-            </SheetClose>
-          </SheetFooter>
+          <SheetFooter className="flex flex-col sm:flex-row justify-end gap-2 sm:space-x-2">
+  <SheetClose asChild>
+    <Button type="button" className="bg-red-200 text-primary w-full sm:w-auto">
+      Cancel
+    </Button>
+  </SheetClose>
+  <SheetClose asChild>
+    <Button type="submit" className="bg-blue-200 text-primary w-full sm:w-auto">
+      Save Task
+    </Button>
+  </SheetClose>
+</SheetFooter>
+
         </form>
       </SheetContent>
     </Sheet>

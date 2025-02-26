@@ -32,6 +32,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useAppDispatch } from "@/store";
+import { useMediaQuery } from "usehooks-ts";
 
 const TodayTasks = () => {
   const [taskType, setTaskType] = useState("Accounting");
@@ -44,6 +45,7 @@ const TodayTasks = () => {
     e.preventDefault();
     console.log({ taskType, title, assignee, dueDate, reminder });
   };
+  const isMobile = useMediaQuery("(min-width: 868px)");
 
   return (
     <Sheet>
@@ -54,7 +56,10 @@ const TodayTasks = () => {
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="rounded-l-2xl bg-white">
+      <SheetContent
+        side={`${isMobile ? "right" : "bottom"}`}
+        className={`overflow-scroll bg-white ${isMobile ? "h-full rounded-l-2xl" : "h-[80%] rounded-t-xl"}`}
+      >
         <SheetHeader>
           <SheetTitle>Create a New Task</SheetTitle>
           <SheetDescription>Enter task details and save it.</SheetDescription>
@@ -145,14 +150,20 @@ const TodayTasks = () => {
           </div>
 
           {/* Footer Buttons */}
-          <SheetFooter className="flex justify-end space-x-2">
+          <SheetFooter className="flex flex-col justify-end gap-2 sm:flex-row sm:space-x-2">
             <SheetClose asChild>
-              <Button type="button" className="bg-red-200 text-primary">
+              <Button
+                type="button"
+                className="w-full bg-red-200 text-primary sm:w-auto"
+              >
                 Cancel
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button type="submit" className="bg-blue-200 text-primary">
+              <Button
+                type="submit"
+                className="w-full bg-blue-200 text-primary sm:w-auto"
+              >
                 Save Task
               </Button>
             </SheetClose>

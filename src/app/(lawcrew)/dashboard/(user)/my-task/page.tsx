@@ -39,7 +39,7 @@ const Dashboard = () => {
         taskSheet={<TodayRemindersTasks />}
         onButtonClick={() => console.log("Set Reminder Clicked")}
       />
-      <div className="col-span-full grid grid-cols-2 gap-5">
+      <div className="col-span-full grid md:grid-cols-2 gap-5">
         <MyTaskStats title="Tasks Assigned to Me by Status" />
         <MyTaskStats title="Tasks Requested by Me by Status" />
         <TotaltaskChart />

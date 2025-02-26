@@ -29,10 +29,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useMediaQuery } from "usehooks-ts";
 
 const TodayMeetingsTask = () => {
+  const isMobile = useMediaQuery("(min-width: 868px)");
   return (
-    <Sheet >
+    <Sheet>
       {/* Button to trigger modal */}
       <SheetTrigger asChild>
         <Button className="mt-4 w-auto bg-blue-300">
@@ -42,7 +44,10 @@ const TodayMeetingsTask = () => {
       </SheetTrigger>
 
       {/* Modal Content */}
-      <SheetContent className="h-screen overflow-y-scroll rounded-l-2xl bg-white">
+      <SheetContent
+        side={`${isMobile ? "right" : "bottom"}`}
+        className={`overflow-scroll bg-white ${isMobile ? "h-full rounded-l-2xl" : "h-[80%] rounded-t-xl"}`}
+      >
         <SheetHeader>
           <SheetTitle>Create a Reminder Task</SheetTitle>
           <SheetDescription>Enter task details and save it.</SheetDescription>
@@ -61,7 +66,10 @@ const TodayMeetingsTask = () => {
             <Label>Start Date :</Label>
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="flex w-full justify-between">
+                <Button
+                  variant="outline"
+                  className="flex w-full justify-between"
+                >
                   Select a Date
                   <CalendarIcon className="ml-2 h-5 w-5" />
                 </Button>
@@ -77,7 +85,10 @@ const TodayMeetingsTask = () => {
             <Label>End Date :</Label>
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="flex w-full justify-between">
+                <Button
+                  variant="outline"
+                  className="flex w-full justify-between"
+                >
                   Select a Date
                   <CalendarIcon className="ml-2 h-5 w-5" />
                 </Button>
@@ -119,16 +130,28 @@ const TodayMeetingsTask = () => {
           {/* Description */}
           <div>
             <Label>Description *</Label>
-            <Textarea className="border-black" placeholder="Enter Description" rows={5} />
+            <Textarea
+              className="border-black"
+              placeholder="Enter Description"
+              rows={5}
+            />
           </div>
 
           {/* Footer Buttons */}
-          <SheetFooter className="flex justify-end space-x-2">
+          <SheetFooter className="flex flex-col justify-end gap-2 sm:flex-row sm:space-x-2">
             <SheetClose asChild>
-              <Button className="text-pretty bg-red-200 text-primary">Cancel</Button>
+              <Button
+                type="button"
+                className="w-full bg-red-200 text-primary sm:w-auto"
+              >
+                Cancel
+              </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button className="text-pretty bg-blue-200 text-primary" type="button">
+              <Button
+                type="submit"
+                className="w-full bg-blue-200 text-primary sm:w-auto"
+              >
                 Save Task
               </Button>
             </SheetClose>
