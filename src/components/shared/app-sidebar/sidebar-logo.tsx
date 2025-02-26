@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Bot } from "lucide-react";
+import { Bot, Scale } from "lucide-react";
 import Link from "next/link";
 
 interface MediaLinkProps {
@@ -12,10 +12,10 @@ export function MediaLink({ title, subtitle, href }: MediaLinkProps) {
   return (
     <Link
       href={href}
-      className="group flex items-center gap-3 rounded-lg border border-white p-2"
+      className="group flex items-center gap-3 rounded-lg border border-black max-w-[250px] p-3"
     >
       <div className="text-primary-foreground flex aspect-square h-10 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
-        <Bot className="h-5 w-5" />
+        <Scale size={35}/>
       </div>
       <div className="flex flex-col gap-0.5 leading-none">
         <span className="font-semibold tracking-tight">{title}</span>
@@ -29,5 +29,5 @@ export function MediaLink({ title, subtitle, href }: MediaLinkProps) {
 
 // Example usage:
 export function Logo() {
-  return <MediaLink title="LAW-CREW" subtitle="Legal Solutions" href="/" />;
+  return <MediaLink title="LAW-CREW" subtitle="By 1st Media Link" href="/" />;
 }
