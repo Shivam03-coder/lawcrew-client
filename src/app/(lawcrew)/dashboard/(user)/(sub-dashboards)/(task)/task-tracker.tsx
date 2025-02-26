@@ -44,7 +44,7 @@ const TimerTracker = () => {
   };
 
   return (
-    <Card className="card">
+    <Card className="bg-yellow-50">
       {/* Header */}
       <CardHeader className="text-center">
         <CardTitle className="text-lg font-semibold text-gray-800">
@@ -94,7 +94,7 @@ const TimerTracker = () => {
 };
 
 const RemainingTask = () => (
-  <Card className="card">
+  <Card className="bg-violet-50">
     <CardHeader className="flex items-center justify-between">
       <CardTitle>Remaining To Do</CardTitle>
       <button className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 transition hover:bg-amber-600">

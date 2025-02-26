@@ -45,7 +45,7 @@ const chartConfig = {
 
 const WeeklyTaskStats = () => {
   return (
-    <Card className="card">
+    <Card className="bg-fuchsia-50">
       <CardHeader>
         <CardTitle>Weekly Task Completion</CardTitle>
         <CardDescription>Tasks completed each day of the week</CardDescription>
@@ -101,7 +101,7 @@ const chart2Config = {
 
 const TaskManagementChart = () => {
   return (
-    <Card className="card">
+    <Card className="bg-green-50">
       <CardHeader>
         <CardTitle>Task Management Overview</CardTitle>
         <CardDescription>
