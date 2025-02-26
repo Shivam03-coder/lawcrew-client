@@ -43,21 +43,22 @@ const mainNavData = [
   {
     title: "Main Navigation",
     items: [
-      { title: "Home", url: "/dashboard", icon: <Home size={18} /> },
+      { title: "Task-Management", url: "/dashboard", icon: <Home size={18} /> },
+
       {
-        title: "My Task",
-        url: "/dashboard/my-task",
-        icon: <ListChecks size={18} />,
-      },
-      {
-        title: "Taxation",
+        title: "Taxation-Management",
         url: "/dashboard/taxation",
         icon: <IconTax size={18} />,
       },
       {
-        title: "Finnance",
+        title: "Finnance-Management",
         url: "/dashboard/finnance",
         icon: <Landmark size={18} />,
+      },
+      {
+        title: "My Task",
+        url: "/dashboard/my-task",
+        icon: <ListChecks size={18} />,
       },
       {
         title: "Documents",
@@ -155,7 +156,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarGroup key={group.title}>
               <Collapsible>
                 <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg p-2">
-                  <span className="flex text-sm items-center gap-2">
+                  <span className="flex items-center gap-2 text-sm">
                     {group.icon} {group.title}
                   </span>
                   <ChevronDown size={16} />

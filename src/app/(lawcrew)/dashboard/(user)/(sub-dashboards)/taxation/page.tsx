@@ -1,38 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Receipt,
-  Calendar,
-  AlertCircle,
-  ArrowUpRight,
-  FileText,
-  DollarSign,
-  PieChart,
-  Clock,
-  BarChart3,
-  Download,
-  Upload,
-  Filter,
-  TrendingUp,
-  TrendingDown,
-  Info,
-} from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 import TaxPaymnetTrend from "./tax-payment-trend";
 import TaxCompilanceChart from "./tax-compilance-chart";
 import TaxPaymentSchedule from "./tax-payment-schedule";
 import TaxationNotice from "./taxation-notice";
-import TaxationHeader from "./taxation-header";
 import TaxationCards from "./taxation-cards";
 import TaxPaymentTable from "./tax-payment-table";
 
@@ -60,9 +32,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaxationHeader />
-
-      <div className="mx-auto p-6">
+     <div className="mx-auto p-3 w-[98%]">
         <TaxationCards />
         <TaxationNotice />
         <TaxPaymnetTrend />

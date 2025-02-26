@@ -23,7 +23,6 @@ import {
   AreaChart,
   Area,
 } from "recharts";
-import FinanceHeader from "./finnance-header";
 import Tablist from "./tablist";
 
 const data = [
@@ -81,9 +80,7 @@ const transactions = [
 function FinnancePage() {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <FinanceHeader />
-      <div className="mt-5 px-6 w-[95%]">
+      <div className="mx-auto p-3 w-[98%]">
         <Tablist />
       </div>
 
