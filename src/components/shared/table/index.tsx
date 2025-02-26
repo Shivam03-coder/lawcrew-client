@@ -11,6 +11,7 @@ import {
   ColumnFiltersState,
   VisibilityState,
   getFilteredRowModel,
+  Row,
 } from "@tanstack/react-table";
 
 import {
@@ -27,9 +28,11 @@ import { useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
+  Eye,
   Filter,
   Search,
   SlidersHorizontal,
+  Trash,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
@@ -44,12 +47,16 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   className?: string;
   searchBy?: string;
+  onDelete?: (row: Row<TData>[]) => void;
+  disabled?: boolean;
 }
 
 function DataTable<TData, TValue>({
   columns,
   data,
   className,
+  onDelete,
+  disabled,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -74,7 +81,7 @@ function DataTable<TData, TValue>({
   return (
     <div className="p-0">
       {/* Searchbar */}
-      <div className="flex items-center justify-start py-4">
+      <div className="flex items-center justify-between px-5 py-4">
         <div className="relative flex max-w-sm items-center">
           <Search className="absolute left-3 h-5 w-5 text-gray-500" />
           <Input
@@ -83,10 +90,12 @@ function DataTable<TData, TValue>({
             onChange={(event) => table.setGlobalFilter(event.target.value)}
             className="rounded-md border-2 border-gray-300 py-3 pl-10 pr-4 transition-all focus:border-primary focus:ring-2 focus:ring-primary"
           />
+        </div>
+        <div className="flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" className="ml-8">
-                <SlidersHorizontal /> View
+              <Button variant="secondary" className="ml-8 bg-green-300">
+                <Eye />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white" align="center">
@@ -109,6 +118,20 @@ function DataTable<TData, TValue>({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
+          {table.getFilteredSelectedRowModel().rows.length > 0 && (
+            <Button
+              className="ml-8 bg-red-400 text-black"
+              onClick={() => {
+                const selectedRows = table.getFilteredSelectedRowModel().rows;
+                if (onDelete) {
+                  onDelete(selectedRows);
+                }
+              }}
+            >
+              <Trash size={27} /> Delete ({" "}
+              {table.getFilteredSelectedRowModel().rows.length} )
+            </Button>
+          )}
         </div>
       </div>
       <div className={cn("w-full rounded-md border", className)}>
@@ -161,6 +184,11 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
         <div className="flex items-center justify-end space-x-2 py-4 pr-7">
+          <div className="text-muted-foreground flex-1 px-5 text-sm">
+            {table.getFilteredSelectedRowModel().rows.length} of{" "}
+            {table.getFilteredRowModel().rows.length} row(s) selected.
+          </div>
+
           <Button
             variant="outline"
             size="sm"

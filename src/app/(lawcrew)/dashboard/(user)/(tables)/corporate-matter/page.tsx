@@ -1,10 +1,10 @@
 "use client";
-import { practiceAreaColors } from "@/components/_cases/hearing_cases";
-import { statusColors } from "@/components/_cases/litigation_cases";
 import DataTable from "@/components/shared/table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CorporateMatterTypes } from "@/types/global";
 import { ColumnDef } from "@tanstack/react-table";
+import { practiceAreaColors } from "../cases/hearings/page";
+import { statusColors } from "../cases/litigation-cases/page";
 
 const data: CorporateMatterTypes[] = [
   {

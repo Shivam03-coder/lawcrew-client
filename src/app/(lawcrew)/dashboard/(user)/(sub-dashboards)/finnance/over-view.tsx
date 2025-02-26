@@ -2,7 +2,7 @@ import React from 'react'
 
 const Overview = () => {
   return (
-    <div>Overview</div>
+    <div className="h-full w-full bg-white">Overview</div>
   )
 }
 

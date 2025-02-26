@@ -269,3 +269,12 @@ export enum TaxPaymentStatusTypes {
   Completed = "Completed",
   Overdue = "Overdue",
 }
+
+
+export interface AccountData {
+  id: number;
+  amount: string;
+  status: "Pending" | "Completed" | "Overdue";
+  bankName: string;
+  accountNumber: string;
+}
