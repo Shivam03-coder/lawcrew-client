@@ -1,3 +1,4 @@
+"use client";
 import DataTable from "@/components/shared/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -242,15 +243,19 @@ const columns: ColumnDef<AccountData>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="font-mono px-5  text-gray-900">
+      <div className="px-5 font-mono text-gray-900">
         {row.original.accountNumber}
       </div>
     ),
   },
 ];
 
-const AccountDataTable = () => {
-  return <DataTable columns={columns} data={data} />;
+const AccountDataTable = ({ className }: { className?: string }) => {
+  return (
+    <div className={cn("rounded-xl bg-white shadow-sm", className)}>
+      <DataTable columns={columns} data={data} />
+    </div>
+  );
 };
 
 export default AccountDataTable;
