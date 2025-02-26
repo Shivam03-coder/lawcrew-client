@@ -9,7 +9,7 @@ const Taskheader = () => {
   });
 
   return (
-    <div className="border-b bg-white shadow-sm">
+    <div className="border-b card shadow-sm">
       <div className="flex flex-wrap items-center justify-between px-4 py-3 sm:px-6 md:px-8">
         <h1 className="flex items-center gap-2 text-lg font-normal sm:text-xl md:text-2xl font-lexend">
           Task Management Dashboard <IconGraph className="h-5 w-5 sm:h-6 sm:w-6" />

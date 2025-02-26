@@ -243,9 +243,7 @@ const columns: ColumnDef<TaxPayment>[] = [
 
 const TaxPaymentTable = () => {
   return (
-    <div className="p-8">
       <DataTable className="mt-4" columns={columns} data={data} />
-    </div>
   );
 };
 

@@ -72,7 +72,7 @@ function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="p-4">
+    <div className="p-0">
       {/* Searchbar */}
       <div className="flex items-center justify-start py-4">
         <div className="relative flex max-w-sm items-center">

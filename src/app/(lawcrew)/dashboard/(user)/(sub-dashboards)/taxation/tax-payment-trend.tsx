@@ -36,7 +36,7 @@ const TaxPaymnetTrend = () => {
   ];
   return (
     <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <Card className="col-span-2">
+      <Card className="md:col-span-2">
         <CardHeader>
           <CardTitle>Tax Payment Trends</CardTitle>
           <CardDescription>
