@@ -9,12 +9,12 @@ const Taskheader = () => {
   });
 
   return (
-    <div className="border-b">
-      <div className="flex h-16 items-center justify-between px-8">
-        <h1 className="font-lexend text-2xl flex items-center gap-3  font-normal">
-          Task Management Dashboard <IconGraph />
+    <div className="border-b bg-white shadow-sm">
+      <div className="flex flex-wrap items-center justify-between px-4 py-3 sm:px-6 md:px-8">
+        <h1 className="flex items-center gap-2 text-lg font-normal sm:text-xl md:text-2xl font-lexend">
+          Task Management Dashboard <IconGraph className="h-5 w-5 sm:h-6 sm:w-6" />
         </h1>
-        <h4 className="text-lg text-gray-600">{currentDate}</h4>
+        <h4 className="text-sm text-gray-600 sm:text-base md:text-lg">{currentDate}</h4>
       </div>
     </div>
   );

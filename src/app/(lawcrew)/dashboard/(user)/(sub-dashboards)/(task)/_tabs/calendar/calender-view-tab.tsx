@@ -16,7 +16,7 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
 // Define available locales for date formatting
 const locales = {
-  "en-Us": enUS,
+  "en-US": enUS,
 };
 
 // Initialize dateFnsLocalizer for react-big-calendar
@@ -46,11 +46,11 @@ interface ToolbarProps {
  */
 const Toolbar: FC<ToolbarProps> = ({ date, onNavigate }) => {
   return (
-    <div className="mb-4 flex w-full items-center justify-center gap-x-2 rounded-md lg:w-auto lg:justify-start">
+    <div className="mb-4 flex flex-wrap w-full items-center justify-center gap-x-2 gap-y-2 rounded-md lg:w-auto lg:justify-start">
       {/* Button to navigate to the previous month */}
       <Button
-        variant={"secondary"}
-        size={"icon"}
+        variant="secondary"
+        size="icon"
         className="flex items-center"
         onClick={() => onNavigate("PREV")}
       >
@@ -60,13 +60,13 @@ const Toolbar: FC<ToolbarProps> = ({ date, onNavigate }) => {
       {/* Current month display */}
       <div className="flex h-9 w-full items-center justify-center rounded-md bg-secondary px-3 lg:w-auto">
         <CalendarIcon size={16} className="mr-2" />
-        <p className="text-sm">{format(date, "MMMM yyyy")}</p>
+        <p className="text-sm sm:text-base">{format(date, "MMMM yyyy")}</p>
       </div>
 
       {/* Button to navigate to the next month */}
       <Button
-        variant={"secondary"}
-        size={"icon"}
+        variant="secondary"
+        size="icon"
         className="flex items-center"
         onClick={() => onNavigate("NEXT")}
       >
@@ -114,39 +114,39 @@ const CalendarViewTab = ({ data }: { data: Task[] }) => {
   };
 
   return (
-    <Calendar
-      localizer={localizer}
-      date={value}
-      events={events}
-      views={["month"]}
-      defaultView="month"
-      toolbar
-      showAllEvents
-      className="mt-5 h-full overflow-x-scroll"
-      max={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Limit max view to 1 year ahead
-      formats={{
-        weekdayFormat: (date, culture, localizer) =>
-          localizer?.format(date, "EEEE", culture) ?? "", // Display full weekday names
-      }}
-      components={{
-        // Custom event card component
-        eventWrapper: ({ event }) => (
-          <CalandarEventCard
-            id={event.id}
-            category={event.category}
-            priority={event.priority}
-            status={event.status}
-            title={event.title}
-            end={event.end}
-            start={event.start}
-          />
-        ),
-        // Custom toolbar with navigation buttons
-        toolbar: () => {
-          return <Toolbar date={value} onNavigate={handleNavigate} />;
-        },
-      }}
-    />
+    <div className="mt-5 h-full w-full overflow-hidden sm:overflow-x-auto">
+      <Calendar
+        localizer={localizer}
+        date={value}
+        events={events}
+        views={["month"]}
+        defaultView="month"
+        toolbar={false} // Disable default toolbar for custom toolbar
+        showAllEvents
+        className="h-auto min-h-[500px] w-full rounded-md bg-white shadow-sm sm:min-h-[600px]"
+        max={new Date(new Date().setFullYear(new Date().getFullYear() + 1))} // Limit max view to 1 year ahead
+        formats={{
+          weekdayFormat: (date, culture, localizer) =>
+            localizer?.format(date, "EEE", culture) ?? "", // Show short weekday names on small screens
+        }}
+        components={{
+          // Custom event card component
+          eventWrapper: ({ event }) => (
+            <CalandarEventCard
+              id={event.id}
+              category={event.category}
+              priority={event.priority}
+              status={event.status}
+              title={event.title}
+              end={event.end}
+              start={event.start}
+            />
+          ),
+        }}
+      />
+      {/* Custom Toolbar below the calendar for responsiveness */}
+      <Toolbar date={value} onNavigate={handleNavigate} />
+    </div>
   );
 };
 
