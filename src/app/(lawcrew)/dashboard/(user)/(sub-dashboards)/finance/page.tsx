@@ -14,19 +14,6 @@ import {
   Bell,
   User,
 } from "lucide-react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-} from "recharts";
 
 import AccountDataTable from "./account-data-table";
 import TransactionTable from "./transaction";
@@ -36,9 +23,9 @@ import {
   SavingsChart,
 } from "./charts";
 
-function App() {
+function FinanceDashboard() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-6 bg-gray-50">
       <div className="flex">
         {/* Main Content */}
         <main className="flex-1 p-6">
@@ -121,4 +108,4 @@ function App() {
   );
 }
 
-export default App;
+export default FinanceDashboard;

@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { IconCoins, IconDashboard, IconGraph, IconScale } from "@tabler/icons-react";
+import {
+  IconCoins,
+  IconDashboard,
+  IconGraph,
+  IconScale,
+} from "@tabler/icons-react";
 import { Bell, Search, Settings } from "lucide-react";
 import SheetSidebar from "../../components/shared/app-sidebar/sheet-sidebar";
+import { Input } from "@/components/ui/input";
 
 const DashboardHeader = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -17,7 +23,7 @@ const DashboardHeader = () => {
           title: "Task Management Dashboard",
           icon: <IconGraph className="h-5 w-5 sm:h-6 sm:w-6" />,
         };
-      case "/dashboard/finnance":
+      case "/dashboard/finance":
         return {
           title: "Finance Management Dashboard",
           icon: <IconCoins className="h-5 w-5 sm:h-6 sm:w-6" />,
@@ -38,7 +44,7 @@ const DashboardHeader = () => {
   const { title, icon } = getHeaderDetails();
 
   return (
-    <header className="border-b border-gray-200 bg-white px-4 py-2.5 lg:px-6">
+    <header className="border-b  sticky w-full border-gray-200 bg-transparent backdrop-blur-xl px-4 py-2.5 lg:px-6">
       <div className="flex flex-wrap items-center justify-between">
         {/* Left Section: Sidebar Toggle & Title */}
         <div className="flex items-center gap-3">
@@ -49,25 +55,23 @@ const DashboardHeader = () => {
         </div>
 
         {/* Search Bar (Hidden on Mobile) */}
-        <div className="mx-4 hidden max-w-lg flex-1 md:block">
-          <div
-            className={`relative ${isSearchFocused ? "ring-2 ring-blue-500" : ""}`}
-          >
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Search className="h-5 w-5 text-gray-500" />
-            </div>
-            <input
-              type="search"
-              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 focus:outline-none"
-              placeholder="Search..."
-              onFocus={() => setIsSearchFocused(true)}
-              onBlur={() => setIsSearchFocused(false)}
-            />
-          </div>
-        </div>
 
         {/* Right Section: Notifications, Settings, Profile */}
         <div className="flex items-center">
+          <div className="mx-4 hidden max-w-lg flex-1 md:block">
+            <div className={`relative`}>
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <Search className="h-5 w-5 text-gray-500" />
+              </div>
+              <Input
+                type="search"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm outline-none"
+                placeholder="Search..."
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+              />
+            </div>
+          </div>
           <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
             <Bell size={20} />
           </button>
@@ -87,7 +91,6 @@ const DashboardHeader = () => {
           </div>
         </div>
       </div>
-
       {/* Mobile Search - Visible on small screens */}
       <div className="mt-2 md:hidden">
         <div className="relative">

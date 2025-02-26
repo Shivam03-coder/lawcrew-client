@@ -12,10 +12,10 @@ export function MediaLink({ title, subtitle, href }: MediaLinkProps) {
   return (
     <Link
       href={href}
-      className="group flex items-center gap-3 rounded-lg border border-black max-w-[250px] p-3"
+      className="group flex max-w-[250px] items-center gap-3 rounded-lg border-black bg-gray-200 p-3"
     >
       <div className="text-primary-foreground flex aspect-square h-10 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
-        <Scale size={35}/>
+        <Scale size={35} />
       </div>
       <div className="flex flex-col gap-0.5 leading-none">
         <span className="font-semibold tracking-tight">{title}</span>

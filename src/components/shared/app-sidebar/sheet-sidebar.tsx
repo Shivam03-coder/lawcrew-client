@@ -114,7 +114,7 @@ const SheetSidebar = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="flex h-full w-[330px] flex-col justify-start overflow-y-scroll bg-white text-[14px]"
+        className="flex h-full font-lexend w-[330px] flex-col justify-start overflow-y-scroll bg-white text-[14px]"
       >
         <SheetHeader>
           <SheetTitle>

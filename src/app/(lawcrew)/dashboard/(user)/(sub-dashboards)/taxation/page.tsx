@@ -31,7 +31,7 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen py-6 bg-gray-50">
      <div className="mx-auto p-3 w-[98%]">
         <TaxationCards />
         <TaxationNotice />

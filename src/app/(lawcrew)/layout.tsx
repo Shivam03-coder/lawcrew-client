@@ -1,4 +1,4 @@
-import DashboardHeader from "@/components/shared/app-sidebar/sheet-sidebar";
+import DashboardHeader from "./header";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
