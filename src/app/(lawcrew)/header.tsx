@@ -11,6 +11,7 @@ import {
 import { Bell, Search, Settings } from "lucide-react";
 import SheetSidebar from "../../components/shared/app-sidebar/sheet-sidebar";
 import { Input } from "@/components/ui/input";
+import ThemeToggle from "@/components/dark-mode.toogle";
 
 const DashboardHeader = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -44,7 +45,7 @@ const DashboardHeader = () => {
   const { title, icon } = getHeaderDetails();
 
   return (
-    <header className="border-b  sticky w-full border-gray-200 bg-transparent backdrop-blur-xl px-4 py-2.5 lg:px-6">
+    <header className="sticky w-full border-b border-gray-200 bg-transparent px-4 py-2.5 backdrop-blur-xl lg:px-6">
       <div className="flex flex-wrap items-center justify-between">
         {/* Left Section: Sidebar Toggle & Title */}
         <div className="flex items-center gap-3">
@@ -75,6 +76,7 @@ const DashboardHeader = () => {
           <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
             <Bell size={20} />
           </button>
+          <ThemeToggle />
           <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
             <Settings size={20} />
           </button>
