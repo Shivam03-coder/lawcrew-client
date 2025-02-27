@@ -1,8 +1,9 @@
-import IdocsTable from "@/components/_i_docs";
-import React from "react";
+import React from 'react'
 
 const IdocsPage = () => {
-  return <IdocsTable />;
-};
+  return (
+    <div>IdocsPage</div>
+  )
+}
 
-export default IdocsPage;
+export default IdocsPage
