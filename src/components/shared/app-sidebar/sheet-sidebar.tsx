@@ -114,7 +114,7 @@ const SheetSidebar = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="flex h-full font-lexend w-[330px] flex-col justify-start overflow-y-scroll bg-white text-[14px]"
+        className="flex h-full w-[330px] flex-col justify-start overflow-y-scroll rounded-3xl bg-white font-lexend text-[14px] text-primary dark:bg-primary dark:text-white md:ml-5"
       >
         <SheetHeader>
           <SheetTitle>
@@ -131,7 +131,7 @@ const SheetSidebar = () => {
                   <li key={item.title} className="py-2">
                     <Link
                       href={item.url}
-                      className="flex items-center gap-2 text-gray-800 hover:text-primary"
+                      className="flex items-center gap-2 hover:text-primary dark:hover:text-gray-100"
                     >
                       {item.icon} {item.title}
                     </Link>
@@ -158,7 +158,7 @@ const SheetSidebar = () => {
                     <li key={subItem.title} className="py-2">
                       <Link
                         href={subItem.url}
-                        className="text-sm text-gray-600 hover:text-primary"
+                        className="text-sm hover:text-primary dark:hover:text-gray-100"
                       >
                         {subItem.title}
                       </Link>
@@ -178,7 +178,7 @@ const SheetSidebar = () => {
               <li key={item.title} className="py-2">
                 <Link
                   href={item.url}
-                  className="flex items-center gap-2 text-gray-800 hover:text-primary"
+                  className="flex items-center gap-2 hover:text-primary dark:hover:text-gray-100"
                 >
                   {item.icon} {item.title}
                 </Link>

@@ -12,7 +12,7 @@ export function MediaLink({ title, subtitle, href }: MediaLinkProps) {
   return (
     <Link
       href={href}
-      className="group flex max-w-[250px] items-center gap-3 rounded-lg border-black bg-gray-200 p-3"
+      className="group flex max-w-[250px] items-center gap-3 rounded-lg border-black bg-gray-200 dark:bg-gray-800 p-3"
     >
       <div className="text-primary-foreground flex aspect-square h-10 items-center justify-center rounded-lg transition-transform group-hover:scale-105">
         <Scale size={35} />
