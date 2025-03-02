@@ -88,7 +88,7 @@ const Solution = () => {
         "Track, organize, and collaborate on cases with ease using our intuitive platform.",
       linkText: "Learn More",
       linkHref: "/learn-more",
-      titlebg: "bg-green-100",
+      titlebg: "bg-green-100 ",
     },
     {
       icon: <Shield className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -134,7 +134,7 @@ const Solution = () => {
       <SectionHeader
         title="Perfect Solution For Your Business"
         description="Our legal management tool is designed to simplify and streamline your operations, helping you save time and resources. From organizing legal documents to managing client relationships."
-        className="mx-auto max-w-[90%] text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
+        className="mx-auto dark:text-white max-w-[90%] text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
       />
 
       {/* Solution Cards section */}

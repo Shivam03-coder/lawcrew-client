@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/popover";
 import useMount from "@/hooks/use-mount";
 import { Separator } from "@/components/ui/separator";
+import ThemeToggle from "@/components/dark-mode.toogle";
 
 const Navbar = () => {
   const isMobile = useMediaQuery("(min-width: 968px)");
@@ -59,6 +60,7 @@ const Navbar = () => {
         {/* Auth Buttons */}
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
+            <ThemeToggle />
             <Link
               href="/login"
               className="text-sm text-primary hover:text-primary"
@@ -114,7 +116,7 @@ const MobileNavigation = ({ open, setOpen }: MobileNavigationProps) => {
               >
                 <item.icon className="h-5 w-5 text-primary" /> {item.label}
               </Link>
-              {index < Navs.length - 1 && <Separator className="bg-primary"/>}
+              {index < Navs.length - 1 && <Separator className="bg-primary" />}
             </div>
           ))}
         </nav>

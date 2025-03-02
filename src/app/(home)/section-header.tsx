@@ -21,23 +21,40 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   className,
 }) => {
   return (
-    <header
+<header
+  className={cn(
+    "mx-auto flex flex-col gap-2",
+    align === "center" && "items-center text-center",
+    align === "left" && "items-start text-left",
+    align === "right" && "items-end text-right",
+    className
+  )}
+>
+  {subtitle && (
+    <p className="text-sm text-muted-foreground dark:text-gray-400">
+      {subtitle}
+    </p>
+  )}
+  <h3
+    className={cn(
+      "text-3xl bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text font-normal font-lexend dark:from-blue-400 dark:via-gray-200 dark:to-blue-400",
+      titleClassName
+    )}
+  >
+    {title}
+  </h3>
+  {description && (
+    <p
       className={cn(
-        "mx-auto flex flex-col gap-2",
-        align === "center" && "items-center text-center",
-        align === "left" && "items-start text-left",
-        align === "right" && "items-end text-right",
-        className
+        "text-gray-600 opacity-80 hidden lg:block dark:text-gray-300",
+        descriptionClassName
       )}
     >
-      {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
-      <h3 className={cn("text-3xl bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text font-normal font-lexend", titleClassName)}>{title}</h3>
-      {description && (
-        <p className={cn("text-gray-600 opacity-80 hidden lg:block", descriptionClassName)}>
-          {description}
-        </p>
-      )}
-    </header>
+      {description}
+    </p>
+  )}
+</header>
+
   );
 };
 

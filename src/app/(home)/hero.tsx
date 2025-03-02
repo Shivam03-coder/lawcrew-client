@@ -27,15 +27,15 @@ const Hero = () => {
         </Button>
 
         {/* Heading */}
-        <h1 className="relative mx-auto mt-6 font-lexend text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="relative mx-auto mt-6 font-lexend text-3xl font-bold tracking-tight textDark sm:text-5xl md:text-6xl lg:text-7xl">
           A Satisfied Customer is
-          <span className="mt-2 block bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text pb-3 text-transparent sm:pb-5">
+          <span className="mt-2 block bg-gradient-to-r from-blue-600 via-black to-blue-600 dark:via-slate-400 bg-clip-text pb-3 text-transparent sm:pb-5">
             The Best Business Strategy.
           </span>
         </h1>
 
         {/* Description */}
-        <p className="mx-auto mt-6 max-w-2xl font-lexend text-sm text-gray-600 sm:text-lg md:text-xl">
+        <p className="mx-auto mt-6 max-w-2xl font-lexend text-sm textDark sm:text-lg md:text-xl">
           LAW-WISE empowers legal professionals with cutting-edge tools for
           efficient case management, secure document handling, and streamlined
           client communication. Simplify legal workflows, stay organized, and

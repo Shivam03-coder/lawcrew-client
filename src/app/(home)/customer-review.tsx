@@ -73,26 +73,27 @@ const ReviewCard = ({
   body: string;
 }) => {
   return (
-    <Card className="relative bg-gradient-to-r from-sky-100 bg-white flex w-64 transform flex-col rounded-lg border border-primary p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary">
-      <CardHeader className="flex flex-row items-center gap-2">
-        <Avatar className="flex-shrink-0">
-          <AvatarImage src={img} alt={name} className="rounded-full" />
-        </Avatar>
-        <div className="flex flex-col">
-          <CardTitle className="text-sm font-semibold text-gray-900 dark:text-white">
-            {name}
-          </CardTitle>
-          <CardDescription className="text-xs font-medium text-gray-600 dark:text-white/60">
-            {username}
-          </CardDescription>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <blockquote className="mt-2 font-inter text-sm font-semibold text-primary dark:text-gray-300">
-          <Quote className="mr-2 inline-block" /> {body}
-        </blockquote>
-      </CardContent>
-    </Card>
+<Card className="relative flex w-64 transform flex-col rounded-lg border border-primary bg-white dark:bg-primary/20 bg-gradient-to-r from-sky-100 dark:from-primary/30 p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary dark:hover:bg-primary/40">
+  <CardHeader className="flex flex-row items-center gap-2">
+    <Avatar className="flex-shrink-0">
+      <AvatarImage src={img} alt={name} className="rounded-full" />
+    </Avatar>
+    <div className="flex flex-col">
+      <CardTitle className="text-sm font-semibold text-gray-900 dark:text-primary">
+        {name}
+      </CardTitle>
+      <CardDescription className="text-xs font-medium text-gray-600 dark:text-primary">
+        {username}
+      </CardDescription>
+    </div>
+  </CardHeader>
+  <CardContent>
+    <blockquote className="mt-2 font-inter text-sm font-semibold text-primary dark:text-gray-900">
+      <Quote className="mr-2 inline-block" /> {body}
+    </blockquote>
+  </CardContent>
+</Card>
+
   );
 };
 
@@ -102,7 +103,7 @@ function CustomerReview() {
       <SectionHeader
         title="What Our Customers Say About Us ?"
         description="Our legal management tool has helped countless businesses streamline their operations, stay compliant, and improve efficiency. Here's what our customers have to say about how our solutions have transformed their workflow."
-        className="w-[50%] text-center"
+        className="w-[50%] pb-3 text-center dark:text-white"
       />
 
       <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
@@ -113,8 +114,8 @@ function CustomerReview() {
         </Marquee>
 
         {/* Gradient overlay for better readability */}
-        <div className="dark:from-background pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white"></div>
-        <div className="dark:from-background pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white"></div>
+        <div className="dark:via-background pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-gray-900 dark:to-transparent" />
+        <div className="dark:via-background pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-gray-900 dark:to-transparent" />
       </div>
     </section>
   );

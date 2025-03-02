@@ -86,7 +86,7 @@ const Goal = () => {
       <SectionHeader
         title="Goals of Our Business"
         description="Our legal management tool is designed to simplify and streamline your operations, helping you save time and resources. From organizing legal documents to managing client relationships, our features are tailored for your success."
-        className="mx-auto max-w-[90%] text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
+        className="mx-auto max-w-[90%] dark:text-white text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
       />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
         {cardsData.map((card, index) => (
