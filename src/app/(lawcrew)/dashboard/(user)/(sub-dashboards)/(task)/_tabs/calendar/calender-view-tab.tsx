@@ -46,7 +46,7 @@ interface ToolbarProps {
  */
 const Toolbar: FC<ToolbarProps> = ({ date, onNavigate }) => {
   return (
-    <div className="mb-4 flex flex-wrap w-full items-center justify-center gap-x-2 gap-y-2 rounded-md lg:w-auto lg:justify-start">
+    <div className="mb-4 flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-2 rounded-md lg:w-auto lg:justify-start">
       {/* Button to navigate to the previous month */}
       <Button
         variant="secondary"
@@ -115,6 +115,7 @@ const CalendarViewTab = ({ data }: { data: Task[] }) => {
 
   return (
     <div className="mt-5 h-full w-full overflow-hidden sm:overflow-x-auto">
+      <Toolbar date={value} onNavigate={handleNavigate} />
       <Calendar
         localizer={localizer}
         date={value}
@@ -144,8 +145,6 @@ const CalendarViewTab = ({ data }: { data: Task[] }) => {
           ),
         }}
       />
-      {/* Custom Toolbar below the calendar for responsiveness */}
-      <Toolbar date={value} onNavigate={handleNavigate} />
     </div>
   );
 };

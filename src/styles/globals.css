@@ -75,11 +75,11 @@
     @apply rounded border-2 bg-white;
   }
   .card {
-    @apply bg-gradient-to-r from-sky-100 to-white;
+    @apply bg-gradient-to-r from-sky-100 to-white
+  }.textDark {
+    @apply text-primary dark:text-secondary
   }
-  .textDark {
-    @apply text-gray-800 dark:text-secondary;
-  }
+
 }
 
 /* Scrollbar Track */
@@ -87,6 +87,7 @@
   width: 0px;
   height: 0px;
 }
+
 
 .tiptap {
   /* list styles */

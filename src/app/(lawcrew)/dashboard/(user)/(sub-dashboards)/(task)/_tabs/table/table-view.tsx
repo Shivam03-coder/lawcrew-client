@@ -14,10 +14,14 @@ const columns: ColumnDef<Task>[] = [
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        className="textDark"
       >
         Task
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
+    ),
+    cell: ({ row }) => (
+      <div className="font-semibold textDark">{row.original.title}</div>
     ),
   },
   {
@@ -48,10 +52,16 @@ const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "category",
     header: "Category",
+    cell: ({ row }) => (
+      <div className="rounded-md p-1 textDark">{row.original.category}</div>
+    ),
   },
   {
     accessorKey: "dueDate",
     header: "Due Date",
+    cell: ({ row }) => (
+      <div className="rounded-md p-1 textDark">{row.original.dueDate}</div>
+    ),
   },
   {
     accessorKey: "status",
@@ -81,10 +91,16 @@ const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "tasksCompleted",
     header: "Tasks Done",
+    cell: ({ row }) => (
+      <div className="rounded-md p-1 textDark">{row.original.tasksCompleted}</div>
+    ),
   },
   {
     accessorKey: "totalTasks",
     header: "Total Tasks",
+    cell: ({ row }) => (
+      <div className="rounded-md p-1 textDark">{row.original.totalTasks}</div>
+    ),
   },
 ];
 

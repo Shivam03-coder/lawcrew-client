@@ -45,26 +45,33 @@ const chartConfig = {
 
 const WeeklyTaskStats = () => {
   return (
-    <Card className="bg-fuchsia-50">
+    <Card className="bg-fuchsia-50 dark:bg-fuchsia-900">
       <CardHeader>
-        <CardTitle>Weekly Task Completion</CardTitle>
-        <CardDescription>Tasks completed each day of the week</CardDescription>
+        <CardTitle className="text-gray-900 dark:text-gray-100">
+          Weekly Task Completion
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-300">
+          Tasks completed each day of the week
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart data={chartData}>
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
             <XAxis
               dataKey="day"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
+              tick={{ fill: "white" }}
             />
             <YAxis hide />
             <ChartTooltip
-              content={<ChartTooltipContent className="bg-white" hideLabel />}
+              content={
+                <ChartTooltipContent className="bg-white dark:bg-gray-800 dark:text-gray-100" hideLabel />
+              }
             />
-            <ChartLegend content={<ChartLegendContent />} />
+            <ChartLegend content={<ChartLegendContent className="text-gray-800 dark:text-gray-300" />} />
             <Bar dataKey="tasks" fill="#0D92F4" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ChartContainer>
@@ -72,6 +79,7 @@ const WeeklyTaskStats = () => {
     </Card>
   );
 };
+
 
 const chart2Data = [
   { month: "January", tasksAssigned: 150, tasksCompleted: 120 },
@@ -101,10 +109,12 @@ const chart2Config = {
 
 const TaskManagementChart = () => {
   return (
-    <Card className="bg-green-50">
+    <Card className="bg-green-50 dark:bg-green-900">
       <CardHeader>
-        <CardTitle>Task Management Overview</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-gray-900 dark:text-gray-100">
+          Task Management Overview
+        </CardTitle>
+        <CardDescription className="text-gray-600 dark:text-gray-300">
           Tasks Assigned vs Tasks Completed (2024)
         </CardDescription>
       </CardHeader>
@@ -118,17 +128,20 @@ const TaskManagementChart = () => {
               right: 12,
             }}
           >
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.2)" />
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
+              tick={{ fill: "white" }}
             />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent className="bg-white" />}
+              content={
+                <ChartTooltipContent className="bg-white dark:bg-gray-800 dark:text-gray-100" />
+              }
             />
             <Line
               dataKey="tasksAssigned"

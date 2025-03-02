@@ -71,13 +71,13 @@ const KanBanView: FC<DataKanban> = ({ data }) => {
   }, []);
 
   return (
-    <DragDropContext onDragEnd={handleOnDrag}>
+    <DragDropContext  onDragEnd={handleOnDrag}>
       <div className="mt-3 flex flex-1 overflow-x-scroll">
         {boards.map((board) => {
           return (
             <div
               key={board}
-              className="mr-6 flex flex-col rounded-md bg-secondary p-2"
+              className="mr-6 flex flex-col rounded-md bg-secondary p-2 dark:bg-gray-800"
             >
               <KanbanColumnHeader
                 board={board}
@@ -89,7 +89,7 @@ const KanBanView: FC<DataKanban> = ({ data }) => {
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className="flex min-h-[12.5rem] flex-col"
+                      className="flex min-h-[12.5rem] mt-4  flex-col"
                     >
                       {task[board].map((task, index) => {
                         return (
@@ -103,7 +103,7 @@ const KanBanView: FC<DataKanban> = ({ data }) => {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className={`relative my-1 min-w-80 overflow-hidden rounded-xl bg-gradient-to-br from-white to-gray-100 p-5 shadow-2xl transition-all duration-300 ${
+                                className={`relative my-1 min-w-80 overflow-hidden rounded-xl textDark bg-white dark:bg-primary p-5 shadow-2xl transition-all duration-300 ${
                                   snapshot.isDragging
                                     ? "scale-105 shadow-2xl"
                                     : "hover:scale-105 hover:shadow-2xl"
@@ -114,7 +114,7 @@ const KanBanView: FC<DataKanban> = ({ data }) => {
 
                                 {/* Title & Description */}
                                 <div className="flex flex-col gap-2">
-                                  <h3 className="text-base font-medium text-primary">
+                                  <h3 className="text-base font-medium textDark">
                                     {task.title}
                                   </h3>
                                 </div>

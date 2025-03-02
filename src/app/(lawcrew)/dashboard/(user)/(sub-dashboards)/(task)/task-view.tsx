@@ -7,15 +7,15 @@ import CalendarViewTab from "./_tabs/calendar/calender-view-tab";
 
 const TaskView = () => {
   return (
-    <section className="col-span-full space-y-4 rounded-lg bg-white p-4 shadow-md">
+    <section className="col-span-full space-y-4 rounded-lg bg-white p-4 shadow-md dark:bg-gray-900">
       {/* Header */}
-      <h3 className="text-lg font-semibold text-gray-800">Task Lists</h3>
+      <h3 className="textDark font-lexend text-lg font-semibold">Task Lists</h3>
 
       {/* Tabs */}
       <Tabs defaultValue="Kanban" className="w-full">
         {/* Tab Navigation */}
         <TabsList className="flex items-center justify-between rounded-lg p-2">
-          <div className="flex gap-2 rounded-lg bg-white p-1 shadow">
+          <div className="flex gap-2 rounded-lg bg-white p-1 shadow dark:bg-slate-800">
             <TabsTrigger
               value="Kanban"
               className="rounded-md px-4 py-2 transition hover:bg-gray-100"

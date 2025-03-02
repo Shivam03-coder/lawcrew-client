@@ -9,15 +9,24 @@ interface KanbanColumnHeaderProps {
 }
 
 const statusStyles: Record<TaskStatus, string> = {
-  [TaskStatus.ToDo]: "bg-blue-100 text-blue-700",
-  [TaskStatus.OnGoing]: "bg-yellow-100 text-yellow-700",
-  [TaskStatus.Completed]: "bg-green-100 text-green-700",
+  [TaskStatus.ToDo]:
+    "bg-blue-100 dark:text-blue-100 text-blue-700 dark:bg-blue-900 ",
+  [TaskStatus.OnGoing]:
+    "bg-yellow-100 dark:text-yellow-100 text-yellow-700 dark:bg-yellow-900 ",
+  [TaskStatus.Completed]:
+    "bg-green-100  dark:text-green-100 text-green-700 dark:bg-green-900 ",
 };
 
 const statusIcons: Record<TaskStatus, JSX.Element> = {
-  [TaskStatus.ToDo]: <ListChecks className="h-5 w-5 text-blue-600" />,
-  [TaskStatus.OnGoing]: <Clock className="h-5 w-5 text-yellow-600" />,
-  [TaskStatus.Completed]: <CheckCircle className="h-5 w-5 text-green-600" />,
+  [TaskStatus.ToDo]: (
+    <ListChecks className="h-5 w-5 text-blue-600 dark:text-blue-100" />
+  ),
+  [TaskStatus.OnGoing]: (
+    <Clock className="h-5 w-5 text-yellow-600 dark:text-yellow-100" />
+  ),
+  [TaskStatus.Completed]: (
+    <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-100" />
+  ),
 };
 
 const KanbanColumnHeader: FC<KanbanColumnHeaderProps> = ({
@@ -27,7 +36,7 @@ const KanbanColumnHeader: FC<KanbanColumnHeaderProps> = ({
   return (
     <div
       className={cn(
-        "flex items-center justify-between rounded-lg p-3 shadow-md",
+        "flex items-center justify-between rounded-lg p-3 font-lexend shadow-md",
         statusStyles[board],
       )}
     >
