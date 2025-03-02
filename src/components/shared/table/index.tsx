@@ -136,12 +136,12 @@ function DataTable<TData, TValue>({
       </div>
       <div className={cn("w-full rounded-md border", className)}>
         <Table className="shadow-inner">
-          <TableHeader className="rounded-t-lg bg-blue-200 text-primary">
+          <TableHeader className="rounded-t-lg bg-blue-200 dark:bg-gray-600 text-primary">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead className="whitespace-nowrap" key={header.id}>
+                    <TableHead className="whitespace-nowrap textDark" key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -184,7 +184,7 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
         <div className="flex items-center justify-end space-x-2 py-4 pr-7">
-          <div className="text-muted-foreground flex-1 px-5 text-sm">
+          <div className="textDark flex-1 px-5 text-sm">
             {table.getFilteredSelectedRowModel().rows.length} of{" "}
             {table.getFilteredRowModel().rows.length} row(s) selected.
           </div>
@@ -194,6 +194,7 @@ function DataTable<TData, TValue>({
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="textDark"
           >
             <ChevronLeft className="mr-1 h-4 w-4" />
             Previous
@@ -203,6 +204,7 @@ function DataTable<TData, TValue>({
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className="textDark"
           >
             Next
             <ChevronRight className="ml-1 h-4 w-4" />

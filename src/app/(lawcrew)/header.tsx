@@ -45,12 +45,12 @@ const DashboardHeader = () => {
   const { title, icon } = getHeaderDetails();
 
   return (
-    <header className="sticky w-full border-b border-gray-200 bg-transparent px-4 py-2.5 backdrop-blur-xl lg:px-6">
+    <header className="sticky w-full border-b border-gray-200 bg-white dark:bg-primary px-4 py-2.5 backdrop-blur-xl lg:px-6">
       <div className="flex flex-wrap items-center justify-between">
         {/* Left Section: Sidebar Toggle & Title */}
         <div className="flex items-center gap-3">
           <SheetSidebar />
-          <h1 className="flex items-center gap-2 font-lexend text-lg font-normal sm:text-xl md:text-2xl">
+          <h1 className="flex items-center gap-2 font-lexend text-lg dark:text-secondary font-normal sm:text-xl md:text-2xl">
             {title} {icon}
           </h1>
         </div>
@@ -66,18 +66,18 @@ const DashboardHeader = () => {
               </div>
               <Input
                 type="search"
-                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm outline-none"
+                className="block w-full rounded-lg border border-gray-300 dark:text-secondary bg-gray-50 dark:bg-gray-800 p-2 pl-10 text-sm outline-none"
                 placeholder="Search..."
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
               />
             </div>
           </div>
-          <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
+          <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:text-secondary">
             <Bell size={20} />
           </button>
           <ThemeToggle />
-          <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
+          <button className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:text-secondary">
             <Settings size={20} />
           </button>
 

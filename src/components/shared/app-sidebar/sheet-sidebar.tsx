@@ -110,7 +110,7 @@ const SheetSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger className="p-2">
-        <Menu />
+        <Menu  className="dark:text-secondary"/>
       </SheetTrigger>
       <SheetContent
         side="left"

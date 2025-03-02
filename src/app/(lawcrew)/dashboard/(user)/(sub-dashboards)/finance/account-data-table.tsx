@@ -195,7 +195,7 @@ const columns: ColumnDef<AccountData>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="rounded-md">{row.original.bankName}</div>
+      <div className="rounded-md textDark">{row.original.bankName}</div>
     ),
   },
   {
@@ -212,7 +212,7 @@ const columns: ColumnDef<AccountData>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="font-semibold text-blue-600">₹ {row.original.amount}</div>
+      <div className="font-semibold textDark">₹ {row.original.amount}</div>
     ),
   },
   {
@@ -221,7 +221,7 @@ const columns: ColumnDef<AccountData>[] = [
     cell: ({ row }) => (
       <div
         className={cn(
-          "max-w-max rounded-full px-2",
+          "max-w-max rounded-full textDark px-2",
           statusColors[row.original.status],
         )}
       >
@@ -243,7 +243,7 @@ const columns: ColumnDef<AccountData>[] = [
       );
     },
     cell: ({ row }) => (
-      <div className="px-5 font-mono text-gray-900">
+      <div className="px-5 font-mono textDark">
         {row.original.accountNumber}
       </div>
     ),
@@ -252,7 +252,7 @@ const columns: ColumnDef<AccountData>[] = [
 
 const AccountDataTable = ({ className }: { className?: string }) => {
   return (
-    <div className={cn("rounded-xl bg-white shadow-sm", className)}>
+    <div className={cn("rounded-xl bg-white dark:bg-gray-900 shadow-sm", className)}>
       <DataTable columns={columns} data={data} />
     </div>
   );

@@ -46,8 +46,8 @@ const savingsData = [
 
 const ExpenseCharts = () => {
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-gray-800">
+    <div className="rounded-xl bg-white p-6 shadow-sm dark:bg-gray-900">
+      <h2 className="textDark mb-4 font-lexend text-lg font-semibold">
         Monthly Expenses
       </h2>
       <div className="h-80">
@@ -81,8 +81,8 @@ const ExpenseCharts = () => {
 
 const InvestmentDistributionChart = () => {
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-gray-800">
+    <div className="rounded-xl bg-white p-6 shadow-sm dark:bg-gray-900">
+      <h2 className="textDark mb-4 text-lg font-semibold">
         Investment Distribution
       </h2>
       <div className="h-80">
@@ -106,8 +106,8 @@ const InvestmentDistributionChart = () => {
 
 const SavingsChart = () => {
   return (
-    <div className="col-span-full rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-gray-800">
+    <div className="col-span-full rounded-xl bg-white p-6 shadow-sm dark:bg-gray-900">
+      <h2 className="textDark mb-4 font-lexend text-lg font-semibold">
         Savings Trend
       </h2>
       <div className="h-80">

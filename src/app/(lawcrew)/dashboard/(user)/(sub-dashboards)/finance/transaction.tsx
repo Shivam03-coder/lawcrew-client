@@ -29,9 +29,27 @@ interface Transaction {
 
 // Sample Data
 const initialData: Transaction[] = [
-  { id: 1, amount: "500", status: "Pending", bankName: "XYZ Bank", accountNumber: "1234567890" },
-  { id: 2, amount: "800", status: "Completed", bankName: "ABC Bank", accountNumber: "9876543210" },
-  { id: 3, amount: "300", status: "Pending", bankName: "PQR Bank", accountNumber: "5678901234" },
+  {
+    id: 1,
+    amount: "500",
+    status: "Pending",
+    bankName: "XYZ Bank",
+    accountNumber: "1234567890",
+  },
+  {
+    id: 2,
+    amount: "800",
+    status: "Completed",
+    bankName: "ABC Bank",
+    accountNumber: "9876543210",
+  },
+  {
+    id: 3,
+    amount: "300",
+    status: "Pending",
+    bankName: "PQR Bank",
+    accountNumber: "5678901234",
+  },
 ];
 
 export default function TransactionTable() {
@@ -41,8 +59,8 @@ export default function TransactionTable() {
   const handleUpdate = (id: number, key: keyof Transaction, value: string) => {
     setData((prevData) =>
       prevData.map((transaction) =>
-        transaction.id === id ? { ...transaction, [key]: value } : transaction
-      )
+        transaction.id === id ? { ...transaction, [key]: value } : transaction,
+      ),
     );
   };
 
@@ -55,7 +73,10 @@ export default function TransactionTable() {
         <Input
           type="number"
           value={row.original.amount}
-          onChange={(e) => handleUpdate(row.original.id, "amount", e.target.value)}
+          onChange={(e) =>
+            handleUpdate(row.original.id, "amount", e.target.value)
+          }
+          className="textDark"
         />
       ),
     },
@@ -65,12 +86,14 @@ export default function TransactionTable() {
       cell: ({ row }) => (
         <Select
           value={row.original.status}
-          onValueChange={(value) => handleUpdate(row.original.id, "status", value)}
+          onValueChange={(value) =>
+            handleUpdate(row.original.id, "status", value)
+          }
         >
-          <SelectTrigger className="w-[120px]">
-            <SelectValue />
+          <SelectTrigger className="textDark w-[120px]">
+            <SelectValue className="textDark" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="textDark dark:bg-gray-700">
             <SelectItem value="Pending">Pending</SelectItem>
             <SelectItem value="Completed">Completed</SelectItem>
           </SelectContent>
@@ -84,7 +107,10 @@ export default function TransactionTable() {
         <Input
           type="text"
           value={row.original.bankName}
-          onChange={(e) => handleUpdate(row.original.id, "bankName", e.target.value)}
+          onChange={(e) =>
+            handleUpdate(row.original.id, "bankName", e.target.value)
+          }
+          className="textDark"
         />
       ),
     },
@@ -95,13 +121,18 @@ export default function TransactionTable() {
         <Input
           type="text"
           value={row.original.accountNumber}
-          onChange={(e) => handleUpdate(row.original.id, "accountNumber", e.target.value)}
+          onChange={(e) =>
+            handleUpdate(row.original.id, "accountNumber", e.target.value)
+          }
+          className="textDark"
         />
       ),
     },
   ];
 
   return (
-        <DataTable columns={columns} data={data} />
+    <div className="rounded-xl bg-white shadow-sm dark:bg-gray-900 p-5">
+      <DataTable columns={columns} data={data} />;
+    </div>
   );
 }
