@@ -9,7 +9,7 @@ const Hero = () => {
   const Router = useRouter();
 
   return (
-    <div className="relative flex flex-col items-center justify-center px-4 py-12 text-center sm:py-16 md:py-20 lg:py-24">
+    <div className="relative flex flex-col items-center justify-center px-4 py-12 text-center">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 opacity-30 blur-3xl sm:h-[400px] sm:w-[400px] md:h-[500px] md:w-[500px]" />
@@ -18,16 +18,8 @@ const Hero = () => {
       </div>
 
       <section className="max-w-3xl px-4 sm:max-w-4xl">
-        {/* Welcome Button */}
-        <Button
-          className="border border-white bg-blue-200 font-lexend text-xs shadow-none sm:text-sm md:text-base"
-          aria-label="Welcome to Law-Wise"
-        >
-          Welcome Law-Crew
-        </Button>
-
         {/* Heading */}
-        <h1 className="textDark relative mx-auto mt-6 font-lexend text-3xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="textDark relative mx-auto mt-6 font-lexend text-3xl font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           A Satisfied Customer is
           <span className="mt-2 block bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text pb-3 text-transparent dark:via-slate-400 sm:pb-5">
             The Best Business Strategy.

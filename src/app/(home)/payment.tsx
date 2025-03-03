@@ -48,7 +48,7 @@ const Payment = () => {
       <SectionHeader
         title="Choose Your Plan"
         description="Select the plan that best suits your business needs. Our flexible pricing models are designed to give you the best value and help streamline your legal management tasks."
-        className="w-[50%]"
+        className="w-[50%] dark:text-secondary"
       />
 
       <section className="mx-auto my-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -59,8 +59,8 @@ const Payment = () => {
           >
             <section className="p-6 text-center">
               <div className="flex flex-col items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-secondary bg-secondary p-2.5">
-                  <Scale size={28} className="textDark" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-secondary bg-primary dark:bg-secondary p-2.5">
+                  <Scale size={28} className="text-secondary dark:text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold textDark">
                   {plan.title}

@@ -62,7 +62,7 @@ const Navbar = () => {
           <nav className="flex items-center space-x-2">
             <ThemeToggle />
             <Link
-              href="/login"
+              href="/auth/login"
               className="text-sm text-primary hover:text-primary"
             >
               <Button
@@ -103,7 +103,7 @@ const MobileNavigation = ({ open, setOpen }: MobileNavigationProps) => {
           aria-label="Main menu"
           onClick={() => setOpen(!open)}
         >
-          <Grip size={33} />
+          <Grip size={33} className="textDark" />
         </button>
       </PopoverTrigger>
       <PopoverContent className="card w-[300px] p-2 font-lexend" align="start">
@@ -112,9 +112,9 @@ const MobileNavigation = ({ open, setOpen }: MobileNavigationProps) => {
             <div key={item.link}>
               <Link
                 href={item.link}
-                className="flex w-full items-center gap-x-3 px-4 py-2 text-primary hover:text-primary"
+                className="flex w-full items-center gap-x-3 px-4 py-2 textDark hover:translate-x-10 transition-all duration-150"
               >
-                <item.icon className="h-5 w-5 text-primary" /> {item.label}
+                <item.icon className="h-5 w-5 text-primary dark:text-blue-200" /> {item.label}
               </Link>
               {index < Navs.length - 1 && <Separator className="bg-primary" />}
             </div>
