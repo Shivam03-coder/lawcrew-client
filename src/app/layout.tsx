@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import "@/styles/globals.css";
 import { appfonts } from "@/fonts";
 import AppProvider from "@/components/providers/app-providers";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "1ST MEDIA LINK",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={appfonts}>
       <body>
-        <AppProvider>{children}</AppProvider>
+        <ClerkProvider>
+          <AppProvider>{children}</AppProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

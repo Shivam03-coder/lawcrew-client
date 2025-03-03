@@ -34,7 +34,8 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 mx-auto rounded-xl bg-transparent p-3 font-lexend backdrop-blur">
       <div className="flex h-14 w-full items-center justify-between px-2 sm:px-8">
-        <div className="flex-2 hidden md:flex">
+        <MobileNavigation open={open} setOpen={setOpen} />
+        <div className="flex-2 md:flex">
           <Link href="/" className="flex items-center gap-2 font-medium">
             <div className="flex items-center gap-x-2">
               <Image
@@ -51,15 +52,14 @@ const Navbar = () => {
           {isMobile && <AppHeaderNavMenu />}
         </div>
         {/* Mobile Menu Button */}
-        <MobileNavigation open={open} setOpen={setOpen} />
 
         {/* Mobile Logo */}
-        <div className="flex items-center md:hidden">
+        {/* <div className="flex items-center md:hidden">
           <Link href="/" className="flex items-center space-x-2">
             <Scale className="h-6 w-6" />
             <span className="font-lexend text-2xl font-bold">LAW-CREW</span>
           </Link>
-        </div>
+        </div> */}
 
         {/* Auth Buttons */}
         <div className="flex flex-1 items-center justify-end space-x-4">

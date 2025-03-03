@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 
-import TaxPaymnetTrend from "./tax-payment-trend";
-import TaxCompilanceChart from "./tax-compilance-chart";
-import TaxPaymentSchedule from "./tax-payment-schedule";
-import TaxationNotice from "./taxation-notice";
-import TaxationCards from "./taxation-cards";
-import TaxPaymentTable from "./tax-payment-table";
+import TaxPaymnetTrend from "../../finance/tax-management/tax-payment-trend";
+import TaxCompilanceChart from "../../finance/tax-management/tax-compilance-chart";
+import TaxPaymentSchedule from "../../finance/tax-management/tax-payment-schedule";
+import TaxationNotice from "../../finance/tax-management/taxation-notice";
+import TaxationCards from "../../finance/tax-management/taxation-cards";
+import TaxPaymentTable from "../../finance/tax-management/tax-payment-table";
 
 function App() {
   const upcomingPayments = [

@@ -2,13 +2,13 @@
 import React from "react";
 
 import AccountDataTable from "./account-data-table";
-import TransactionTable from "./transaction";
+import TransactionTable from "../../finance/income-management/transaction";
 import {
   ExpenseCharts,
   InvestmentDistributionChart,
   SavingsChart,
 } from "./charts";
-import TrackCards from "./track-cards";
+import TrackCards from "../../finance/income-management/track-cards";
 
 function FinanceDashboard() {
   return (
