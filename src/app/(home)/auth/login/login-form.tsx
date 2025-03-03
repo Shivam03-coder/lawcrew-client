@@ -14,7 +14,7 @@ export function LoginForm({
   return (
     <form
       className={cn(
-        "flex h-full flex-col justify-center gap-6 rounded-br-xl rounded-tl-xl bg-white p-10 font-lexend dark:bg-primary max-md:rounded-xl md:rounded-bl-[20%] md:rounded-tr-[20%]",
+        "flex h-full flex-col justify-center gap-6 rounded-br-xl rounded-tl-xl bg-white p-10 font-lexend dark:bg-gray-800 max-md:rounded-xl md:rounded-bl-[20%] md:rounded-tr-[20%]",
         className,
       )}
       {...props}
@@ -29,7 +29,7 @@ export function LoginForm({
         <div className="grid gap-2">
           <Label
             htmlFor="email"
-            className="flex items-center gap-x-2 text-base text-gray-900"
+            className="textDark flex items-center gap-x-2 text-base"
           >
             <Mail /> Email
           </Label>
@@ -38,14 +38,14 @@ export function LoginForm({
             type="email"
             placeholder="m@example.com"
             required
-            className="rounded-2xl border-2 border-none bg-blue-100 p-5 text-lg shadow-none outline-none placeholder:text-base"
+            className="textDark rounded border-2 border-none bg-blue-100 p-5 text-lg shadow-none outline-none placeholder:text-base dark:bg-gray-700"
           />
         </div>
         <div className="mt-6 grid gap-2">
           <div className="flex items-center justify-between">
             <Label
               htmlFor="password"
-              className="flex items-center gap-x-2 text-base text-gray-900"
+              className="textDark flex items-center gap-x-2 text-base"
             >
               <KeyRound /> Password
             </Label>
@@ -55,32 +55,27 @@ export function LoginForm({
             type="password"
             required
             placeholder="***********"
-            className="rounded-2xl border-2 border-none bg-blue-100 p-5 text-lg shadow-none outline-none placeholder:text-base"
+            className="textDark rounded border-2 border-none bg-blue-100 p-5 text-lg shadow-none outline-none placeholder:text-base dark:bg-gray-700"
           />
           <a
             href="#"
-            className="text-right text-sm text-gray-900 underline-offset-4 hover:underline"
+            className="textDark text-right text-sm underline-offset-4 hover:underline"
           >
             Forgot password?
           </a>
         </div>
         <Button
           type="submit"
-          className="w-full bg-gray-900 text-lg font-bold capitalize text-white"
+          className="w-full bg-gray-900 text-lg font-normal capitalize text-white"
         >
           Login
         </Button>
-        <div className="relative text-center text-sm text-gray-900 after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-white/50">
-          <span className="relative z-10 px-2 font-semibold">
-            Or continue with
-          </span>
-        </div>
         <Oauth />
       </div>
-      <div className="text-center text-sm text-gray-900">
+      <div className="textDark text-center text-sm">
         Don&apos;t have an account?{" "}
         <Link
-          href="/signup"
+          href="/auth/signup"
           className="underline underline-offset-4 hover:text-gray-200"
         >
           Sign up

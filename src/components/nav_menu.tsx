@@ -55,7 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 const AppHeaderNavMenu = () => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="pl-9">
       <NavigationMenuList>
         {/* Home */}
         <NavigationMenuItem>

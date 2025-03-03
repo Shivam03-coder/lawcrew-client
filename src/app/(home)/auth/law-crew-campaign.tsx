@@ -8,52 +8,30 @@ const LawCrewCampaignCard = () => {
   return (
     <div className="relative hidden h-full font-lexend lg:block">
       <div className="relative flex h-full flex-col justify-center px-10">
-        {/* Logo */}
-        <div className="mb-8">
-          <Link href="/" className="flex items-center gap-2 font-medium">
-            <div className="flex items-center gap-x-2">
-              <Image
-                src="/logo.png"
-                alt="LawCrew Logo"
-                width={40}
-                height={40}
-              />
-              <h1 className="text-2xl inline-flex items-center gap-x-2 font-bold text-gray-800 dark:text-gray-100">
-                LAWCREW <Scale />
-              </h1>
-            </div>
-          </Link>
-        </div>
-
         {/* Main Content */}
-        <h2 className="text-5xl font-semibold text-gray-900">
+        <h2 className="textDark font-lexend text-5xl font-normal">
           Legal Case
           <br />
           Management Simplified
         </h2>
 
-        <p className="mt-6 text-xl text-gray-600">
+        <p className="mt-6 text-xl text-gray-600 dark:text-slate-300">
           LawCrew helps law firms and legal professionals manage their cases,
           documents, clients, and deadlines all in one place.
         </p>
 
-        <p className="mt-4 text-xl text-gray-600">
+        <p className="mt-4 text-xl text-gray-600 dark:text-slate-300">
           Keep track of ongoing cases, upcoming hearings, and critical legal
           documents with ease.
         </p>
 
-        <a
-          href="#"
-          className="mt-8 inline-block border-b-2 border-blue-600 pb-1 text-lg font-semibold text-blue-600 hover:text-blue-700"
-        >
-          Learn more
-        </a>
-
         {/* Campaign Card */}
-        <div className="mt-12 max-w-md rounded-2xl bg-white p-6 shadow-lg">
+        <div className="card mt-12 max-w-md rounded-2xl p-6 shadow-lg">
           <div className="mb-4 flex items-center gap-2">
             <Scale className="text-blue-500" size={20} />
-            <span className="font-semibold">Case Management Dashboard</span>
+            <span className="textDark font-semibold">
+              Case Management Dashboard
+            </span>
           </div>
 
           <div className="flex gap-3">

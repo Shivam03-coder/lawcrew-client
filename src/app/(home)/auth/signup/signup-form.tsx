@@ -98,7 +98,7 @@ export function SignupForm({
       <div className="text-center text-sm text-gray-900">
         Already have an account?{" "}
         <Link
-          href="/login"
+          href="/auth/login"
           className="underline underline-offset-4 hover:text-gray-200"
         >
           Login

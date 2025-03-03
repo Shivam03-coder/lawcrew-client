@@ -24,6 +24,7 @@ import {
 import useMount from "@/hooks/use-mount";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/dark-mode.toogle";
+import Image from "next/image";
 
 const Navbar = () => {
   const isMobile = useMediaQuery("(min-width: 968px)");
@@ -31,21 +32,24 @@ const Navbar = () => {
   const mount = useMount();
   if (!mount) return null;
   return (
-    <header className="sticky top-0 z-50 mx-auto rounded-xl bg-transparent p-3 font-lexend backdrop-blur sm:mt-5">
+    <header className="sticky top-0 z-50 mx-auto rounded-xl bg-transparent p-3 font-lexend backdrop-blur">
       <div className="flex h-14 w-full items-center justify-between px-2 sm:px-8">
         <div className="flex-2 hidden md:flex">
-          <Link
-            href="/"
-            className="textDark mr-6 flex w-auto items-center space-x-2 rounded-full border border-black p-2 px-3 dark:border-secondary"
-          >
-            <Scale className="h-6 w-6" />
-            <span className="hidden text-xl font-bold sm:inline-block">
-              LAW-CREW
-            </span>
+          <Link href="/" className="flex items-center gap-2 font-medium">
+            <div className="flex items-center gap-x-2">
+              <Image
+                src="/logo.png"
+                alt="LawCrew Logo"
+                width={40}
+                height={40}
+              />
+              <h1 className="inline-flex items-center gap-x-2 text-2xl font-bold text-gray-800 dark:text-gray-100">
+                LAWCREW
+              </h1>
+            </div>
           </Link>
           {isMobile && <AppHeaderNavMenu />}
         </div>
-
         {/* Mobile Menu Button */}
         <MobileNavigation open={open} setOpen={setOpen} />
 
@@ -112,9 +116,10 @@ const MobileNavigation = ({ open, setOpen }: MobileNavigationProps) => {
             <div key={item.link}>
               <Link
                 href={item.link}
-                className="flex w-full items-center gap-x-3 px-4 py-2 textDark hover:translate-x-10 transition-all duration-150"
+                className="textDark flex w-full items-center gap-x-3 px-4 py-2 transition-all duration-150 hover:translate-x-10"
               >
-                <item.icon className="h-5 w-5 text-primary dark:text-blue-200" /> {item.label}
+                <item.icon className="h-5 w-5 text-primary dark:text-blue-200" />{" "}
+                {item.label}
               </Link>
               {index < Navs.length - 1 && <Separator className="bg-primary" />}
             </div>
