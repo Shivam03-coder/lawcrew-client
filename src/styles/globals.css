@@ -261,3 +261,11 @@
     }
   }
 }
+
+.cl-headerTitle {
+  @apply py-3 text-2xl font-normal text-green-50;
+}
+
+.cl-internal-n8erpa[data-variant="solid"][data-color="primary"] {
+  @apply shadow-none py-2;
+}

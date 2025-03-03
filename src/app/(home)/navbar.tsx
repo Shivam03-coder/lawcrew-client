@@ -53,20 +53,12 @@ const Navbar = () => {
         </div>
         {/* Mobile Menu Button */}
 
-        {/* Mobile Logo */}
-        {/* <div className="flex items-center md:hidden">
-          <Link href="/" className="flex items-center space-x-2">
-            <Scale className="h-6 w-6" />
-            <span className="font-lexend text-2xl font-bold">LAW-CREW</span>
-          </Link>
-        </div> */}
-
         {/* Auth Buttons */}
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
             <ThemeToggle />
             <Link
-              href="/auth/login"
+              href="/sign-in"
               className="text-sm text-primary hover:text-primary"
             >
               <Button

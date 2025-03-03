@@ -8,6 +8,12 @@ const LawCrewCampaignCard = () => {
   return (
     <div className="relative hidden h-full font-lexend lg:block">
       <div className="relative flex h-full flex-col justify-center px-10">
+        <div className="flex items-center my-3 gap-x-2">
+          <Image src="/logo.png" alt="LawCrew Logo" width={40} height={40} />
+          <h1 className="inline-flex items-center gap-x-2 text-2xl font-bold text-gray-800 dark:text-gray-100">
+            LAWCREW
+          </h1>
+        </div>
         {/* Main Content */}
         <h2 className="textDark font-lexend text-5xl font-normal">
           Legal Case
