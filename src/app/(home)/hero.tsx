@@ -17,25 +17,25 @@ const Hero = () => {
         <div className="absolute left-0 top-2/3 h-32 w-32 rounded-full bg-blue-100 opacity-20 blur-2xl sm:h-44 sm:w-44 md:h-64 md:w-64" />
       </div>
 
-      <section className="max-w-3xl sm:max-w-4xl px-4">
+      <section className="max-w-3xl px-4 sm:max-w-4xl">
         {/* Welcome Button */}
         <Button
-          className="border border-white bg-blue-200 font-lexend text-xs sm:text-sm md:text-base shadow-none"
+          className="border border-white bg-blue-200 font-lexend text-xs shadow-none sm:text-sm md:text-base"
           aria-label="Welcome to Law-Wise"
         >
           Welcome Law-Crew
         </Button>
 
         {/* Heading */}
-        <h1 className="relative mx-auto mt-6 font-lexend text-3xl font-bold tracking-tight textDark sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="textDark relative mx-auto mt-6 font-lexend text-3xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           A Satisfied Customer is
-          <span className="mt-2 block bg-gradient-to-r from-blue-600 via-black to-blue-600 dark:via-slate-400 bg-clip-text pb-3 text-transparent sm:pb-5">
+          <span className="mt-2 block bg-gradient-to-r from-blue-600 via-black to-blue-600 bg-clip-text pb-3 text-transparent dark:via-slate-400 sm:pb-5">
             The Best Business Strategy.
           </span>
         </h1>
 
         {/* Description */}
-        <p className="mx-auto mt-6 max-w-2xl font-lexend text-sm textDark sm:text-lg md:text-xl">
+        <p className="textDark mx-auto mt-6 max-w-2xl font-lexend text-sm sm:text-lg md:text-xl">
           LAW-WISE empowers legal professionals with cutting-edge tools for
           efficient case management, secure document handling, and streamlined
           client communication. Simplify legal workflows, stay organized, and
@@ -44,19 +44,18 @@ const Hero = () => {
 
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-6">
-          <Link href="/dashboard">
-            <Button
-              className="group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-300 via-black to-purple-300 px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
-              size="lg"
-              aria-label="Try for Free"
-            >
+          <Button
+            className="group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-300 via-black to-purple-300 px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
+            size="lg"
+            aria-label="Try for Free"
+          >
+            <Link href="/dashboard" className="flex items-center gap-x-4">
               Try Free <LoaderPinwheel className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button
             onClick={() => Router.push("/user-dashboard")}
             variant="outline"
-            size="lg"
             className="group flex w-full items-center justify-center gap-2 rounded-full border-2 border-gray-200 px-6 py-3 text-sm font-semibold text-gray-700 transition-all hover:border-gray-300 hover:bg-gray-50 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
             aria-label="View Demo"
           >
