@@ -14,12 +14,12 @@ export function LoginForm({
   return (
     <form
       className={cn(
-        "flex h-full flex-col justify-center gap-6 rounded-br-xl rounded-tl-xl bg-white p-10 font-lexend max-md:rounded-xl md:rounded-bl-[20%] md:rounded-tr-[20%]",
+        "flex h-full flex-col justify-center gap-6 rounded-br-xl rounded-tl-xl bg-white p-10 font-lexend dark:bg-primary max-md:rounded-xl md:rounded-bl-[20%] md:rounded-tr-[20%]",
         className,
       )}
       {...props}
     >
-      <div className="flex flex-col items-center gap-2 text-center text-gray-900">
+      <div className="textDark flex flex-col items-center gap-2 text-center">
         <h1 className="text-3xl font-bold drop-shadow-lg">Welcome Back!</h1>
         <p className="text-sm opacity-90">
           Enter your credentials to access your account

@@ -31,12 +31,12 @@ const Navbar = () => {
   const mount = useMount();
   if (!mount) return null;
   return (
-    <header className="sticky top-0 z-50 mx-auto bg-blue-100 p-3 font-lexend backdrop-blur sm:mt-5 sm:w-[90%] sm:rounded-full">
+    <header className="sticky top-0 z-50 mx-auto bg-transparent rounded-xl sm:mt-5 p-3 font-lexend backdrop-blur">
       <div className="flex h-14 w-full items-center justify-between px-2 sm:px-8">
         <div className="flex-2 hidden md:flex">
           <Link
             href="/"
-            className="mr-6 flex w-auto items-center space-x-2 rounded-full border border-black p-2 px-3 text-primary"
+            className="mr-6 flex w-auto items-center space-x-2 rounded-full border border-black dark:border-secondary p-2 px-3 textDark"
           >
             <Scale className="h-6 w-6" />
             <span className="hidden text-xl font-bold sm:inline-block">

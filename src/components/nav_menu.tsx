@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Bot } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -58,20 +59,25 @@ const AppHeaderNavMenu = () => {
       <NavigationMenuList>
         {/* Home */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Home</NavigationMenuTrigger>
-          <NavigationMenuContent className="bg-secondary">
+          <NavigationMenuTrigger className="textDark">Home</NavigationMenuTrigger>
+          <NavigationMenuContent className="bg-secondary dark:bg-gray-800">
             <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
-                <NavigationMenuLink asChild>
+                <NavigationMenuLink asChild className="textDark">
                   <a
                     className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
-                    <Bot className="h-6 w-6" />
-                    <div className="mb-2 mt-4 text-lg font-medium">
+                    <Image
+                      src="/logo.png"
+                      alt="LegalHub"
+                      width={120}
+                      height={120}
+                    />
+                    <div className="mb-2 mt-4 text-xl font-medium">
                       LegalHub
                     </div>
-                    <p className="text-muted-foreground text-sm leading-tight">
+                    <p className="textDark text-sm leading-tight">
                       Streamline legal case management with components built for
                       efficiency and accuracy.
                     </p>
@@ -97,7 +103,9 @@ const AppHeaderNavMenu = () => {
         {/* About Us */}
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              className={(navigationMenuTriggerStyle(), "textDark")}
+            >
               About Us
             </NavigationMenuLink>
           </Link>
@@ -106,7 +114,9 @@ const AppHeaderNavMenu = () => {
         {/* Services */}
         <NavigationMenuItem>
           <Link href="/services" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              className={(navigationMenuTriggerStyle(), "textDark ml-4")}
+            >
               Services
             </NavigationMenuLink>
           </Link>
@@ -114,15 +124,14 @@ const AppHeaderNavMenu = () => {
 
         {/* Blogs */}
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
-          <NavigationMenuContent className="bg-secondary">
+          <NavigationMenuTrigger className="textDark">Blogs</NavigationMenuTrigger>
+          <NavigationMenuContent className="bg-secondary dark:bg-gray-800">
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               {components.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
                   href={component.href}
-                  
                 >
                   {component.description}
                 </ListItem>
@@ -134,7 +143,9 @@ const AppHeaderNavMenu = () => {
         {/* Contact Us */}
         <NavigationMenuItem>
           <Link href="/contact" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              className={(navigationMenuTriggerStyle(), "textDark")}
+            >
               Contact Us
             </NavigationMenuLink>
           </Link>
@@ -154,7 +165,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
+            "hover:bg-accent hover:text-accent-foreground textDark focus:bg-accent focus:text-accent-foreground block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors",
             className,
           )}
           {...props}

@@ -110,11 +110,11 @@ const SheetSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger className="p-2">
-        <Menu  className="dark:text-secondary"/>
+        <Menu className="dark:text-secondary" />
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="flex h-full w-[330px] flex-col justify-start overflow-y-scroll rounded-3xl bg-white font-lexend text-[14px] text-primary dark:bg-primary dark:text-white md:ml-5"
+        className="my-auto flex h-[95%] w-[330px] flex-col justify-start overflow-y-scroll rounded-3xl bg-white font-lexend text-[14px] text-primary dark:bg-primary dark:text-white"
       >
         <SheetHeader>
           <SheetTitle>

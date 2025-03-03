@@ -10,7 +10,6 @@ import Goal from "./goals";
 function Home() {
   return (
     <div className="min-h-screen dark:bg-primary">
-      <Navbar />
       <section className="container mx-auto px-6 py-16 md:py-24">
         <Hero />
         <Solution />
