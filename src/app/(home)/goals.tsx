@@ -22,17 +22,17 @@ const RetroactiveCard = ({
   Icon: React.ElementType;
   iconBgColor: string;
 }) => (
-  <div className="hover:bg-secondary/50 group flex transform items-center space-x-4 rounded-lg bg-gradient-to-r from-blue-100 to-white p-4 shadow-md transition-all duration-300 hover:scale-[1.02] sm:p-5 md:p-6">
+  <div className="hover:bg-secondary/50 group flex transform items-center space-x-4 rounded-lg card p-4 shadow-md transition-all duration-300 hover:scale-[1.02] sm:p-5 md:p-6">
     <div
       className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full p-2.5 transition-colors group-hover:bg-opacity-80 sm:h-14 sm:w-14 sm:p-3 ${iconBgColor}`}
     >
       <Icon className="h-5 w-5 text-gray-800 sm:h-6 sm:w-6" />
     </div>
     <div className="space-y-1 sm:space-y-2">
-      <h4 className="text-base font-semibold text-gray-900 sm:text-lg md:text-xl">
+      <h4 className="text-base font-medium textDark font-lexend sm:text-lg md:text-xl">
         {title}
       </h4>
-      <p className="text-sm text-gray-600 sm:text-base">{description}</p>
+      <p className="text-sm text-gray-600 dark:text-slate-300 font-manrope sm:text-base">{description}</p>
     </div>
   </div>
 );
@@ -86,9 +86,9 @@ const Goal = () => {
       <SectionHeader
         title="Goals of Our Business"
         description="Our legal management tool is designed to simplify and streamline your operations, helping you save time and resources. From organizing legal documents to managing client relationships, our features are tailored for your success."
-        className="mx-auto max-w-[90%] dark:text-white text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
+        className="mx-auto max-w-[95%] dark:text-white text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
       />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
         {cardsData.map((card, index) => (
           <RetroactiveCard
             key={index}

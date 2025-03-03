@@ -66,7 +66,7 @@ const Navbar = () => {
               className="text-sm text-primary hover:text-primary"
             >
               <Button
-                className="rounded-full border-2 border-primary bg-primary px-6 text-sm text-secondary"
+                className="rounded-full border-2 border-primary bg-primary dark:bg-secondary px-6 text-sm text-secondary dark:text-primary"
                 size="lg"
               >
                 LOGIN
