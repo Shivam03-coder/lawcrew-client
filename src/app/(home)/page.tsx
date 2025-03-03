@@ -4,7 +4,6 @@ import Footer from "./footer";
 import Solution from "./solution";
 import CustomerReview from "./customer-review";
 import Payment from "./payment";
-import Navbar from "./navbar";
 import Goal from "./goals";
 
 function Home() {

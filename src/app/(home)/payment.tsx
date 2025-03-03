@@ -37,7 +37,6 @@ const plans = [
       "Full compliance management",
       "Unlimited team members",
       "24/7 dedicated support",
-      
     ],
   },
 ];
@@ -56,18 +55,18 @@ const Payment = () => {
         {plans.map((plan, index) => (
           <Card
             key={index}
-            className="mx-auto bg-gradient-to-r from-blue-100 bg-white  flex w-full max-w-[22rem] flex-col transition-transform duration-300 hover:scale-105"
+            className="card mx-auto flex w-full max-w-[22rem] flex-col bg-gradient-to-r transition-transform duration-300 hover:scale-105"
           >
             <section className="p-6 text-center">
               <div className="flex flex-col items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-secondary bg-secondary p-2.5">
-                  <Scale size={28} className="text-primary" />
+                  <Scale size={28} className="textDark" />
                 </div>
-                <h3 className="text-xl font-semibold text-primary">
+                <h3 className="text-xl font-semibold textDark">
                   {plan.title}
                 </h3>
-                <p className="text-4xl font-bold text-primary">{plan.price}</p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-4xl font-bold textDark">{plan.price}</p>
+                <p className="textDark text-sm">
                   {plan.description}
                 </p>
               </div>
@@ -75,7 +74,7 @@ const Payment = () => {
                 {plan.features.map((feature, featureIndex) => (
                   <div key={featureIndex} className="flex items-center gap-2">
                     <Check className="text-green-500" size={18} />
-                    <span className="text-sm text-primary">{feature}</span>
+                    <span className="text-sm textDark">{feature}</span>
                   </div>
                 ))}
               </div>

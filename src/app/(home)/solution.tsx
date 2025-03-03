@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import SectionHeader from "../../app/(home)/section-header";
+import SectionHeader from "./section-header";
 
 interface SolutionCardProps {
   icon: ReactNode;
@@ -41,20 +41,22 @@ const SolutionCard: FC<SolutionCardProps> = ({
 }) => {
   return (
     <Card
-      className={`hover:bg-secondary/50 ${titlebg} group flex h-full flex-col transition-all duration-300 hover:scale-[1.02]`}
+      className={`hover:bg-secondary/50 card group flex h-full flex-col transition-all duration-300 hover:scale-[1.02]`}
     >
       <CardHeader className="flex-none">
-        <CardTitle className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-500 p-3 text-secondary sm:h-[3.75rem] sm:w-[3.75rem]">
+        <CardTitle
+          className={`flex h-16 w-16 items-center justify-center rounded-lg p-3 text-primary sm:h-[3.75rem] sm:w-[3.75rem] ${titlebg}`}
+        >
           {icon}
         </CardTitle>
         <CardDescription className="pt-4">
-          <span className="text-foreground font-inter text-base font-semibold sm:text-lg md:text-xl">
+          <span className="textDark font-lexend text-base font-medium sm:text-lg md:text-xl">
             {title}
           </span>
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-muted-foreground text-sm sm:text-base">
+        <p className="text-muted-foreground font-inter text-sm dark:text-slate-300 sm:text-base">
           {description}
         </p>
       </CardContent>
@@ -79,7 +81,7 @@ const Solution = () => {
         "Simplify your legal processes, manage cases, and stay compliant with our cutting-edge tools.",
       linkText: "Get Started",
       linkHref: "/get-started",
-      titlebg: "bg-blue-100",
+      titlebg: "bg-blue-200",
     },
     {
       icon: <Briefcase className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -88,7 +90,7 @@ const Solution = () => {
         "Track, organize, and collaborate on cases with ease using our intuitive platform.",
       linkText: "Learn More",
       linkHref: "/learn-more",
-      titlebg: "bg-green-100 ",
+      titlebg: "bg-green-200 ",
     },
     {
       icon: <Shield className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -97,7 +99,7 @@ const Solution = () => {
         "Protect sensitive data, maintain compliance, and ensure the security of your legal documents.",
       linkText: "Discover More",
       linkHref: "/discover-more",
-      titlebg: "bg-indigo-100",
+      titlebg: "bg-indigo-200",
     },
     {
       icon: <FileText className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -106,7 +108,7 @@ const Solution = () => {
         "Easily file your taxes with AI-driven automation and avoid costly errors.",
       linkText: "File Now",
       linkHref: "/tax-filing",
-      titlebg: "bg-red-100",
+      titlebg: "bg-red-200",
     },
     {
       icon: <BarChart className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -115,7 +117,7 @@ const Solution = () => {
         "Let AI handle your finance reports and GST filings, ensuring accuracy and compliance.",
       linkText: "Start Now",
       linkHref: "/finance-gst",
-      titlebg: "bg-teal-100",
+      titlebg: "bg-teal-200",
     },
     {
       icon: <CreditCard className="h-6 w-6 sm:h-7 sm:w-7" />,
@@ -124,21 +126,21 @@ const Solution = () => {
         "Make transactions securely with AI-powered fraud detection and encryption.",
       linkText: "Explore",
       linkHref: "/secure-payments",
-      titlebg: "bg-purple-100",
+      titlebg: "bg-purple-200",
     },
   ];
 
   return (
-    <section className="container mx-auto space-y-8 px-4 py-8 sm:py-12 md:py-16 lg:py-20">
+    <section className="container mx-auto space-y-8 px-4 py-8 sm:py-12 md:py-16 lg:py-12">
       {/* Solution header section */}
       <SectionHeader
         title="Perfect Solution For Your Business"
         description="Our legal management tool is designed to simplify and streamline your operations, helping you save time and resources. From organizing legal documents to managing client relationships."
-        className="mx-auto dark:text-white max-w-[90%] text-center sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
+        className="mx-auto max-w-[90%] text-center dark:text-white sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%]"
       />
 
       {/* Solution Cards section */}
-      <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:gap-12 md:grid-cols-2 lg:grid-cols-3">
         {solutions.map((solution, index) => (
           <SolutionCard
             key={index}
