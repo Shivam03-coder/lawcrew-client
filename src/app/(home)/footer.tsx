@@ -1,24 +1,31 @@
 "use client";
 
 import React from "react";
-import { Facebook, Twitter, Instagram, Linkedin, Bot, Scale } from "lucide-react";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Bot,
+  Scale,
+} from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t rounded-t-[80px] bg-blue-100">
+    <footer className="border-t bg-blue-100 dark:border-black dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-700 sm:rounded-t-[80px]">
       <div className="container mx-auto px-4 py-6 md:py-8 lg:py-10">
         {/* Main Footer Content */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand Section */}
-          <div className="space-y-4">
+          <div className="space-y-4 dark:text-blue-200">
             <div className="flex items-center space-x-2">
               <Scale size={28} />
               <h3 className="text-xl font-bold">LAW-WISE</h3>
             </div>
-            <p className="text-muted-foreground text-sm">
+            <p className="textDark opacity-75 text-sm">
               Empowering businesses with innovative legal solutions. Automating
               your legal tasks with ease and precision.
             </p>
@@ -26,7 +33,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Quick Links</h4>
+            <h4 className="text-lg font-semibold dark:text-blue-200">Quick Links</h4>
             <ul className="space-y-2">
               {[
                 { text: "About Us", href: "/about" },
@@ -37,7 +44,7 @@ const Footer = () => {
                 <li key={link.text}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
+                    className="textDark text-sm transition-colors hover:text-primary"
                   >
                     {link.text}
                   </Link>
@@ -48,7 +55,7 @@ const Footer = () => {
 
           {/* Legal */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Legal</h4>
+            <h4 className="text-lg font-semibold dark:text-blue-200">Legal</h4>
             <ul className="space-y-2">
               {[
                 { text: "Terms of Service", href: "/terms" },
@@ -59,7 +66,7 @@ const Footer = () => {
                 <li key={link.text}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground text-sm transition-colors hover:text-primary"
+                    className="textDark text-sm transition-colors hover:text-primary"
                   >
                     {link.text}
                   </Link>
@@ -70,7 +77,7 @@ const Footer = () => {
 
           {/* Contact & Social */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold">Connect With Us</h4>
+            <h4 className="text-lg dark:text-blue-200 font-semibold">Connect With Us</h4>
             <div className="flex space-x-4">
               {[
                 { Icon: Facebook, href: "#", label: "Facebook" },
@@ -81,7 +88,7 @@ const Footer = () => {
                 <Link
                   key={social.label}
                   href={social.href}
-                  className="bg-muted text-muted-foreground hover:text-primary-foreground rounded-full p-2 transition-colors hover:bg-primary"
+                  className="bg-muted textDark hover:text-primary-foreground rounded-full p-2 transition-colors hover:bg-primary"
                   aria-label={`Follow us on ${social.label}`}
                 >
                   <social.Icon className="h-5 w-5" />
@@ -89,10 +96,10 @@ const Footer = () => {
               ))}
             </div>
             <div className="space-y-2">
-              <p className="text-muted-foreground text-sm">
+              <p className="textDark text-sm">
                 Email: contact@law-wise.com
               </p>
-              <p className="text-muted-foreground text-sm">
+              <p className="textDark text-sm">
                 Phone: +1 (555) 123-4567
               </p>
             </div>

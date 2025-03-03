@@ -73,27 +73,26 @@ const ReviewCard = ({
   body: string;
 }) => {
   return (
-<Card className="relative flex w-64 transform flex-col rounded-lg border border-primary bg-white dark:bg-primary/20 bg-gradient-to-r from-sky-100 dark:from-primary/30 p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary dark:hover:bg-primary/40">
-  <CardHeader className="flex flex-row items-center gap-2">
-    <Avatar className="flex-shrink-0">
-      <AvatarImage src={img} alt={name} className="rounded-full" />
-    </Avatar>
-    <div className="flex flex-col">
-      <CardTitle className="text-sm font-semibold text-gray-900 dark:text-primary">
-        {name}
-      </CardTitle>
-      <CardDescription className="text-xs font-medium text-gray-600 dark:text-primary">
-        {username}
-      </CardDescription>
-    </div>
-  </CardHeader>
-  <CardContent>
-    <blockquote className="mt-2 font-inter text-sm font-semibold text-primary dark:text-gray-900">
-      <Quote className="mr-2 inline-block" /> {body}
-    </blockquote>
-  </CardContent>
-</Card>
-
+    <Card className="card relative flex w-64 transform flex-col rounded-lg p-4 shadow-md transition-transform hover:scale-105 hover:bg-secondary">
+      <CardHeader className="flex flex-row items-center gap-2">
+        <Avatar className="flex-shrink-0">
+          <AvatarImage src={img} alt={name} className="rounded-full" />
+        </Avatar>
+        <div className="flex flex-col">
+          <CardTitle className="textDark text-sm font-semibold">
+            {name}
+          </CardTitle>
+          <CardDescription className="text-xs font-medium text-gray-600 dark:text-slate-200">
+            {username}
+          </CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <blockquote className="textDark mt-2 font-inter text-sm font-semibold">
+          <Quote className="mr-2 inline-block" /> {body}
+        </blockquote>
+      </CardContent>
+    </Card>
   );
 };
 
