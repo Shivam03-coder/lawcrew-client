@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Plus, PlusCircle } from "lucide-react";
 import React from "react";
-import AddAccount from "../../finance/income-management/add-account";
+import AddAccount from "./add-account";
 import AccountDataTable from "./account-data-table";
 
 const Accounts = () => {
