@@ -1,11 +1,11 @@
 "use client";
 import { CalendarDays, ClipboardList, Bell, Briefcase } from "lucide-react";
-import TodayTasks from "@/app/(lawcrew)/dashboard/(user)/my-task/today_task";
-import TodayRemindersTasks from "@/app/(lawcrew)/dashboard/(user)/my-task/today_reminders";
-import TodayMeetingsTask from "@/app/(lawcrew)/dashboard/(user)/my-task/today_meetings";
 import MyTaskStats from "./my-task-stats";
 import { TaskStatusChart, TotaltaskChart } from "./task-completion-stats";
 import TaskCards from "./today-task-cards";
+import TodayTasks from "./today_task";
+import TodayMeetingsTask from "./today_meetings";
+import TodayRemindersTasks from "./today_reminders";
 
 const Dashboard = () => {
   return (
