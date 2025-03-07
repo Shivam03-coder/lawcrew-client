@@ -3,6 +3,7 @@ import React from "react";
 import { Scale, Briefcase, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 function Main() {
   const services = [
@@ -28,7 +29,7 @@ function Main() {
         "Tax Consultation",
         "Wealth Management",
       ],
-      path: "/finance",
+      path: "/lawcrew/finance",
     },
   ];
 
@@ -74,11 +75,11 @@ function Main() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex justify-center">
+              <Link href={service.path} className="mt-6 flex justify-center">
                 <Button className="bg-indigo-600 font-medium text-white hover:bg-indigo-700">
                   Click to explore
                 </Button>
-              </div>
+              </Link>
             </CardContent>
           </Card>
         ))}

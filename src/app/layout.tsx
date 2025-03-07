@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={appfonts}>
       <body>
-        <ClerkProvider>
+        <ClerkProvider afterSignOutUrl={"/sign-in"}>
           <AppProvider>{children}</AppProvider>
         </ClerkProvider>
       </body>

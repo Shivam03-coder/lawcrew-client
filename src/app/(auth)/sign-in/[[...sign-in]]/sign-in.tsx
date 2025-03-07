@@ -8,6 +8,7 @@ const SignInComponent = () => {
   const { isDarkMode } = useDarkMode();
   return (
     <SignIn
+      afterSignInUrl={"/"}
       appearance={{
         baseTheme: isDarkMode ? dark : undefined,
         elements: {

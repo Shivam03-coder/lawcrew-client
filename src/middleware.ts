@@ -1,36 +1,22 @@
 import {
-  auth,
   clerkMiddleware,
   createRouteMatcher,
+  auth,
 } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
 
-const isFinanceRoute = createRouteMatcher(["/dashboard/finance/(.*)"]);
-const isLawyersRoute = createRouteMatcher(["/dashboard/lawyers/(.*)"]);
+// Define public routes
+const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)"]);
 
-export default clerkMiddleware(async (auth, req) => {
-  const { sessionClaims } = await auth();
-
-  const userRole =
-    (
-      sessionClaims?.metadata as {
-        userType: "Finance" | "Lawyer";
-      }
-    )?.userType || "Lawyer";
-
-  if (isFinanceRoute(req) && userRole !== "Finance") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+export default clerkMiddleware(async (auth, request) => {
+  if (!isPublicRoute(request)) {
+    await auth.protect();
   }
-
-  if (isLawyersRoute(req) && userRole !== "Lawyer") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
-  }
-
-  return NextResponse.next();
 });
 
+// Matcher configuration
 export const config = {
   matcher: [
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/(api|trpc)(.*)",
   ],
 };
