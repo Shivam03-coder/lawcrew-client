@@ -25,43 +25,46 @@ import useMount from "@/hooks/use-mount";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/dark-mode.toogle";
 import Image from "next/image";
-import { UserButton } from "@clerk/nextjs";
+import { useClerk, UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const isMobile = useMediaQuery("(min-width: 968px)");
   const [open, setOpen] = useState<boolean>(false);
+  const clerk = useClerk();
   const mount = useMount();
   if (!mount) return null;
   return (
     <header className="sticky top-0 z-50 mx-auto rounded-xl bg-transparent p-3 font-lexend backdrop-blur">
-      <div className="flex h-14 w-full items-center justify-between px-2 sm:px-8">
-        <MobileNavigation open={open} setOpen={setOpen} />
-        <div className="flex-2 md:flex">
-          <Link href="/" className="flex items-center gap-2 font-medium">
-            <div className="flex items-center gap-x-2">
-              <Image
-                src="/logo.png"
-                alt="LawCrew Logo"
-                width={40}
-                height={40}
-              />
-              <h1 className="inline-flex items-center gap-x-2 text-2xl font-bold text-gray-800 dark:text-gray-100">
-                LAWCREW
-              </h1>
-            </div>
-          </Link>
-          {isMobile && <AppHeaderNavMenu />}
-        </div>
-        {/* Mobile Menu Button */}
+      {clerk.loaded && (
+        <div className="flex h-14 w-full items-center justify-between px-2 sm:px-8">
+          <MobileNavigation open={open} setOpen={setOpen} />
+          <div className="flex-2 md:flex">
+            <Link href="/" className="flex items-center gap-2 font-medium">
+              <div className="flex items-center gap-x-2">
+                <Image
+                  src="/logo.png"
+                  alt="LawCrew Logo"
+                  width={40}
+                  height={40}
+                />
+                <h1 className="inline-flex items-center gap-x-2 text-2xl font-bold text-gray-800 dark:text-gray-100">
+                  LAWCREW
+                </h1>
+              </div>
+            </Link>
+            {isMobile && <AppHeaderNavMenu />}
+          </div>
+          {/* Mobile Menu Button */}
 
-        {/* Auth Buttons */}
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <nav className="flex items-center space-x-2">
-            <ThemeToggle />
-            <UserButton />
-          </nav>
+          {/* Auth Buttons */}
+          <div className="flex flex-1 items-center justify-end space-x-4">
+            <nav className="flex items-center space-x-2">
+              <ThemeToggle />
+              <UserButton />
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

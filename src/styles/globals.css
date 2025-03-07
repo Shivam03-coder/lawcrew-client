@@ -267,5 +267,44 @@
 }
 
 .cl-internal-n8erpa[data-variant="solid"][data-color="primary"] {
-  @apply shadow-none py-2;
+  @apply py-2 shadow-none;
+}
+
+.cl-userButtonPopoverCard {
+  @apply bg-white dark:bg-blue-950;
+}
+
+.cl-userButtonPopoverFooter,
+.cl-footer,
+.cl-internal-1dauvpw {
+  @apply hidden;
+}
+
+.cl-scrollBox , .cl-cardBox {
+  @apply textDark  rounded border-none bg-white font-lexend dark:bg-primary !important;
+}
+
+
+.cl-internal-13u79ez {
+  @apply h-full bg-blue-600 dark:bg-primary;
+}
+
+.cl-header {
+  @apply textDark;
+}
+
+.dark .cl-internal-13lvar6 {
+  background: #111827;
+}
+
+.cl-navbarButton {
+  @apply textDark;
+}
+
+.cl-userButtonPopoverMain  {
+  @apply textDark bg-white dark:bg-primary;
+}
+
+.cl-internal-pp7u0o , .cl-headerTitle{
+  @apply textDark
 }
