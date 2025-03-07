@@ -41,7 +41,7 @@ const Hero = () => {
             size="lg"
             aria-label="Try for Free"
           >
-            <Link href="/dashboard" className="flex items-center gap-x-4">
+            <Link href="/lawcrew" className="flex items-center gap-x-4">
               Try Free <LoaderPinwheel className="ml-2 h-5 w-5" />
             </Link>
           </Button>

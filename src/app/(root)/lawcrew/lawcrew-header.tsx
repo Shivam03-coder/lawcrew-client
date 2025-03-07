@@ -8,13 +8,8 @@ import {
   Briefcase,
   Newspaper,
   Mail,
-  Scale,
   Grip,
-  Bell,
-  Settings,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import AppHeaderNavMenu from "@/components/nav_menu";
 import { useMediaQuery } from "usehooks-ts";
 import { useState } from "react";
 import {
@@ -25,12 +20,10 @@ import {
 } from "@/components/ui/popover";
 import useMount from "@/hooks/use-mount";
 import { Separator } from "@/components/ui/separator";
-import ThemeToggle from "@/components/dark-mode.toogle";
 import Image from "next/image";
 import HeaderSettings from "@/components/shared/app-header/header-settings";
 
 const Navbar = () => {
-  const isMobile = useMediaQuery("(min-width: 968px)");
   const [open, setOpen] = useState<boolean>(false);
   const mount = useMount();
   if (!mount) return null;

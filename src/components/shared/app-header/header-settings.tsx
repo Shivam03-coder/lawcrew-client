@@ -25,6 +25,8 @@ const HeaderSettings = () => {
               appearance={{
                 baseTheme: isDarkMode ? dark : undefined,
                 elements: {
+                  avatarBox: "w-9 h-9 border", // This controls the avatar size
+                  card: "bg-white dark:bg-gray-800 font-lexend w-full",
                   scrollBox: "bg-black",
                   navbar: {
                     "& > div:nth-child(1)": {

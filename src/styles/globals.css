@@ -281,12 +281,11 @@
 }
 
 .cl-scrollBox , .cl-cardBox {
-  @apply textDark  rounded border-none bg-white font-lexend dark:bg-primary !important;
+  @apply textDark rounded border-none bg-white font-lexend dark:bg-primary !important;
 }
 
-
 .cl-internal-13u79ez {
-  @apply h-full bg-blue-600 dark:bg-primary;
+  @apply bg-none;
 }
 
 .cl-header {
@@ -301,10 +300,14 @@
   @apply textDark;
 }
 
-.cl-userButtonPopoverMain  {
+.cl-userButtonPopoverMain {
   @apply textDark bg-white dark:bg-primary;
 }
 
-.cl-internal-pp7u0o , .cl-headerTitle{
-  @apply textDark
+.cl-internal-pp7u0o,
+.cl-headerTitle {
+  @apply textDark;
+}
+.cl-internal-1lldyk3 {
+  @apply textDark; 
 }
