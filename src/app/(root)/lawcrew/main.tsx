@@ -17,7 +17,7 @@ function Main() {
         "Contract Drafting",
         "Legal Representation",
       ],
-      path: "/legal",
+      path: "/lawcrew/income-management",
     },
     {
       title: "Financial Services",

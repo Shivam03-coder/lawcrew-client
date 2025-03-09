@@ -12,7 +12,7 @@ import TrackCards from "./track-cards";
 
 function FinanceDashboard() {
   return (
-    <div className="min-h-screen bg-gray-50 py-6 dark:bg-gray-800">
+    <div className="min-h-screen py-6">
       <div className="flex">
         {/* Main Content */}
         <main className="flex-1 p-6">

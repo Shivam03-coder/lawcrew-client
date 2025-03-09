@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/popover";
 import useMount from "@/hooks/use-mount";
 import { Separator } from "@/components/ui/separator";
-import ThemeToggle from "@/components/dark-mode.toogle";
+import ThemeToggle from "@/components/theme-toogle";
 import Image from "next/image";
 import { useClerk, UserButton } from "@clerk/nextjs";
 import UserProfile from "@/components/shared/app-header/user-profile";

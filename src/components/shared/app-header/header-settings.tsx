@@ -1,5 +1,5 @@
 "use client";
-import ThemeToggle from "@/components/dark-mode.toogle";
+import ThemeToggle from "@/components/theme-toogle";
 import { useClerk, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Bell, Settings } from "lucide-react";

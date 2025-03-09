@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react";
 import { Bell, Search, Settings } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import ThemeToggle from "@/components/dark-mode.toogle";
+import ThemeToggle from "@/components/theme-toogle";
 import SheetSidebar from "@/components/shared/app-sidebar/sheet-sidebar";
 import HeaderSettings from "./header-settings";
 import Link from "next/link";
@@ -48,7 +48,7 @@ const Appheader = () => {
   const { title, icon } = getHeaderDetails();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-transparent px-4 py-2.5 backdrop-blur-xl dark:bg-primary lg:px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-transparent px-4 py-2.5 backdrop-blur lg:px-6">
       <div className="flex flex-wrap items-center justify-between">
         {/* Left Section: Sidebar Toggle & Title */}
         <div className="flex items-center gap-3">
