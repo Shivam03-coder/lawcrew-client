@@ -4,10 +4,10 @@ import { useClerk, UserButton } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { Bell, Settings } from "lucide-react";
 import { useDarkMode } from "usehooks-ts";
+import UserProfile from "./user-profile";
 
 const HeaderSettings = () => {
   const clerk = useClerk();
-  const { isDarkMode } = useDarkMode();
   return (
     <>
       {clerk.loaded && (
@@ -21,21 +21,7 @@ const HeaderSettings = () => {
           </button>
           {/* User Profile */}
           <div className="ml-2 flex items-center">
-            <UserButton
-              appearance={{
-                baseTheme: isDarkMode ? dark : undefined,
-                elements: {
-                  avatarBox: "w-9 h-9 border", // This controls the avatar size
-                  card: "bg-white dark:bg-gray-800 font-lexend w-full",
-                  scrollBox: "bg-black",
-                  navbar: {
-                    "& > div:nth-child(1)": {
-                      background: "black",
-                    },
-                  },
-                },
-              }}
-            />
+            <UserProfile />
           </div>
         </>
       )}

@@ -26,6 +26,7 @@ import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "@/components/dark-mode.toogle";
 import Image from "next/image";
 import { useClerk, UserButton } from "@clerk/nextjs";
+import UserProfile from "@/components/shared/app-header/user-profile";
 
 const Navbar = () => {
   const isMobile = useMediaQuery("(min-width: 968px)");
@@ -60,7 +61,7 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-2">
               <ThemeToggle />
-              <UserButton />
+              <UserProfile />
             </nav>
           </div>
         </div>
