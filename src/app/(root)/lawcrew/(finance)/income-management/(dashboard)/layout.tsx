@@ -1,9 +1,11 @@
-import React, { Suspense } from "react";
+import React from "react";
+import BudgetProgerss from "./budget-progress";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
-      <Suspense>{children}</Suspense>
+      <BudgetProgerss />
+      {children}
     </main>
   );
 };
