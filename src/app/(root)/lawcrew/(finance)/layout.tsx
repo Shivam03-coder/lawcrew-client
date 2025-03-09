@@ -1,6 +1,6 @@
 import React from "react";
 
-const FinanceLayout = () => {
+const FinanceLayout = ({ children }: { children: React.ReactNode }) => {
   return <div>FinanceLayout</div>;
 };
 
