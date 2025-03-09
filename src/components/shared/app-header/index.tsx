@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/input";
 import ThemeToggle from "@/components/dark-mode.toogle";
 import SheetSidebar from "@/components/shared/app-sidebar/sheet-sidebar";
 import HeaderSettings from "./header-settings";
+import Link from "next/link";
+import Image from "next/image";
 
 const Appheader = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -46,14 +48,24 @@ const Appheader = () => {
   const { title, icon } = getHeaderDetails();
 
   return (
-    <header className="sticky w-full border-b border-gray-200 bg-white px-4 py-2.5 backdrop-blur-xl dark:bg-primary lg:px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-transparent px-4 py-2.5 backdrop-blur-xl dark:bg-primary lg:px-6">
       <div className="flex flex-wrap items-center justify-between">
         {/* Left Section: Sidebar Toggle & Title */}
         <div className="flex items-center gap-3">
           <SheetSidebar />
-          <h1 className="flex items-center gap-2 font-lexend text-lg font-normal dark:text-secondary sm:text-xl md:text-2xl">
-            {title} {icon}
-          </h1>
+          <Link href="/" className="flex items-center gap-2 font-medium">
+            <div className="flex items-center gap-x-2">
+              <Image
+                src="/logo.png"
+                alt="LawCrew Logo"
+                width={40}
+                height={40}
+              />
+              <h1 className="inline-flex items-center gap-x-2 text-2xl font-bold text-gray-800 dark:text-gray-100">
+                LAWCREW
+              </h1>
+            </div>
+          </Link>
         </div>
 
         {/* Search Bar (Hidden on Mobile) */}

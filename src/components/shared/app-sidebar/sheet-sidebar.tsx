@@ -114,7 +114,7 @@ const SheetSidebar = () => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="my-auto flex h-[95%] w-[330px] flex-col justify-start overflow-y-scroll rounded-3xl bg-white font-lexend text-[14px] text-primary dark:bg-primary dark:text-white"
+        className="my-auto ml-5 flex h-[98%] w-[330px] flex-col justify-start overflow-y-scroll rounded-3xl border border-white/20 bg-white/10 font-lexend text-[14px] text-white shadow-xl backdrop-blur-md backdrop-saturate-150 transition-all duration-300 dark:border-white/10 dark:bg-white/5"
       >
         <SheetHeader>
           <SheetTitle>
