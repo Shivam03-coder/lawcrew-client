@@ -41,10 +41,10 @@ function Main() {
   return (
     <div className="mt-10 flex flex-col items-center justify-center">
       <div className="text-center">
-        <h1 className="font-lexend text-4xl font-normal textDark ">
+        <h1 className="textDark font-lexend text-4xl font-normal">
           Welcome to LawCrew
         </h1>
-        <p className="mt-2 text-xl text-gray-600 dark:text-slate-300 font-manrope">
+        <p className="mt-2 font-manrope text-xl text-gray-600 dark:text-slate-300">
           Choose your service to get started
         </p>
       </div>
@@ -53,12 +53,12 @@ function Main() {
         {services.map((service) => (
           <Card
             key={service.title}
-            className="cursor-pointer card border-none shadow-none transition-all duration-300 hover:shadow-xl"
+            className="card cursor-pointer border shadow-xl transition-all duration-300"
             onClick={() => handleServiceClick(service.path)}
           >
             <CardHeader className="flex flex-col items-center text-center">
-              <div className="dark:bg-gray-800 p-3 rounded ">{service.icon}</div>
-              <CardTitle className="mt-4 text-2xl font-normal textDark font-lexend">
+              <div className="rounded p-3 dark:bg-gray-800">{service.icon}</div>
+              <CardTitle className="textDark mt-4 font-lexend text-2xl font-normal">
                 {service.title}
               </CardTitle>
             </CardHeader>
