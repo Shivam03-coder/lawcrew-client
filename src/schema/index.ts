@@ -1,24 +1,8 @@
-import * as Yup from "yup";
+import { z } from "zod";
 
-const SignUpValidationSchema = Yup.object({
-  firstName: Yup.string().required(),
-  lastName: Yup.string().required(),
-  email: Yup.string().email().required(),
-  phoneNumber: Yup.string().required(),
-  password: Yup.string().min(6).required(),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords must match")
-    .required(),
-  termsAndConditions: Yup.boolean().oneOf([true]).strict(true),
-  role: Yup.string().required(),
+export const AccountSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  type: z.enum(["CURRENT", "SAVINGS"]),
+  balance: z.string().min(1, "Balance must be a positive number"),
+  isDefault: z.boolean().default(false),
 });
-
-// sign-up-form.tsx
-// email: "", password: ""
-
-const SignInValidationSchema = Yup.object({
-  email: Yup.string().email().required(),
-  password: Yup.string().min(6).required(),
-});
-
-export { SignUpValidationSchema, SignInValidationSchema };
