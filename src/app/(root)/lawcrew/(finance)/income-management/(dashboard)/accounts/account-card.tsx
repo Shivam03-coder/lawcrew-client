@@ -31,22 +31,22 @@ const AccountCard: React.FC<AccountCardProps> = ({
 
   return (
     <Card className="relative w-80 rounded-xl bg-secondary shadow-md transition-shadow hover:shadow-lg dark:bg-gray-800">
-      <Link href={`/lawcrew/income-management/account/${id}`}>
-        <CardHeader className="pb-2">
-          <div className="flex items-start justify-between">
-            <CardTitle className="textDark font-lexend text-base font-medium capitalize">
-              {name}
-            </CardTitle>
-            <Switch
-              checked={isActive}
-              onCheckedChange={handleToggle}
-              className="data-[state=checked]:bg-primary"
-            />
-          </div>
-          <p className="textDark text-2xl font-bold">${balance.toFixed(2)}</p>
-          <p className="textDark text-sm">{type}</p>
-        </CardHeader>
+      <CardHeader className="pb-2">
+        <div className="flex items-start justify-between">
+          <CardTitle className="textDark font-lexend text-base font-medium capitalize">
+            {name}
+          </CardTitle>
+          <Switch
+            checked={isActive}
+            onCheckedChange={handleToggle}
+            className="data-[state=checked]:bg-primary"
+          />
+        </div>
+        <p className="textDark text-2xl font-bold">${balance.toFixed(2)}</p>
+        <p className="textDark text-sm">{type}</p>
+      </CardHeader>
 
+      <Link href={`/lawcrew/income-management/account/${id}`}>
         <CardContent className="flex items-center justify-between pt-4">
           <div className="flex items-center gap-1 text-green-600">
             <ArrowUp className="h-4 w-4" />

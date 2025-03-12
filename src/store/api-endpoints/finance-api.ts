@@ -1,11 +1,16 @@
 import { EncryptData } from "@/utils/encrypt";
 import ApiServices from "../middleware/api-services";
 import { Account } from "@/types/finance.types";
-import { AccountResponse, ApiResponse } from "../types/api";
+import {
+  AccountResponse,
+  ApiResponse,
+  UpdateDefaultAccountResponse,
+} from "../types/api";
 
 const financeServices = ApiServices.injectEndpoints({
   endpoints: (build) => ({
     // Mutation: Create Account
+
     createAccount: build.mutation<ApiResponse, Account>({
       query: (payload) => {
         const encryptedPayload = EncryptData(payload);
@@ -19,6 +24,8 @@ const financeServices = ApiServices.injectEndpoints({
       },
       invalidatesTags: [{ type: "ACCOUNTS", id: "LIST" }],
     }),
+
+    // Query: Get All Accounts
 
     getAllAccounts: build.query<AccountResponse, void>({
       query: () => ({
@@ -39,9 +46,31 @@ const financeServices = ApiServices.injectEndpoints({
             ]
           : [{ type: "ACCOUNTS", id: "LIST" }],
     }),
+
+    // Mutation: Update Default Account
+
+    updateDefaultAccount: build.mutation<
+      UpdateDefaultAccountResponse,
+      { accountId: string }
+    >({
+      query: ({ accountId }) => ({
+        url: `/finance/accounts/${accountId}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: (data) =>
+        data
+          ? [
+              { type: "ACCOUNTS", id: data.result.id },
+              { type: "ACCOUNTS", id: "LIST" },
+            ]
+          : [{ type: "ACCOUNTS", id: "LIST" }],
+    }),
   }),
 });
 
 // Export hooks
-export const { useCreateAccountMutation, useGetAllAccountsQuery } =
-  financeServices;
+export const {
+  useCreateAccountMutation,
+  useGetAllAccountsQuery,
+  useUpdateDefaultAccountMutation,
+} = financeServices;

@@ -28,3 +28,7 @@ export interface Account {
 export interface AccountResponse extends ApiResponse {
   result: Account[];
 }
+
+export interface UpdateDefaultAccountResponse extends ApiResponse {
+  result: Account;
+}

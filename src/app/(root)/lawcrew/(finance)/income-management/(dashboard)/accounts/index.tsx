@@ -1,14 +1,32 @@
 "use client";
 import React from "react";
 import CreateAccount from "./create-account";
-import { useGetAllAccountsQuery } from "@/store/api-endpoints/finance-api";
+import {
+  useGetAllAccountsQuery,
+  useUpdateDefaultAccountMutation,
+} from "@/store/api-endpoints/finance-api";
 import AccountCard, { AccountCardSkeleton } from "./account-card";
+import { useAppToasts } from "@/hooks/use-app-toast";
 
 const Accounts = () => {
-  const { data, isLoading, isFetching } = useGetAllAccountsQuery();
+  const { data: AccountData, isLoading, isFetching } = useGetAllAccountsQuery();
+  const [UpdateDefaultAccount] = useUpdateDefaultAccountMutation();
+  const { ErrorToast, SuccessToast } = useAppToasts();
 
-  const handleToggleDefault = (id: string, value: boolean) => {
-    console.log("Toggled account", id, "Active:", value);
+  // Handle toggle default account
+  const handleToggleDefault = async (id: string, value: boolean) => {
+    try {
+      const resp = await UpdateDefaultAccount({ accountId: id }).unwrap();
+      if (resp.status === "success") {
+        SuccessToast({
+          title: resp.message,
+        });
+      }
+    } catch (error) {
+      ErrorToast({
+        title: "Failed to update default account",
+      });
+    }
   };
 
   return (
@@ -23,9 +41,9 @@ const Accounts = () => {
 
       {/* Show actual data after loading */}
       {!isLoading &&
-        data?.status === "success" &&
-        data.result.length > 0 &&
-        data.result.map((account) => (
+        AccountData?.status === "success" &&
+        AccountData.result.length > 0 &&
+        AccountData.result.map((account) => (
           <AccountCard
             key={account.id}
             id={account.id}

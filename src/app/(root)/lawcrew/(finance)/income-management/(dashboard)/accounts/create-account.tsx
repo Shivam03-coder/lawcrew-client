@@ -30,7 +30,7 @@ import { type Account } from "@/types/finance.types";
 import FormField from "@/components/form-feild";
 import { Label } from "@/components/ui/label";
 import { useCreateAccountMutation } from "@/store/api-endpoints/finance-api";
-import { useAppToasts } from "@/utils/api-toast";
+import { useAppToasts } from "@/hooks/use-app-toast";
 const CreateAccount = () => {
   const [open, setOpen] = useState(false);
   const { ErrorToast, SuccessToast } = useAppToasts();
