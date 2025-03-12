@@ -1,4 +1,4 @@
-interface ApiResponse {
+export interface ApiResponse {
   code: number;
   status: "success" | "failed";
   message: string;
@@ -12,4 +12,19 @@ interface SignupResponse extends ApiResponse {
     lastName: string;
     phoneNumber: string;
   };
+}
+
+export interface Account {
+  id: string;
+  balance: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  name: string;
+  isDefault: boolean;
+  type: string;
+}
+
+export interface AccountResponse extends ApiResponse {
+  result: Account[];
 }
