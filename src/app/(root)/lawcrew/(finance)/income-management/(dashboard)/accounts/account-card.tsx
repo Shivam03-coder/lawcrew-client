@@ -39,7 +39,7 @@ const AccountCard: React.FC<AccountCardProps> = ({
           <Switch
             checked={isActive}
             onCheckedChange={handleToggle}
-            className="data-[state=checked]:bg-primary"
+            className="data-[state=checked]:bg-blue-300 dark:data-[state=checked]:bg-primary"
           />
         </div>
         <p className="textDark text-2xl font-bold">${balance.toFixed(2)}</p>
