@@ -25,13 +25,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AccountSchema } from "@/schema";
 import { cn } from "@/lib/utils";
-
-type Account = {
-  name: string;
-  balance: string;
-  type: string;
-  isDefault: boolean;
-};
+import { type Account } from "@/types/finance.types";
 
 const CreateAccount = () => {
   const {
@@ -56,14 +50,14 @@ const CreateAccount = () => {
     reset();
   };
 
-  const FormField = ({ 
-    label, 
-    error, 
-    children 
-  }: { 
-    label: string; 
-    error?: string; 
-    children: React.ReactNode 
+  const FormField = ({
+    label,
+    error,
+    children,
+  }: {
+    label: string;
+    error?: string;
+    children: React.ReactNode;
   }) => (
     <div className="space-y-2">
       <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -72,13 +66,13 @@ const CreateAccount = () => {
       <div className="relative">
         {children}
         {error && (
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 mr-3">
-            <AlertCircle className="h-4 w-4 text-destructive" />
+          <div className="absolute right-0 top-1/2 mr-3 -translate-y-1/2">
+            <AlertCircle className="text-destructive h-4 w-4" />
           </div>
         )}
       </div>
       {error && (
-        <p className="text-[13px] text-destructive flex items-center gap-1.5">
+        <p className="text-destructive flex items-center gap-1.5 text-[13px]">
           {error}
         </p>
       )}
@@ -88,29 +82,32 @@ const CreateAccount = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="group hover:border-primary/50 hover:bg-muted/50 dark:hover:bg-primary/10 flex h-44 w-80 cursor-pointer flex-col items-center justify-center rounded-xl border-dashed transition-all hover:scale-105 hover:shadow-lg">
+        <Card className="hover:border-primary/50 hover:bg-muted/50 dark:hover:bg-primary/10 group flex h-44 w-80 cursor-pointer flex-col items-center justify-center rounded-xl border-dashed transition-all hover:scale-105 hover:shadow-lg">
           <CardHeader className="flex flex-col items-center justify-center p-0">
-            <div className="rounded-full bg-primary/5 p-3 group-hover:bg-primary/10 transition-colors">
-              <Plus className="h-8 w-8 text-primary/70" />
+            <div className="bg-primary/5 group-hover:bg-primary/10 rounded-full p-3 transition-colors">
+              <Plus className="text-primary/70 h-8 w-8" />
             </div>
           </CardHeader>
           <CardContent className="mt-4 p-0 text-center">
             <p className="text-base font-medium text-gray-700 dark:text-gray-300">
               Create New Account
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-muted-foreground mt-1 text-sm">
               Add a new financial account
             </p>
           </CardContent>
         </Card>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[500px] bg-white">
+      <DialogContent className="bg-white sm:max-w-[500px]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogHeader>
-            <DialogTitle className="text-2xl">Create New Account</DialogTitle>
+            <DialogTitle className="font-lexend text-2xl font-normal">
+              Create New Account
+            </DialogTitle>
             <DialogDescription>
-              Add a new account to manage your finances. Fill in the details below.
+              Add a new account to manage your finances. Fill in the details
+              below.
             </DialogDescription>
           </DialogHeader>
 
@@ -121,7 +118,8 @@ const CreateAccount = () => {
                 placeholder="e.g., Main Checking"
                 className={cn(
                   "w-full transition-colors",
-                  errors.name && "border-destructive focus-visible:ring-destructive/30"
+                  errors.name &&
+                    "border-destructive focus-visible:ring-destructive/30",
                 )}
               />
             </FormField>
@@ -137,8 +135,9 @@ const CreateAccount = () => {
                   step="0.01"
                   placeholder="0.00"
                   className={cn(
-                    "pl-7 w-full transition-colors",
-                    errors.balance && "border-destructive focus-visible:ring-destructive/30"
+                    "w-full pl-7 transition-colors",
+                    errors.balance &&
+                      "border-destructive focus-visible:ring-destructive/30",
                   )}
                 />
               </div>
@@ -149,10 +148,13 @@ const CreateAccount = () => {
                 onValueChange={(value) => setValue("type", value)}
                 defaultValue={watch("type")}
               >
-                <SelectTrigger className={cn(
-                  "w-full transition-colors",
-                  errors.type && "border-destructive focus-visible:ring-destructive/30"
-                )}>
+                <SelectTrigger
+                  className={cn(
+                    "w-full transition-colors",
+                    errors.type &&
+                      "border-destructive focus-visible:ring-destructive/30",
+                  )}
+                >
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -172,8 +174,11 @@ const CreateAccount = () => {
                   checked={watch("isDefault")}
                   onCheckedChange={(value) => setValue("isDefault", value)}
                 />
-                <Label htmlFor="isDefault" className="text-sm text-muted-foreground font-normal">
-                  {watch("isDefault") 
+                <Label
+                  htmlFor="isDefault"
+                  className="text-muted-foreground text-sm font-normal"
+                >
+                  {watch("isDefault")
                     ? "This will be your primary account"
                     : "Set as primary account"}
                 </Label>
@@ -184,7 +189,7 @@ const CreateAccount = () => {
           <DialogFooter>
             <Button
               type="submit"
-              className="bg-primary hover:bg-primary/90 text-secondary"
+              className="hover:bg-primary/90 bg-primary text-secondary"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Creating..." : "Create Account"}

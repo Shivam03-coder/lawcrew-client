@@ -2,13 +2,13 @@ import ApiServices from "../middleware/api-services";
 
 const financeServices = ApiServices.injectEndpoints({
   endpoints: (build) => ({
-    GetAccount: build.query({
-      query: () => ({
-        url: "/account/create",
-        method: "GET",
+    CreateAccount: build.mutation({
+      query: (payload) => ({
+        url: "/finance/accounts",
+        method: "POST",
       }),
     }),
   }),
 });
 
-export const { useGetAccountQuery } = financeServices;
+export const { useCreateAccountMutation } = financeServices;
