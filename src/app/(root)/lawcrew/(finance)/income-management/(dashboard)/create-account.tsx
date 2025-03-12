@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { Plus, AlertCircle } from "lucide-react";
+import React, { useState } from "react";
+import { Plus } from "lucide-react";
 import {
   Dialog,
   DialogTrigger,
@@ -29,13 +29,18 @@ import { cn } from "@/lib/utils";
 import { type Account } from "@/types/finance.types";
 import FormField from "@/components/form-feild";
 import { Label } from "@/components/ui/label";
-import { useCreateAccountMutation } from "@/store/api-endpoints/finance";
+import { useCreateAccountMutation } from "@/store/api-endpoints/finance-api";
+import { useToast } from "@/hooks/use-toast";
+import { ErrorToast, SuccessToast } from "@/utils/api-toast";
 
 const CreateAccount = () => {
+  const { toast } = useToast();
+  const [open, setOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
     watch,
     reset,
@@ -49,16 +54,31 @@ const CreateAccount = () => {
     },
   });
 
-  const [CreateAccount] = useCreateAccountMutation();
+  const [CreateAccount, { isLoading }] = useCreateAccountMutation();
 
   const onSubmit = async (data: Account) => {
-    const res = await CreateAccount(data);
-    console.log("🚀 ~ onSubmit ~ res:", res);
-    reset();
+    try {
+      const res = await CreateAccount(data).unwrap();
+
+      if (res.status === "success") {
+        SuccessToast({ title: "Create Account Successfully" });
+        reset();
+        setOpen(false);
+      } else {
+        ErrorToast({ title: "Create Account Error" });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong while creating the account.",
+        variant: "destructive",
+      });
+      console.error(error);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Card className="hover:border-primary/50 hover:bg-muted/50 dark:hover:bg-primary/10 group flex h-44 w-80 cursor-pointer flex-col items-center justify-center rounded-xl border-dashed transition-all hover:scale-105 hover:shadow-lg">
           <CardHeader className="flex flex-col items-center justify-center p-0">
@@ -74,7 +94,6 @@ const CreateAccount = () => {
           </CardContent>
         </Card>
       </DialogTrigger>
-
       <DialogContent className="bg-white dark:bg-primary sm:max-w-[500px]">
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogHeader className="textDark">
@@ -161,9 +180,9 @@ const CreateAccount = () => {
             <Button
               type="submit"
               className="hover:bg-primary/90 bg-primary text-secondary dark:bg-secondary dark:text-primary"
-              disabled={isSubmitting}
+              disabled={isLoading}
             >
-              {isSubmitting ? "Creating..." : "Create Account"}
+              {isLoading ? "Creating..." : "Create Account"}
             </Button>
           </DialogFooter>
         </form>

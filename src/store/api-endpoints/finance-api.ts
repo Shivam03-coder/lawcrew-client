@@ -4,7 +4,7 @@ import { Account } from "@/types/finance.types";
 
 const financeServices = ApiServices.injectEndpoints({
   endpoints: (build) => ({
-    createAccount: build.mutation<any, Account>({
+    createAccount: build.mutation<ApiResponse, Account>({
       query: (payload) => {
         const encryptedPayload = EncryptData(payload);
         return {
