@@ -2,10 +2,11 @@
 import React from "react";
 import CreateAccount from "./create-account";
 import { useGetAllAccountsQuery } from "@/store/api-endpoints/finance-api";
-import AccountCard from "./account-card";
+import AccountCard, { AccountCardSkeleton } from "./account-card";
 
 const Accounts = () => {
-  const { data } = useGetAllAccountsQuery();
+  const { data, isLoading, isFetching } = useGetAllAccountsQuery();
+
   const handleToggleDefault = (id: string, value: boolean) => {
     console.log("Toggled account", id, "Active:", value);
   };
@@ -13,21 +14,28 @@ const Accounts = () => {
   return (
     <div className="grid gap-7 p-7 md:grid-cols-3 lg:grid-cols-4">
       <CreateAccount />
-      {data?.status === "success" &&
+
+      {/* Show skeletons if loading */}
+      {(isLoading || isFetching) &&
+        Array.from({ length: 8 }).map((_, i) => (
+          <AccountCardSkeleton key={`skeleton-${i}`} />
+        ))}
+
+      {/* Show actual data after loading */}
+      {!isLoading &&
+        data?.status === "success" &&
         data.result.length > 0 &&
-        data.result.map((account) => {
-          return (
-            <AccountCard
-              key={account.id}
-              id={account.id}
-              name={account.name}
-              balance={Number(account.balance)}
-              type={account.type}
-              isActive={account.isDefault}
-              onToggle={handleToggleDefault}
-            />
-          );
-        })}
+        data.result.map((account) => (
+          <AccountCard
+            key={account.id}
+            id={account.id}
+            name={account.name}
+            balance={Number(account.balance)}
+            type={account.type}
+            isActive={account.isDefault}
+            onToggle={handleToggleDefault}
+          />
+        ))}
     </div>
   );
 };
