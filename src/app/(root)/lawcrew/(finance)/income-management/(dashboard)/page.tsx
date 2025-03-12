@@ -4,7 +4,7 @@ import CreateAccount from "./create-account";
 
 function FinanceDashboard() {
   return (
-    <div className="min-h-screen py-6">
+    <div className="min-h-screen page">
       <CreateAccount />
     </div>
   );

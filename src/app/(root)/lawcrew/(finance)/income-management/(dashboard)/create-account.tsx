@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Plus, AlertCircle } from "lucide-react";
 import {
@@ -11,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import {
   Select,
   SelectTrigger,
@@ -26,6 +27,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AccountSchema } from "@/schema";
 import { cn } from "@/lib/utils";
 import { type Account } from "@/types/finance.types";
+import FormField from "@/components/form-feild";
+import { Label } from "@/components/ui/label";
+import { useCreateAccountMutation } from "@/store/api-endpoints/finance";
 
 const CreateAccount = () => {
   const {
@@ -45,39 +49,13 @@ const CreateAccount = () => {
     },
   });
 
+  const [CreateAccount] = useCreateAccountMutation();
+
   const onSubmit = async (data: Account) => {
-    console.log("New Account Data:", data);
+    const res = await CreateAccount(data);
+    console.log("🚀 ~ onSubmit ~ res:", res);
     reset();
   };
-
-  const FormField = ({
-    label,
-    error,
-    children,
-  }: {
-    label: string;
-    error?: string;
-    children: React.ReactNode;
-  }) => (
-    <div className="space-y-2">
-      <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-        {label}
-      </Label>
-      <div className="relative">
-        {children}
-        {error && (
-          <div className="absolute right-0 top-1/2 mr-3 -translate-y-1/2">
-            <AlertCircle className="text-destructive h-4 w-4" />
-          </div>
-        )}
-      </div>
-      {error && (
-        <p className="text-destructive flex items-center gap-1.5 text-[13px]">
-          {error}
-        </p>
-      )}
-    </div>
-  );
 
   return (
     <Dialog>
@@ -88,10 +66,8 @@ const CreateAccount = () => {
               <Plus className="text-primary/70 h-8 w-8" />
             </div>
           </CardHeader>
-          <CardContent className="mt-4 p-0 text-center">
-            <p className="text-base font-medium text-gray-700 dark:text-gray-300">
-              Create New Account
-            </p>
+          <CardContent className="textDark mt-4 p-0 text-center">
+            <p className="text-base font-medium">Create New Account</p>
             <p className="text-muted-foreground mt-1 text-sm">
               Add a new financial account
             </p>
@@ -99,9 +75,9 @@ const CreateAccount = () => {
         </Card>
       </DialogTrigger>
 
-      <DialogContent className="bg-white sm:max-w-[500px]">
+      <DialogContent className="bg-white dark:bg-primary sm:max-w-[500px]">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogHeader>
+          <DialogHeader className="textDark">
             <DialogTitle className="font-lexend text-2xl font-normal">
               Create New Account
             </DialogTitle>
@@ -117,7 +93,7 @@ const CreateAccount = () => {
                 {...register("name")}
                 placeholder="e.g., Main Checking"
                 className={cn(
-                  "w-full transition-colors",
+                  "borderDark textDark w-full transition-colors",
                   errors.name &&
                     "border-destructive focus-visible:ring-destructive/30",
                 )}
@@ -135,7 +111,7 @@ const CreateAccount = () => {
                   step="0.01"
                   placeholder="0.00"
                   className={cn(
-                    "w-full pl-7 transition-colors",
+                    "borderDark textDark w-full pl-7 transition-colors",
                     errors.balance &&
                       "border-destructive focus-visible:ring-destructive/30",
                   )}
@@ -150,14 +126,14 @@ const CreateAccount = () => {
               >
                 <SelectTrigger
                   className={cn(
-                    "w-full transition-colors",
+                    "textDark w-full transition-colors",
                     errors.type &&
                       "border-destructive focus-visible:ring-destructive/30",
                   )}
                 >
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="textDark bg-white dark:bg-gray-800">
                   <SelectItem value="CURRENT">Current Account</SelectItem>
                   <SelectItem value="SAVINGS">Savings Account</SelectItem>
                 </SelectContent>
@@ -165,19 +141,14 @@ const CreateAccount = () => {
             </FormField>
 
             <div className="space-y-2">
-              <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Default Account
-              </Label>
+              <Label className="text-sm font-medium">Default Account</Label>
               <div className="flex items-center space-x-3">
                 <Switch
                   id="isDefault"
                   checked={watch("isDefault")}
                   onCheckedChange={(value) => setValue("isDefault", value)}
                 />
-                <Label
-                  htmlFor="isDefault"
-                  className="text-muted-foreground text-sm font-normal"
-                >
+                <Label htmlFor="isDefault" className="text-sm font-normal">
                   {watch("isDefault")
                     ? "This will be your primary account"
                     : "Set as primary account"}
@@ -189,7 +160,7 @@ const CreateAccount = () => {
           <DialogFooter>
             <Button
               type="submit"
-              className="hover:bg-primary/90 bg-primary text-secondary"
+              className="hover:bg-primary/90 bg-primary text-secondary dark:bg-secondary dark:text-primary"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Creating..." : "Create Account"}

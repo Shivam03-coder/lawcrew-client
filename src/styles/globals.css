@@ -81,6 +81,9 @@
   .textDark {
     @apply text-primary dark:text-secondary;
   }
+  .borderDark {
+    @apply border-primary dark:border-secondary;
+  }
 }
 
 /* Scrollbar Track */
@@ -280,7 +283,8 @@
   @apply hidden;
 }
 
-.cl-scrollBox , .cl-cardBox {
+.cl-scrollBox,
+.cl-cardBox {
   @apply textDark rounded border-none bg-white font-lexend dark:bg-primary !important;
 }
 
@@ -309,5 +313,5 @@
   @apply textDark;
 }
 .cl-internal-1lldyk3 {
-  @apply textDark; 
+  @apply textDark;
 }
