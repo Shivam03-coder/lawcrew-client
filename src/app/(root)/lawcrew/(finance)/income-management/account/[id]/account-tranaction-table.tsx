@@ -1,13 +1,16 @@
 import DataTable from "@/components/shared/table";
 import { Transaction } from "@/store/types/api";
 import React, { FC } from "react";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Row } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Assuming Shadcn UI
 import { Checkbox } from "@/components/ui/checkbox";
+import { useDeleteAccountTransactionsMutation } from "@/store/api-endpoints/finance-api";
+import { useAppToasts } from "@/hooks/use-app-toast";
 
 interface AccountTranactionTableProps {
   transactions: Transaction[];
+  accountId: string;
 }
 export const columns: ColumnDef<Transaction>[] = [
   {
@@ -143,10 +146,40 @@ export const columns: ColumnDef<Transaction>[] = [
 ];
 const AccountTranactionTable: FC<AccountTranactionTableProps> = ({
   transactions,
+  accountId,
 }) => {
+  const [deleteTransactions, { isLoading: isDeleteing }] =
+    useDeleteAccountTransactionsMutation();
+  const { ErrorToast, SuccessToast } = useAppToasts();
+  const handleDelete = async (selectedRows: Row<Transaction>[]) => {
+    const selectedIds = selectedRows.map((row) => row.original.id);
+    console.log("🚀 ~ handleDelete ~ selectedIds:", selectedIds)
+    try {
+      if (Array.isArray(selectedIds)) {
+        const resp = await deleteTransactions({
+          accountId,
+          transactionIds: selectedIds,
+        }).unwrap();
+        console.log(resp);
+        if (resp.status === "success") {
+          SuccessToast({
+            title: resp.message,
+          });
+        }
+      }
+    } catch (error) {
+      ErrorToast({
+        title: "Failed to delete transactions",
+      });
+    }
+  };
   return (
     <div className="my-5">
-      <DataTable columns={columns} data={transactions} />
+      <DataTable
+        onDelete={handleDelete}
+        columns={columns}
+        data={transactions}
+      />
     </div>
   );
 };

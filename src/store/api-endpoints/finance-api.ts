@@ -75,16 +75,43 @@ const financeServices = ApiServices.injectEndpoints({
         url: `/finance/accounts/${accountId}/transactions`,
         method: "GET",
       }),
-      providesTags: (data) =>
+      providesTags: (data, _error_, body) =>
         data?.result.transactions
           ? [
               ...data.result.transactions.map((transaction) => ({
                 type: "TRANSACTION" as const,
                 id: transaction.id,
               })),
-              { type: "TRANSACTION", id: "LIST" },
+              { type: "TRANSACTION", id: `LIST-${body.accountId}` },
             ]
           : [{ type: "TRANSACTION", id: "LIST" }],
+    }),
+
+    deleteAccountTransactions: build.mutation<
+      ApiResponse,
+      {
+        accountId: string;
+        transactionIds: string[];
+      }
+    >({
+      query: ({ accountId, transactionIds }) => ({
+        url: `/finance/accounts/${accountId}/transactions`,
+        method: "DELETE",
+        body: { transactionIds },
+      }),
+      invalidatesTags: (_result, _error, body) => {
+        if (!body) return [];
+        const { accountId, transactionIds } = body;
+        return [
+          ...transactionIds.map((id) => ({
+            type: "TRANSACTION" as const,
+            id,
+          })),
+          { type: "TRANSACTION", id: `LIST-${body.accountId}` },
+          { type: "ACCOUNTS" as const, id: accountId },
+          { type: "ACCOUNTS", id: "LIST" },
+        ];
+      },
     }),
   }),
 });
@@ -95,4 +122,5 @@ export const {
   useGetAllAccountsQuery,
   useUpdateDefaultAccountMutation,
   useGetAccountTransactionsQuery,
+  useDeleteAccountTransactionsMutation,
 } = financeServices;

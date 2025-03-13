@@ -44,6 +44,7 @@ const AccountPage = ({ params }: AccountPageProps) => {
       </Suspense>
       <Suspense fallback={<h1 className="text-yellow-300">Loading......</h1>}>
         <AccountTranactionTable
+          accountId={id}
           transactions={AccountData?.result.transactions as any[]}
         />
       </Suspense>

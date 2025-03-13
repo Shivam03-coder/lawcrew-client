@@ -41,6 +41,17 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -144,34 +155,63 @@ function DataTable<TData, TValue>({
                     key={column.id}
                     className="rounded-md px-3 py-2 text-sm capitalize text-gray-700 hover:bg-gray-50"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
                 ))}
             </DropdownMenuContent>
           </DropdownMenu>
+
+          {/* DELETE BUTTON */}
           {table.getFilteredSelectedRowModel().rows.length > 0 && (
-            <Button
-              className="flex items-center space-x-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-600"
-              onClick={() => {
-                const selectedRows = table.getFilteredSelectedRowModel().rows;
-                if (onDelete) {
-                  onDelete(selectedRows);
-                }
-              }}
-            >
-              <Trash className="h-4 w-4" />
-              <span>
-                Delete ({table.getFilteredSelectedRowModel().rows.length})
-              </span>
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="flex items-center space-x-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-600">
+                  <Trash className="h-4 w-4" />
+                  <span>
+                    Delete ({table.getFilteredSelectedRowModel().rows.length})
+                  </span>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="bg-white dark:bg-primary">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    the selected row(s) from your data.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-red-600 text-white hover:bg-red-700"
+                    onClick={() => {
+                      const selectedRows =
+                        table.getFilteredSelectedRowModel().rows;
+                      if (onDelete) {
+                        onDelete(selectedRows);
+                      }
+                    }}
+                  >
+                    Confirm Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           )}
         </div>
       </div>
 
       {/* Table Section */}
-      <div className={cn("overflow-hidden rounded-lg border border-gray-200", className)}>
+      <div
+        className={cn(
+          "overflow-hidden rounded-lg border border-gray-200",
+          className,
+        )}
+      >
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -188,7 +228,7 @@ function DataTable<TData, TValue>({
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -208,7 +248,7 @@ function DataTable<TData, TValue>({
                   className={cn(
                     "transition-colors",
                     hoveredRow === row.id && "bg-blue-50",
-                    row.getIsSelected() && "bg-blue-100"
+                    row.getIsSelected() && "bg-blue-100",
                   )}
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -218,14 +258,19 @@ function DataTable<TData, TValue>({
                     >
                       {editingRow === row.id ? (
                         <Input
-                          value={editedData[cell.column.id] ?? cell.getValue() as string}
-                          onChange={(e) => handleInputChange(cell.column.id, e.target.value)}
+                          value={
+                            editedData[cell.column.id] ??
+                            (cell.getValue() as string)
+                          }
+                          onChange={(e) =>
+                            handleInputChange(cell.column.id, e.target.value)
+                          }
                           className="h-8 min-w-[100px] px-2 text-sm"
                         />
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )
                       )}
                     </TableCell>
