@@ -20,6 +20,7 @@ export const columns: ColumnDef<Transaction>[] = [
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
+        className="ml-5"
       />
     ),
     cell: ({ row }) => (
@@ -27,6 +28,7 @@ export const columns: ColumnDef<Transaction>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
+        className="ml-5"
       />
     ),
     enableSorting: false,
@@ -153,7 +155,7 @@ const AccountTranactionTable: FC<AccountTranactionTableProps> = ({
   const { ErrorToast, SuccessToast } = useAppToasts();
   const handleDelete = async (selectedRows: Row<Transaction>[]) => {
     const selectedIds = selectedRows.map((row) => row.original.id);
-    console.log("🚀 ~ handleDelete ~ selectedIds:", selectedIds)
+    console.log("🚀 ~ handleDelete ~ selectedIds:", selectedIds);
     try {
       if (Array.isArray(selectedIds)) {
         const resp = await deleteTransactions({

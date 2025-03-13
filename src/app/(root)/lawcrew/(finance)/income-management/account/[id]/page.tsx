@@ -5,6 +5,8 @@ import { useGetAccountTransactionsQuery } from "@/store/api-endpoints/finance-ap
 import { notFound } from "next/navigation";
 import AccountHeader from "./account-header";
 import AccountTranactionTable from "./account-tranaction-table";
+import IncomeChart from "./income-chart";
+import ExpenseChart from "./expense-chart";
 
 interface AccountPageProps {
   params: Promise<{
@@ -42,6 +44,11 @@ const AccountPage = ({ params }: AccountPageProps) => {
           type={AccountData?.result.type!}
         />
       </Suspense>
+      <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <IncomeChart transactions={AccountData?.result.transactions as any[]} />
+        <ExpenseChart />
+        <ExpenseChart />
+      </div>
       <Suspense fallback={<h1 className="text-yellow-300">Loading......</h1>}>
         <AccountTranactionTable
           accountId={id}
