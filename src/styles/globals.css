@@ -7,7 +7,7 @@
   *::before,
   *::after {
     box-sizing: border-box;
-    user-select: none;
+    /* user-select: none; */
   }
 
   html,
@@ -283,8 +283,7 @@
   @apply hidden;
 }
 
-.cl-scrollBox,
-.cl-cardBox {
+.cl-scrollBox , .cl-cardBox {
   @apply textDark rounded border-none bg-white font-lexend dark:bg-primary !important;
 }
 
@@ -308,8 +307,7 @@
   @apply textDark bg-white dark:bg-primary;
 }
 
-.cl-internal-pp7u0o,
-.cl-headerTitle {
+.cl-internal-pp7u0o , .cl-headerTitle {
   @apply textDark;
 }
 .cl-internal-1lldyk3 {

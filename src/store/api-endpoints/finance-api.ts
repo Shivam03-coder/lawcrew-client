@@ -3,6 +3,7 @@ import ApiServices from "../middleware/api-services";
 import { Account } from "@/types/finance.types";
 import {
   AccountResponse,
+  AccountTransActionResponse,
   ApiResponse,
   UpdateDefaultAccountResponse,
 } from "../types/api";
@@ -65,6 +66,26 @@ const financeServices = ApiServices.injectEndpoints({
             ]
           : [{ type: "ACCOUNTS", id: "LIST" }],
     }),
+
+    getAccountTransactions: build.query<
+      AccountTransActionResponse,
+      { accountId: string }
+    >({
+      query: ({ accountId }) => ({
+        url: `/finance/accounts/${accountId}/transactions`,
+        method: "GET",
+      }),
+      providesTags: (data) =>
+        data?.result.transactions
+          ? [
+              ...data.result.transactions.map((transaction) => ({
+                type: "TRANSACTION" as const,
+                id: transaction.id,
+              })),
+              { type: "TRANSACTION", id: "LIST" },
+            ]
+          : [{ type: "TRANSACTION", id: "LIST" }],
+    }),
   }),
 });
 
@@ -73,4 +94,5 @@ export const {
   useCreateAccountMutation,
   useGetAllAccountsQuery,
   useUpdateDefaultAccountMutation,
+  useGetAccountTransactionsQuery,
 } = financeServices;

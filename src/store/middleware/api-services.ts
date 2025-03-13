@@ -8,7 +8,7 @@ const baseQuery = fetchBaseQuery({
 const ApiServices = createApi({
   reducerPath: "apiservices",
   baseQuery,
-  tagTypes: ["ACCOUNTS"],
+  tagTypes: ["ACCOUNTS" , "TRANSACTION"],
   endpoints: (build) => ({}),
 });
 

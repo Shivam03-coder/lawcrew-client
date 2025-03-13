@@ -32,3 +32,42 @@ export interface AccountResponse extends ApiResponse {
 export interface UpdateDefaultAccountResponse extends ApiResponse {
   result: Account;
 }
+
+export interface AccountTransActionResponse extends ApiResponse {
+  result: AccountResult;
+}
+
+export interface AccountResult {
+  id: string;
+  userId: string;
+  name: string;
+  type: "SAVINGS" | "CURRENT";
+  balance: string;
+  isDefault: boolean;
+  createdAt: string;
+  updatedAt: string;
+  transactions: Transaction[];
+  _count: {
+    transactions: number;
+  };
+}
+
+export interface Transaction {
+  id: string;
+  userId: string;
+  accountId: string;
+  type: 'INCOME' | 'EXPENSE';
+  amount: string;
+  description: string;
+  date: string;
+  category: string;
+  receiptUrl: string;
+  isRecurring: boolean;
+  recurringInterval: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | null;
+  nextRecurringDate: string | null;
+  lastProcessed: string | null;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  createdAt: string;
+  updatedAt: string;
+}
+
