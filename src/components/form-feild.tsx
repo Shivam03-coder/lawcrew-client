@@ -1,15 +1,18 @@
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import { AlertCircle } from "lucide-react";
 const FormField = ({
   label,
   error,
   children,
+  className,
 }: {
   label: string;
   error?: string;
   children: React.ReactNode;
+  className?: string;
 }) => (
-  <div className="space-y-2">
+  <div className={cn("space-y-2", className)}>
     <Label className="text-sm font-medium">{label}</Label>
     <div className="relative">
       {children}

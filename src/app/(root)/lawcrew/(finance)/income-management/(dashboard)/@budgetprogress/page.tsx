@@ -12,17 +12,20 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Check, X, Pencil } from "lucide-react";
 import { useAppToasts } from "@/hooks/use-app-toast";
+import TransactionModal from "../transactions";
 
 const BudgetProgressCard = () => {
-  const { data: budgetData, isLoading: isBudgetLoading } = useGetAccountBudgetQuery();
-  console.log("🚀 ~ BudgetProgressCard ~ budgetData:", budgetData)
-  const { data: accountsData, isLoading: isAccountsLoading } = useGetAllAccountsQuery();
+  const { data: budgetData, isLoading: isBudgetLoading } =
+    useGetAccountBudgetQuery();
+  console.log("🚀 ~ BudgetProgressCard ~ budgetData:", budgetData);
+  const { data: accountsData, isLoading: isAccountsLoading } =
+    useGetAllAccountsQuery();
 
   const defaultAccount = useMemo(
     () => accountsData?.result.find((account) => account.isDefault),
-    [accountsData]
+    [accountsData],
   );
-  console.log("🚀 ~ BudgetProgressCard ~ defaultAccount:", defaultAccount)
+  console.log("🚀 ~ BudgetProgressCard ~ defaultAccount:", defaultAccount);
 
   const [isEditing, setIsEditing] = useState(false);
   const [localBudget, setLocalBudget] = useState(0);
@@ -36,7 +39,6 @@ const BudgetProgressCard = () => {
     setLocalBudget(amount);
     setInputBudget(amount);
   }, [budgetData]);
-  
 
   const handleSave = async () => {
     try {
@@ -65,9 +67,10 @@ const BudgetProgressCard = () => {
   return (
     <div className="p-7">
       <Card className="mx-auto w-full rounded-2xl border-none bg-white shadow-md dark:bg-gray-800">
-        <CardHeader className="flex w-full">
-          <CardTitle className="textDark font-lexend font-normal uppercase">
+        <CardHeader className="flex w-full justify-between">
+          <CardTitle className="textDark font-lexend flex w-full justify-between font-normal uppercase">
             Monthly Budget (Default Account)
+            <TransactionModal triggerLabel="Transactions" />
           </CardTitle>
         </CardHeader>
 
@@ -99,7 +102,11 @@ const BudgetProgressCard = () => {
                 />
 
                 {!isEditing ? (
-                  <Button variant="ghost" size="icon" onClick={() => setIsEditing(true)}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsEditing(true)}
+                  >
                     <Pencil className="textDark h-4 w-4" />
                   </Button>
                 ) : (
