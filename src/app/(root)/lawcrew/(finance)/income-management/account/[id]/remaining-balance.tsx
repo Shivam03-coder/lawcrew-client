@@ -28,7 +28,7 @@ const RemainingBalance: FC<RemainingBalanceProps> = ({
   const remainingAmount = (parseFloat(balance) - totalAmountSpent).toFixed(2);
 
   return (
-    <Card className="bg-white dark:bg-gray-800">
+    <Card className="card border-none">
       <CardHeader className="flex items-center justify-between">
         <CardTitle className="textDark uppercase font-lexend text-xl font-normal">Remaining Balance</CardTitle>
         <button className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 transition hover:bg-green-600">
