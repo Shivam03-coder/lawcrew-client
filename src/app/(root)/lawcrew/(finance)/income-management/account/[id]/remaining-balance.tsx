@@ -19,7 +19,7 @@ const RemainingBalance: FC<RemainingBalanceProps> = ({
   transactions,
 }) => {
   const totalAmountSpent = transactions.reduce((acc, cur) => {
-    if (cur.type === "EXPENSE") {
+    if (cur.type === "TRANSFER") {
       acc += Number(cur.amount);
     }
     return acc;
@@ -49,7 +49,7 @@ const RemainingBalance: FC<RemainingBalanceProps> = ({
               Total spent amount
             </p>
             <p className="text-lg font-bold textDark dark:text-gray-100">
-              ₹{totalAmountSpent}
+              ₹{totalAmountSpent.toFixed(2)}
             </p>
           </div>
           <div

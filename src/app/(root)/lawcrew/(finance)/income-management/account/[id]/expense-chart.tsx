@@ -46,7 +46,7 @@ const ExpenseChart: FC<ExpenseChartProps> = ({ transactions }) => {
   const TotalExpenseData = useMemo(() => {
     const expenseByMonth = transactions.reduce(
       (acc, transaction) => {
-        if (transaction.type === "EXPENSE") {
+        if (transaction.type === "TRANSFER") {
           const monthName = dayjs(transaction.date).format("MMMM").slice(0, 3);
           acc[monthName] = (acc[monthName] || 0) + Number(transaction.amount);
         }

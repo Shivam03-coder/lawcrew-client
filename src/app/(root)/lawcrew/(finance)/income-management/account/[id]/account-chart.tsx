@@ -60,12 +60,11 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
         date: format(new Date(transaction.date), "yyyy-MM-dd"),
         amount: Number(transaction.amount),
         type: transaction.type,
-        description: transaction.description || "No description",
         formattedDate: format(new Date(transaction.date), "MMM dd, yyyy"),
         fill:
-          transaction.type === "EXPENSE"
-            ? "rgba(239, 68, 68, 0.8)" // red
-            : "rgba(59, 130, 246, 0.8)", // blue
+          transaction.type === "TRANSFER"
+            ? "rgba(239, 68, 68, 0.8)"
+            : "rgba(59, 130, 246, 0.8)",
       }))
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [transactions]);
@@ -74,7 +73,7 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
     return transactions.reduce(
       (acc, curr) => {
         const amount = Number(curr.amount);
-        if (curr.type === "EXPENSE") {
+        if (curr.type === "TRANSFER") {
           acc.expense += amount;
         } else {
           acc.income += amount;
@@ -100,15 +99,15 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
   }, [transactions]);
 
   return (
-    <Card className="bg-white dark:bg-gray-800 mt-5 border-none">
+    <Card className="mt-5 border-none bg-white dark:bg-gray-800">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="textDark flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>DETAILED TRANSACTIONS</CardTitle>
+          <CardTitle className="font-lexend">DETAILED TRANSACTIONS</CardTitle>
           <CardDescription>{dateRange}</CardDescription>
         </div>
         <div className="flex">
           <div className="textDark relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left sm:border-l sm:border-t-0 sm:px-8 sm:py-6">
-          <span className="font-lexend">Total Expense</span>
+            <span className="font-lexend">Total Expense</span>
             <div className="flex items-center space-x-1 text-lg font-bold leading-none text-red-500 sm:text-3xl">
               <span>₹</span>
               <span>{totals.expense.toLocaleString()}</span>
@@ -146,14 +145,14 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
               tickMargin={8}
               minTickGap={32}
               tickFormatter={(value) => format(new Date(value), "MMM dd")}
-              tick={{ fill: isDarkMode ? "#ffffff" : "#333333" }} // axis text color
+              tick={{ fill: isDarkMode ? "#ffffff" : "#000000" }} // axis text color
             />
             <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => `₹ ${Math.abs(value)}`}
-              tick={{ fill: isDarkMode ? "#ffffff" : "#333333" }} // axis text color
+              tick={{ fill: isDarkMode ? "#ffffff" : "#000000" }} // axis text color
             />
             <ChartTooltip
               content={

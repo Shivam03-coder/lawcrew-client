@@ -56,7 +56,7 @@ export interface Transaction {
   id: string;
   userId: string;
   accountId: string;
-  type: 'INCOME' | 'EXPENSE';
+  type: 'INCOME' | 'TRANSFER';
   amount: string;
   description: string;
   date: string;

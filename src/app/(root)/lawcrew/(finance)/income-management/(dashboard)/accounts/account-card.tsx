@@ -30,7 +30,7 @@ const AccountCard: React.FC<AccountCardProps> = ({
   };
 
   return (
-    <Card className="relative w-80 rounded-xl bg-secondary shadow-md transition-shadow hover:shadow-lg dark:bg-gray-800">
+    <Card className="relative w-80 rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg dark:bg-gray-800">
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
           <CardTitle className="textDark font-lexend text-base font-medium capitalize">

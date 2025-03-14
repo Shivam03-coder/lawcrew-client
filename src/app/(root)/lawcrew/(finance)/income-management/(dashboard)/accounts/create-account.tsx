@@ -74,7 +74,7 @@ const CreateAccount = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Card className="hover:border-primary/50 hover:bg-muted/50 dark:bg-gray-800 group flex h-44 w-80 cursor-pointer flex-col items-center justify-center rounded-xl border-dashed transition-all hover:scale-105 hover:shadow-lg">
+        <Card className="bg-white dark:bg-gray-800 group flex h-44 w-80 cursor-pointer flex-col items-center justify-center rounded-xl border-dashed transition-all hover:scale-105 hover:shadow-lg">
           <CardHeader className="flex flex-col items-center justify-center p-0">
             <div className="bg-primary/5 group-hover:bg-primary/10 rounded-full p-3 transition-colors">
               <Plus className="textDark h-8 w-8" />
