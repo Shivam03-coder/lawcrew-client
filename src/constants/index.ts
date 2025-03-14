@@ -1,4 +1,4 @@
-export  const monthsOrder = [
+export const monthsOrder = [
   "Jan",
   "Feb",
   "Mar",
@@ -12,3 +12,9 @@ export  const monthsOrder = [
   "Nov",
   "Dec",
 ];
+
+export const RandomColor = () => {
+  return `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padStart(6, "0")}`;
+};

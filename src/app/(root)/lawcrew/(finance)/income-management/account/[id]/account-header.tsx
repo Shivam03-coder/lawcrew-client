@@ -28,7 +28,7 @@ const AccountHeader: FC<AccountHeaderProps> = ({
       {/* Right Side */}
       <div className="space-y-2 text-right">
         <p className="text-lg font-bold text-black dark:text-secondary">
-          ${balance || 0.0}
+        ₹{balance || 0.0}
         </p>
         <p className="text-sm text-gray-500 dark:text-secondary">
           {totalTransactions} Transactions

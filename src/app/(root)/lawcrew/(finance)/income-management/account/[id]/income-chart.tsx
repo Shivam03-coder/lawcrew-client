@@ -25,12 +25,12 @@ import {
 } from "@/components/ui/chart";
 import { Transaction } from "@/store/types/api";
 import { FC, useMemo } from "react";
-import { monthsOrder } from "@/constants";
+import { monthsOrder, RandomColor } from "@/constants";
 
 const chartConfig = {
   desktop: {
     label: "Total Income",
-    color: "#AEEA94",
+    color: RandomColor(),
   },
 } satisfies ChartConfig;
 
@@ -60,12 +60,17 @@ const IncomeChart: FC<IncomeChartProps> = ({ transactions }) => {
     return sortedData;
   }, [transactions]);
 
+  const firstMonth = TotalIncomeData[0]?.month;
+  const lastMonth = TotalIncomeData[TotalIncomeData.length - 1]?.month;
+
   return (
-    <Card className="bg-white">
+    <Card className="flex flex-col bg-white dark:bg-gray-800">
       <CardHeader className="items-center pb-4">
-        <CardTitle>Total Income Radar Chart</CardTitle>
-        <CardDescription>
-          Showing total income for the last few months
+        <CardDescription className="textDark font-lexend text-xl uppercase">
+          Income from{" "}
+          {firstMonth && lastMonth
+            ? `${firstMonth} - ${lastMonth} 2024`
+            : "No data available"}
         </CardDescription>
       </CardHeader>
 
@@ -106,7 +111,7 @@ const IncomeChart: FC<IncomeChartProps> = ({ transactions }) => {
       </CardContent>
 
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="text-muted-foreground flex items-center gap-2 leading-none">
+        <div className="text-muted-foreground textDark font-lexend leading-none">
           Total Income from {TotalIncomeData[0]?.month} -{" "}
           {TotalIncomeData[TotalIncomeData.length - 1]?.month}
         </div>

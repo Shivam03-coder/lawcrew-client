@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart, Sector } from "recharts"
-import { PieSectorDataItem } from "recharts/types/polar/Pie"
+import { TrendingUp } from "lucide-react";
+import { Pie, PieChart, Sector, Cell } from "recharts";
+import { PieSectorDataItem } from "recharts/types/polar/Pie";
 
 import {
   Card,
@@ -11,68 +11,99 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-]
+} from "@/components/ui/chart";
+import { Transaction } from "@/store/types/api";
+import { FC, useMemo } from "react";
+import dayjs from "dayjs";
+import { monthsOrder, RandomColor } from "@/constants";
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig
+const colorPalette = [
+  "#FF6384",
+  "#36A2EB",
+  "#FFCE56",
+  "#4BC0C0",
+  "#9966FF",
+  "#FF9F40",
+  "#C9CBCF",
+  "#8E44AD",
+  "#2ECC71",
+  "#E74C3C",
+  "#3498DB",
+  "#F1C40F",
+];
 
-export function ExpenseChart() {
+interface ExpenseChartProps {
+  transactions: Transaction[];
+}
+
+const ExpenseChart: FC<ExpenseChartProps> = ({ transactions }) => {
+  const TotalExpenseData = useMemo(() => {
+    const expenseByMonth = transactions.reduce(
+      (acc, transaction) => {
+        if (transaction.type === "EXPENSE") {
+          const monthName = dayjs(transaction.date).format("MMMM").slice(0, 3);
+          acc[monthName] = (acc[monthName] || 0) + Number(transaction.amount);
+        }
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
+
+    const sortedData = monthsOrder
+      .map((month, i) => ({
+        month,
+        total: expenseByMonth[month] || 0,
+        color: RandomColor(),
+      }))
+      .filter((data) => data.total > 0);
+
+    return sortedData;
+  }, [transactions]);
+
+  const dynamicChartConfig: ChartConfig = useMemo(() => {
+    const config: ChartConfig = {};
+    TotalExpenseData.forEach((data) => {
+      config[data.month] = {
+        label: data.month,
+        color: data.color,
+      };
+    });
+    return config;
+  }, [TotalExpenseData]);
+
+  const firstMonth = TotalExpenseData[0]?.month;
+  const lastMonth = TotalExpenseData[TotalExpenseData.length - 1]?.month;
+
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col bg-white dark:bg-gray-800">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut Active</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardDescription className="uppercase textDark font-lexend text-xl">
+         Expense from {firstMonth && lastMonth
+            ? `${firstMonth} - ${lastMonth} 2024`
+            : "No data available"}
+        </CardDescription>
       </CardHeader>
+
       <CardContent className="flex-1 pb-0">
         <ChartContainer
-          config={chartConfig}
+          config={dynamicChartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
           <PieChart>
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+              content={<ChartTooltipContent className="bg-white" hideLabel />}
             />
             <Pie
-              data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              data={TotalExpenseData}
+              dataKey="total"
+              nameKey="month"
               innerRadius={60}
               strokeWidth={5}
               activeIndex={0}
@@ -82,20 +113,24 @@ export function ExpenseChart() {
               }: PieSectorDataItem) => (
                 <Sector {...props} outerRadius={outerRadius + 10} />
               )}
-            />
+            >
+              {TotalExpenseData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Pie>
           </PieChart>
         </ChartContainer>
       </CardContent>
+
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+        <div className="text-muted-foreground textDark font-lexend leading-none">
+          {firstMonth && lastMonth
+            ? `Showing expenses from ${firstMonth} to ${lastMonth} 2024`
+            : "No expense data"}
         </div>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
-export default ExpenseChart
+export default ExpenseChart;
