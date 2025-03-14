@@ -81,7 +81,7 @@ const ExpenseChart: FC<ExpenseChartProps> = ({ transactions }) => {
   const lastMonth = TotalExpenseData[TotalExpenseData.length - 1]?.month;
 
   return (
-    <Card className="flex flex-col border-none card">
+    <Card className="flex flex-col border-none bg-white dark:bg-gray-800">
       <CardHeader className="items-center pb-0">
         <CardDescription className="uppercase textDark font-lexend text-xl">
          Expense from {firstMonth && lastMonth

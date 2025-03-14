@@ -8,6 +8,7 @@ import AccountTranactionTable from "./account-tranaction-table";
 import IncomeChart from "./income-chart";
 import ExpenseChart from "./expense-chart";
 import RemainingBalance from "./remaining-balance";
+import AccountChart from "./account-chart";
 
 interface AccountPageProps {
   params: Promise<{
@@ -55,6 +56,12 @@ const AccountPage = ({ params }: AccountPageProps) => {
           transactions={AccountData?.result.transactions as any[]}
         />
       </div>
+
+      <Suspense fallback={<h1 className="text-yellow-300">Loading......</h1>}>
+        <AccountChart
+          transactions={AccountData?.result.transactions as any[]}
+        />
+      </Suspense>
       <Suspense fallback={<h1 className="text-yellow-300">Loading......</h1>}>
         <AccountTranactionTable
           accountId={id}

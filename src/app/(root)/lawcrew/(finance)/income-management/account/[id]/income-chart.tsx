@@ -64,7 +64,7 @@ const IncomeChart: FC<IncomeChartProps> = ({ transactions }) => {
   const lastMonth = TotalIncomeData[TotalIncomeData.length - 1]?.month;
 
   return (
-    <Card className="flex flex-col border-none card">
+    <Card className="flex flex-col border-none bg-white dark:bg-gray-800">
       <CardHeader className="items-center pb-4">
         <CardDescription className="textDark font-lexend text-xl uppercase">
           Income from{" "}
