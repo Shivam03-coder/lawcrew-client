@@ -5,6 +5,7 @@ import {
   AccountResponse,
   AccountTransActionResponse,
   ApiResponse,
+  BudgetResponse,
   UpdateDefaultAccountResponse,
 } from "../types/api";
 
@@ -113,22 +114,31 @@ const financeServices = ApiServices.injectEndpoints({
       },
     }),
     // Query Get Account Budget
-    getAccountBudget: build.query<ApiResponse, void>({
+    getAccountBudget: build.query<BudgetResponse, void>({
       query: () => ({
-        url: `/finance/accounts/budget`,
+        url: "/finance/accounts/budget",
         method: "GET",
       }),
+      providesTags: (budget) => {
+        const id = budget?.result?.budget?.id ?? "LIST";
+        return [{ type: "TRANSACTION", id }];
+      },
     }),
-    // Mutation Update Account Budget
+
     updateAccountBudget: build.mutation<ApiResponse, { amount: number }>({
       query: (payload) => {
         const encryptedPayload = EncryptData(payload);
         return {
-          url: `/finance/accounts/budget`,
+          url: "/finance/accounts/budget",
           method: "POST",
-          body: encryptedPayload,
+          body: {
+            payload: encryptedPayload,
+          },
         };
       },
+      invalidatesTags: (_result, _error, _arg) => [
+        { type: "TRANSACTION", id: "LIST" },
+      ],
     }),
   }),
 });

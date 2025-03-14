@@ -56,18 +56,33 @@ export interface Transaction {
   id: string;
   userId: string;
   accountId: string;
-  type: 'INCOME' | 'TRANSFER';
+  type: "INCOME" | "TRANSFER" | "EXPENSE";
   amount: string;
   description: string;
   date: string;
   category: string;
   receiptUrl: string;
   isRecurring: boolean;
-  recurringInterval: 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'YEARLY' | null;
+  recurringInterval: "DAILY" | "WEEKLY" | "MONTHLY" | "YEARLY" | null;
   nextRecurringDate: string | null;
   lastProcessed: string | null;
-  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  status: "PENDING" | "APPROVED" | "REJECTED";
   createdAt: string;
   updatedAt: string;
 }
 
+export interface Budget {
+  id: string;
+  userId: string;
+  amount: string;
+  createdAt: string;
+  updatedAt: string;
+  lastAlertSent: string | null;
+}
+
+export interface BudgetResponse extends ApiResponse {
+  result: {
+    budget: Budget;
+    currentExpenses: number;
+  };
+}

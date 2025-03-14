@@ -62,7 +62,7 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
         type: transaction.type,
         formattedDate: format(new Date(transaction.date), "MMM dd, yyyy"),
         fill:
-          transaction.type === "TRANSFER"
+          transaction.type === "TRANSFER" || transaction.type === "EXPENSE"
             ? "rgba(239, 68, 68, 0.8)"
             : "rgba(59, 130, 246, 0.8)",
       }))
@@ -73,7 +73,7 @@ const AccountChart: React.FC<AccountChartProps> = ({ transactions }) => {
     return transactions.reduce(
       (acc, curr) => {
         const amount = Number(curr.amount);
-        if (curr.type === "TRANSFER") {
+        if (curr.type === "TRANSFER" || curr.type === "EXPENSE") {
           acc.expense += amount;
         } else {
           acc.income += amount;

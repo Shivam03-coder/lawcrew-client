@@ -1,10 +1,15 @@
-import React from "react";
-import BudgetProgerss from "./budget-progress";
+import React, { ReactElement } from "react";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({
+  children,
+  budgetprogress,
+}: {
+  children: React.ReactNode;
+  budgetprogress: ReactElement;
+}) => {
   return (
     <main>
-      <BudgetProgerss />
+      {budgetprogress}
       {children}
     </main>
   );
