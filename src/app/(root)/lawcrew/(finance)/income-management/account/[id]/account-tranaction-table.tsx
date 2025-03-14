@@ -5,7 +5,7 @@ import { ColumnDef, Row } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Assuming Shadcn UI
 import { Checkbox } from "@/components/ui/checkbox";
-import { useDeleteAccountTransactionsMutation } from "@/store/api-endpoints/finance-api";
+import { useDeleteAccountTransactionsMutation } from "@/store/api-endpoints/income-api";
 import { useAppToasts } from "@/hooks/use-app-toast";
 
 interface AccountTranactionTableProps {

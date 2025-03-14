@@ -11,7 +11,6 @@ import {
 const financeServices = ApiServices.injectEndpoints({
   endpoints: (build) => ({
     // Mutation: Create Account
-
     createAccount: build.mutation<ApiResponse, Account>({
       query: (payload) => {
         const encryptedPayload = EncryptData(payload);
@@ -113,6 +112,24 @@ const financeServices = ApiServices.injectEndpoints({
         ];
       },
     }),
+    // Query Get Account Budget
+    getAccountBudget: build.query<ApiResponse, void>({
+      query: () => ({
+        url: `/finance/accounts/budget`,
+        method: "GET",
+      }),
+    }),
+    // Mutation Update Account Budget
+    updateAccountBudget: build.mutation<ApiResponse, { amount: number }>({
+      query: (payload) => {
+        const encryptedPayload = EncryptData(payload);
+        return {
+          url: `/finance/accounts/budget`,
+          method: "POST",
+          body: encryptedPayload,
+        };
+      },
+    }),
   }),
 });
 
@@ -123,4 +140,6 @@ export const {
   useUpdateDefaultAccountMutation,
   useGetAccountTransactionsQuery,
   useDeleteAccountTransactionsMutation,
+  useGetAccountBudgetQuery,
+  useUpdateAccountBudgetMutation,
 } = financeServices;

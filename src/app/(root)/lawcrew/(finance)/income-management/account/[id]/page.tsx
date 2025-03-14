@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense } from "react";
-import { useGetAccountTransactionsQuery } from "@/store/api-endpoints/finance-api";
+import { useGetAccountTransactionsQuery } from "@/store/api-endpoints/income-api";
 import { notFound } from "next/navigation";
 import AccountHeader from "./account-header";
 import AccountTranactionTable from "./account-tranaction-table";

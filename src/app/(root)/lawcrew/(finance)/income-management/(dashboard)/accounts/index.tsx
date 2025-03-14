@@ -4,7 +4,7 @@ import CreateAccount from "./create-account";
 import {
   useGetAllAccountsQuery,
   useUpdateDefaultAccountMutation,
-} from "@/store/api-endpoints/finance-api";
+} from "@/store/api-endpoints/income-api";
 import AccountCard, { AccountCardSkeleton } from "./account-card";
 import { useAppToasts } from "@/hooks/use-app-toast";
 
