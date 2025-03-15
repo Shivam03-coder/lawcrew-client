@@ -17,7 +17,6 @@ import TransactionModal from "../transactions";
 const BudgetProgressCard = () => {
   const { data: budgetData, isLoading: isBudgetLoading } =
     useGetAccountBudgetQuery();
-  console.log("🚀 ~ BudgetProgressCard ~ budgetData:", budgetData);
   const { data: accountsData, isLoading: isAccountsLoading } =
     useGetAllAccountsQuery();
 
@@ -25,7 +24,6 @@ const BudgetProgressCard = () => {
     () => accountsData?.result.find((account) => account.isDefault),
     [accountsData],
   );
-  console.log("🚀 ~ BudgetProgressCard ~ defaultAccount:", defaultAccount);
 
   const [isEditing, setIsEditing] = useState(false);
   const [localBudget, setLocalBudget] = useState(0);
@@ -68,9 +66,13 @@ const BudgetProgressCard = () => {
     <div className="p-7">
       <Card className="mx-auto w-full rounded-2xl border-none bg-white shadow-md dark:bg-gray-800">
         <CardHeader className="flex w-full justify-between">
-          <CardTitle className="textDark font-lexend flex w-full justify-between font-normal uppercase">
+          <CardTitle className="textDark flex w-full justify-between font-lexend font-normal uppercase">
             Monthly Budget (Default Account)
-            <TransactionModal triggerLabel="Transactions" />
+            <TransactionModal
+              defaultAccountId={defaultAccount?.id}
+              triggerLabel="Transactions"
+              accounts={accountsData?.result}
+            />
           </CardTitle>
         </CardHeader>
 

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { FC } from "react";
 import {
   DialogContent,
   DialogHeader,
@@ -27,8 +29,19 @@ import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 import FormField from "@/components/form-feild";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { TransactionSchema } from "@/schema";
+import { categories, getCategoriesByType } from "@/constants";
+import { Account } from "@/store/types/api";
 
-const CreateTransaction = () => {
+interface CreateTransactionProps {
+  defaultAccountId: string;
+  accounts?: Account[];
+}
+const CreateTransaction: FC<CreateTransactionProps> = ({
+  defaultAccountId,
+  accounts,
+}) => {
   const {
     register,
     handleSubmit,
@@ -36,20 +49,27 @@ const CreateTransaction = () => {
     watch,
     formState: { errors },
   } = useForm({
+    resolver: zodResolver(TransactionSchema),
     defaultValues: {
-      type: "",
+      type: "EXPENSE",
       amount: "",
-      account: "",
-      category: "",
       description: "",
       date: new Date(),
-      recurring: false,
+      accountId: defaultAccountId,
+      category: "EXPENSE",
+      isRecurring: false,
+      recurringInterval: "MONTHLY",
     },
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    console.log("Transaction data:", data);
   };
+
+  const type = watch("type") as keyof typeof categories;
+  const filteredCategories = getCategoriesByType(type);
+  const selectedDate = watch("date");
+  const isRecurring = watch("isRecurring");
 
   return (
     <DialogContent className="bg-white sm:max-w-[700px]">
@@ -62,9 +82,10 @@ const CreateTransaction = () => {
         <div className="col-span-2">
           <Button
             type="button"
-            className="w-full bg-pink-500 font-semibold text-white hover:bg-pink-600"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:bg-pink-600"
           >
-            <span className="mr-2">📷</span> Scan Receipt with AI
+            <span className="text-lg">📷</span>
+            Scan Receipt with AI
           </Button>
         </div>
 
@@ -82,7 +103,6 @@ const CreateTransaction = () => {
               <SelectContent>
                 <SelectItem value="EXPENSE">Expense</SelectItem>
                 <SelectItem value="INCOME">Income</SelectItem>
-                <SelectItem value="TRANSFER">Transfer</SelectItem>
               </SelectContent>
             </Select>
           </FormField>
@@ -91,8 +111,9 @@ const CreateTransaction = () => {
           <FormField label="Amount" error={errors.amount?.message}>
             <Input
               type="number"
-              {...register("amount", { required: "Amount is required" })}
+              {...register("amount")}
               placeholder="0.00"
+              step={0.05}
               className={cn(
                 "borderDark textDark w-full transition-colors",
                 errors.amount &&
@@ -102,17 +123,24 @@ const CreateTransaction = () => {
           </FormField>
 
           {/* Account */}
-          <FormField label="Account" error={errors.account?.message}>
+          <FormField label="Account" error={errors.accountId?.message}>
             <Select
-              onValueChange={(val) => setValue("account", val)}
-              defaultValue={watch("account")}
+              onValueChange={(val) => setValue("accountId", val)}
+              defaultValue={watch("accountId")}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select account" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="main">Main Account</SelectItem>
-                <SelectItem value="savings">Savings Account</SelectItem>
+                {accounts?.map((account) => (
+                  <SelectItem
+                    className="capitalize"
+                    key={account.id}
+                    value={account.id}
+                  >
+                    {account.name} ₹{parseFloat(account.balance)}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </FormField>
@@ -126,10 +154,12 @@ const CreateTransaction = () => {
               <SelectTrigger>
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="food">Food</SelectItem>
-                <SelectItem value="shopping">Shopping</SelectItem>
-                <SelectItem value="rent">Rent</SelectItem>
+              <SelectContent className="max-h-[300px]">
+                {filteredCategories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </FormField>
@@ -142,21 +172,21 @@ const CreateTransaction = () => {
                   variant={"outline"}
                   className={cn(
                     "w-full justify-start text-left font-normal",
-                    !watch("date") && "text-muted-foreground",
+                    !selectedDate && "text-muted-foreground",
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {watch("date") ? (
-                    format(watch("date"), "PPP")
+                  {selectedDate ? (
+                    format(selectedDate, "PPP")
                   ) : (
                     <span>Select date</span>
                   )}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
+              <PopoverContent className="w-auto bg-white p-0">
                 <Calendar
                   mode="single"
-                  selected={watch("date")}
+                  selected={selectedDate}
                   onSelect={(date) => setValue("date", date || new Date())}
                   initialFocus
                 />
@@ -165,24 +195,48 @@ const CreateTransaction = () => {
           </FormField>
 
           {/* Recurring */}
-          <FormField label="Recurring" error={errors.category?.message}>
-            <Select
-              onValueChange={(val) => setValue("category", val)}
-              defaultValue={watch("category")}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select recurring" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="food">Daily</SelectItem>
-                <SelectItem value="shopping">Weekly</SelectItem>
-                <SelectItem value="rent">Monthly</SelectItem>
-              </SelectContent>
-            </Select>
+          <FormField label="Recurring">
+            <div className="flex h-full items-center justify-between rounded-md p-[0.4375rem] px-3 shadow">
+              <h5 className="text-sm font-semibold text-gray-900">
+                Recurring Transaction
+              </h5>
+              <Switch
+                checked={isRecurring}
+                onCheckedChange={(checked) => setValue("isRecurring", checked)}
+              />
+            </div>
           </FormField>
 
+          {isRecurring && (
+            <FormField
+              className="col-span-2 transition-all duration-300"
+              label="Recurring Interval"
+              error={errors.recurringInterval?.message}
+            >
+              <Select
+                onValueChange={(val) => setValue("recurringInterval", val)}
+                defaultValue={watch("recurringInterval")}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select category" />
+                </SelectTrigger>
+                <SelectContent className="max-h-[300px]">
+                  {["DAILY", "WEEKLY", "MONTHLY", "YEARLY"].map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
+          )}
+
           {/* Description - spans 2 columns */}
-          <FormField className="col-span-2"  label="Description" error={errors.description?.message}>
+          <FormField
+            className="col-span-2"
+            label="Description"
+            error={errors.description?.message}
+          >
             <Textarea
               {...register("description")}
               placeholder="Add description (optional)"
