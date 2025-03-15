@@ -159,6 +159,13 @@ const financeServices = ApiServices.injectEndpoints({
         { type: "BUDGET", id: "LIST" },
       ],
     }),
+    scanReceipt: build.mutation<ApiResponse, FormData>({
+      query: (formData) => ({
+        url: "/finance/accounts/transactions/scan-reciept",
+        method: "POST",
+        body: formData,
+      }),
+    }),
   }),
 });
 
@@ -172,4 +179,5 @@ export const {
   useGetAccountBudgetQuery,
   useUpdateAccountBudgetMutation,
   useCreateAccountTransactionMutation,
+  useScanReceiptMutation,
 } = financeServices;
