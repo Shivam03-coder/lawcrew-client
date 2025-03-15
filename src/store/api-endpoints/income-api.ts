@@ -1,6 +1,6 @@
 import { EncryptData } from "@/utils/encrypt";
 import ApiServices from "../middleware/api-services";
-import { Account } from "@/types/finance.types";
+import { Account, TransactionForm } from "@/types/finance.types";
 import {
   AccountResponse,
   AccountTransActionResponse,
@@ -72,10 +72,10 @@ const financeServices = ApiServices.injectEndpoints({
       { accountId: string }
     >({
       query: ({ accountId }) => ({
-        url: `/finance/accounts/${accountId}/transactions`,
+        url: `/finance/accounts/${accountId}/transactions`, // Ensuring consistency
         method: "GET",
       }),
-      providesTags: (data, _error_, body) =>
+      providesTags: (data, _error, body) =>
         data?.result.transactions
           ? [
               ...data.result.transactions.map((transaction) => ({
@@ -84,7 +84,25 @@ const financeServices = ApiServices.injectEndpoints({
               })),
               { type: "TRANSACTION", id: `LIST-${body.accountId}` },
             ]
-          : [{ type: "TRANSACTION", id: "LIST" }],
+          : [{ type: "TRANSACTION", id: `LIST-${body.accountId}` }],
+    }),
+
+    createAccountTransaction: build.mutation<ApiResponse, TransactionForm>({
+      query: (payload) => {
+        const encryptedPayload = EncryptData(payload);
+        return {
+          url: "/finance/accounts/transactions",
+          method: "POST",
+          body: {
+            payload: encryptedPayload,
+          },
+        };
+      },
+      invalidatesTags: (_result, _error, body) => [
+        { type: "TRANSACTION", id: `LIST-${body.accountId}` },
+        { type: "ACCOUNTS", id: "LIST" },
+        { type: "BUDGET", id: body.budgetId },
+      ],
     }),
 
     deleteAccountTransactions: build.mutation<
@@ -113,6 +131,7 @@ const financeServices = ApiServices.injectEndpoints({
         ];
       },
     }),
+
     // Query Get Account Budget
     getAccountBudget: build.query<BudgetResponse, void>({
       query: () => ({
@@ -121,7 +140,7 @@ const financeServices = ApiServices.injectEndpoints({
       }),
       providesTags: (budget) => {
         const id = budget?.result?.budget?.id ?? "LIST";
-        return [{ type: "TRANSACTION", id }];
+        return [{ type: "BUDGET", id }];
       },
     }),
 
@@ -137,7 +156,7 @@ const financeServices = ApiServices.injectEndpoints({
         };
       },
       invalidatesTags: (_result, _error, _arg) => [
-        { type: "TRANSACTION", id: "LIST" },
+        { type: "BUDGET", id: "LIST" },
       ],
     }),
   }),
@@ -152,4 +171,5 @@ export const {
   useDeleteAccountTransactionsMutation,
   useGetAccountBudgetQuery,
   useUpdateAccountBudgetMutation,
+  useCreateAccountTransactionMutation,
 } = financeServices;

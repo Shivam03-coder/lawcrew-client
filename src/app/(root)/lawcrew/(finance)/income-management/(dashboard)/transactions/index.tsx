@@ -10,11 +10,14 @@ type Props = {
   triggerLabel?: string;
   defaultAccountId?: string;
   accounts?: Account[];
+  budgetId: string;
 };
 
 const TransactionModal: React.FC<Props> = ({
   triggerLabel = "New Transaction",
-  defaultAccountId,accounts
+  defaultAccountId,
+  accounts,
+  budgetId,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -23,7 +26,11 @@ const TransactionModal: React.FC<Props> = ({
       <DialogTrigger asChild>
         <Button className="bg-primary text-secondary">{triggerLabel}</Button>
       </DialogTrigger>
-      <CreateTransaction accounts={accounts} defaultAccountId={defaultAccountId ?? ""} />
+      <CreateTransaction
+        accounts={accounts}
+        defaultAccountId={defaultAccountId ?? ""}
+        budgetId={budgetId}
+      />
     </Dialog>
   );
 };

@@ -33,14 +33,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TransactionSchema } from "@/schema";
 import { categories, getCategoriesByType } from "@/constants";
 import { Account } from "@/store/types/api";
+import { useCreateAccountTransactionMutation } from "@/store/api-endpoints/income-api";
+import { TransactionForm } from "@/types/finance.types";
+import { useAppToasts } from "@/hooks/use-app-toast";
 
 interface CreateTransactionProps {
   defaultAccountId: string;
   accounts?: Account[];
+  budgetId: string;
 }
+
 const CreateTransaction: FC<CreateTransactionProps> = ({
   defaultAccountId,
   accounts,
+  budgetId,
 }) => {
   const {
     register,
@@ -48,6 +54,7 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
     setValue,
     watch,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(TransactionSchema),
     defaultValues: {
@@ -62,8 +69,28 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log("Transaction data:", data);
+  const [createAccountTransaction, { isLoading }] =
+    useCreateAccountTransactionMutation();
+  const { ErrorToast, SuccessToast } = useAppToasts();
+  const onSubmit = async (data: any) => {
+    const formData = {
+      ...data,
+      amount: parseFloat(data.amount),
+      budgetId,
+    };
+    try {
+      const res = await createAccountTransaction(data).unwrap();
+      if (res.status === "success") {
+        SuccessToast({
+          title: res.message,
+        });
+        reset();
+      }
+    } catch (error) {
+      ErrorToast({
+        title: "Something went wrong ❌",
+      });
+    }
   };
 
   const type = watch("type") as keyof typeof categories;
@@ -72,13 +99,12 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
   const isRecurring = watch("isRecurring");
 
   return (
-    <DialogContent className="bg-white sm:max-w-[700px]">
+    <DialogContent className="bg-white sm:max-w-[600px]">
       <DialogHeader>
         <DialogTitle>Create Transaction</DialogTitle>
       </DialogHeader>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Scan Receipt */}
         <div className="col-span-2">
           <Button
             type="button"
@@ -89,9 +115,7 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
           </Button>
         </div>
 
-        {/* Grid for fields */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {/* Type */}
           <FormField label="Type" error={errors.type?.message}>
             <Select
               onValueChange={(val) => setValue("type", val)}
@@ -107,7 +131,6 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
             </Select>
           </FormField>
 
-          {/* Amount */}
           <FormField label="Amount" error={errors.amount?.message}>
             <Input
               type="number"
@@ -122,7 +145,6 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
             />
           </FormField>
 
-          {/* Account */}
           <FormField label="Account" error={errors.accountId?.message}>
             <Select
               onValueChange={(val) => setValue("accountId", val)}
@@ -138,14 +160,13 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
                     key={account.id}
                     value={account.id}
                   >
-                    {account.name} ₹{parseFloat(account.balance)}
+                    {account.name} ₹{parseFloat(account.balance).toFixed(2)}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </FormField>
 
-          {/* Category */}
           <FormField label="Category" error={errors.category?.message}>
             <Select
               onValueChange={(val) => setValue("category", val)}
@@ -164,23 +185,18 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
             </Select>
           </FormField>
 
-          {/* Date */}
           <FormField label="Date">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  variant={"outline"}
+                  variant="outline"
                   className={cn(
                     "w-full justify-start text-left font-normal",
                     !selectedDate && "text-muted-foreground",
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {selectedDate ? (
-                    format(selectedDate, "PPP")
-                  ) : (
-                    <span>Select date</span>
-                  )}
+                  {selectedDate ? format(selectedDate, "PPP") : "Pick a date"}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto bg-white p-0">
@@ -189,12 +205,14 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
                   selected={selectedDate}
                   onSelect={(date) => setValue("date", date || new Date())}
                   initialFocus
+                  disabled={(date) =>
+                    date > new Date() || date < new Date("1900-01-01")
+                  }
                 />
               </PopoverContent>
             </Popover>
           </FormField>
 
-          {/* Recurring */}
           <FormField label="Recurring">
             <div className="flex h-full items-center justify-between rounded-md p-[0.4375rem] px-3 shadow">
               <h5 className="text-sm font-semibold text-gray-900">
@@ -209,7 +227,7 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
 
           {isRecurring && (
             <FormField
-              className="col-span-2 transition-all duration-300"
+              className="col-span-2"
               label="Recurring Interval"
               error={errors.recurringInterval?.message}
             >
@@ -218,12 +236,12 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
                 defaultValue={watch("recurringInterval")}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
+                  <SelectValue placeholder="Select interval" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px]">
-                  {["DAILY", "WEEKLY", "MONTHLY", "YEARLY"].map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
+                  {["DAILY", "WEEKLY", "MONTHLY", "YEARLY"].map((interval) => (
+                    <SelectItem key={interval} value={interval}>
+                      {interval}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -231,7 +249,6 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
             </FormField>
           )}
 
-          {/* Description - spans 2 columns */}
           <FormField
             className="col-span-2"
             label="Description"
@@ -249,13 +266,18 @@ const CreateTransaction: FC<CreateTransactionProps> = ({
           </FormField>
         </div>
 
-        {/* Submit Button */}
         <DialogFooter className="col-span-2">
           <Button
             type="submit"
-            className="w-full bg-primary font-lexend uppercase text-secondary"
+            className={cn(
+              "w-full bg-primary font-lexend uppercase text-secondary transition-all",
+              isLoading
+                ? "cursor-not-allowed opacity-50"
+                : "hover:bg-primary/80",
+            )}
+            disabled={isLoading}
           >
-            Create
+            {isLoading ? "Creating..." : "Create"}
           </Button>
         </DialogFooter>
       </form>

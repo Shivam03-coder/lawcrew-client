@@ -17,6 +17,7 @@ import TransactionModal from "../transactions";
 const BudgetProgressCard = () => {
   const { data: budgetData, isLoading: isBudgetLoading } =
     useGetAccountBudgetQuery();
+
   const { data: accountsData, isLoading: isAccountsLoading } =
     useGetAllAccountsQuery();
 
@@ -25,26 +26,40 @@ const BudgetProgressCard = () => {
     [accountsData],
   );
 
+  const currentExpenses = Number(budgetData?.result?.currentExpenses ?? 0);
+  const fetchedBudget = Number(budgetData?.result?.budget?.amount ?? 0);
+
   const [isEditing, setIsEditing] = useState(false);
-  const [localBudget, setLocalBudget] = useState(0);
-  const [inputBudget, setInputBudget] = useState(0);
+  const [localBudget, setLocalBudget] = useState(fetchedBudget);
+  const [inputBudget, setInputBudget] = useState(fetchedBudget);
 
   const { ErrorToast, SuccessToast } = useAppToasts();
   const [updateBudget] = useUpdateAccountBudgetMutation();
 
   useEffect(() => {
-    const amount = Number(budgetData?.result?.budget?.amount ?? 0);
-    setLocalBudget(amount);
-    setInputBudget(amount);
-  }, [budgetData]);
+    // Sync budget when data is fetched/updated
+    setLocalBudget(fetchedBudget);
+    setInputBudget(fetchedBudget);
+  }, [fetchedBudget]);
 
   const handleSave = async () => {
     try {
-      setLocalBudget(inputBudget);
+      const updatedAmount = Number(inputBudget);
+
+      if (isNaN(updatedAmount) || updatedAmount < 0) {
+        ErrorToast({ title: "Please enter a valid budget amount" });
+        return;
+      }
+
       setIsEditing(false);
-      const resp = await updateBudget({ amount: inputBudget }).unwrap();
+      setLocalBudget(updatedAmount);
+
+      const resp = await updateBudget({ amount: updatedAmount }).unwrap();
+
       if (resp.status === "success") {
         SuccessToast({ title: resp.message });
+      } else {
+        throw new Error("Failed to update");
       }
     } catch {
       ErrorToast({ title: "Failed to update budget" });
@@ -56,11 +71,10 @@ const BudgetProgressCard = () => {
     setIsEditing(false);
   };
 
-  const expenses = defaultAccount?.balance ?? 0;
   const percentageUsed = useMemo(() => {
-    const budgetAmount = localBudget || 1000;
-    return Math.min((Number(expenses) / budgetAmount) * 100, 100);
-  }, [expenses, localBudget]);
+    const budgetAmount = localBudget || 1; // avoid division by zero
+    return Math.min((currentExpenses / budgetAmount) * 100, 100);
+  }, [currentExpenses, localBudget]);
 
   return (
     <div className="p-7">
@@ -69,6 +83,7 @@ const BudgetProgressCard = () => {
           <CardTitle className="textDark flex w-full justify-between font-lexend font-normal uppercase">
             Monthly Budget (Default Account)
             <TransactionModal
+              budgetId={budgetData?.result.budget.id ?? ""}
               defaultAccountId={defaultAccount?.id}
               triggerLabel="Transactions"
               accounts={accountsData?.result}
@@ -90,8 +105,8 @@ const BudgetProgressCard = () => {
               <Progress value={percentageUsed} className="h-3 rounded-full" />
 
               <div className="textDark mt-2 flex justify-between text-sm">
-                <span>₹{expenses} spent</span>
-                <span>₹{localBudget || 1000} budget</span>
+                <span>₹{currentExpenses} spent</span>
+                <span>₹{localBudget} budget</span>
               </div>
 
               <div className="mt-4 flex items-center space-x-2">
