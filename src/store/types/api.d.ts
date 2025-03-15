@@ -86,3 +86,13 @@ export interface BudgetResponse extends ApiResponse {
     currentExpenses: number;
   };
 }
+
+export interface ReceiptScanResult extends ApiResponse {
+  result: {
+    amount: number;
+    category: string;
+    date: string;
+    description: string;
+    merchantName: string;
+  };
+}

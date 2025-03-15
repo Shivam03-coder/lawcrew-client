@@ -6,6 +6,7 @@ import {
   AccountTransActionResponse,
   ApiResponse,
   BudgetResponse,
+  ReceiptScanResult,
   UpdateDefaultAccountResponse,
 } from "../types/api";
 
@@ -101,7 +102,7 @@ const financeServices = ApiServices.injectEndpoints({
       invalidatesTags: (_result, _error, body) => [
         { type: "TRANSACTION", id: `LIST-${body.accountId}` },
         { type: "ACCOUNTS", id: "LIST" },
-        { type: "BUDGET", id: body.budgetId },
+        { type: "BUDGET" },
       ],
     }),
 
@@ -138,10 +139,7 @@ const financeServices = ApiServices.injectEndpoints({
         url: "/finance/accounts/budget",
         method: "GET",
       }),
-      providesTags: (budget) => {
-        const id = budget?.result?.budget?.id ?? "LIST";
-        return [{ type: "BUDGET", id }];
-      },
+      providesTags: () => [{ type: "BUDGET" }],
     }),
 
     updateAccountBudget: build.mutation<ApiResponse, { amount: number }>({
@@ -159,7 +157,7 @@ const financeServices = ApiServices.injectEndpoints({
         { type: "BUDGET", id: "LIST" },
       ],
     }),
-    scanReceipt: build.mutation<ApiResponse, FormData>({
+    scanReceipt: build.mutation<ReceiptScanResult, FormData>({
       query: (formData) => ({
         url: "/finance/accounts/transactions/scan-reciept",
         method: "POST",

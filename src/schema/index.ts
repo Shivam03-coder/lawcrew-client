@@ -14,7 +14,7 @@ export const TransactionSchema = z
     description: z.string().optional(),
     date: z.date({ required_error: "Date must be a valid date" }),
     accountId: z.string().min(1, "AccountId is required"),
-    category: z.string().min(1, "Category is required"),
+    category: z.string().min(1, "Category is required").default("Rent"),
     isRecurring: z.boolean().default(false),
     recurringInterval: z
       .enum(["DAILY", "WEEKLY", "MONTHLY", "YEARLY"])

@@ -14,5 +14,5 @@ export interface TransactionForm {
   category: string;
   isRecurring: boolean;
   recurringInterval: string;
-  budgetId: string;
+  budgetId?: string;
 }
